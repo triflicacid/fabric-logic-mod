@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "logic-mod",
+	"version": "${version}",
+	"name": "Logic Mod",
+	"description": "Add basic logical components to Minecraft!",
+	"authors": [
+		"TriflicAcid"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/logic-mod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "net.triflicacid.logicmod.LogicMod"
+		],
+		"client": [
+			"net.triflicacid.logicmod.LogicModClient"
+		],
+		"fabric-datagen": [
+			"net.triflicacid.logicmod.LogicModDataGenerator"
+		]
+	},
+	"mixins": [
+		"logic-mod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.19",
+		"minecraft": "~1.19.3",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
