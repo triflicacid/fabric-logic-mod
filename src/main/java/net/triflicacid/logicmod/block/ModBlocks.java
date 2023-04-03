@@ -19,6 +19,7 @@ import net.triflicacid.logicmod.block.custom.*;
 public class ModBlocks {
     public static final LogicGateBlock AND_GATE = (LogicGateBlock) registerBlock(AndGateBlock.BLOCK_NAME, new AndGateBlock());
     public static final LogicGateBlock NAND_GATE = (LogicGateBlock) registerBlock(NandGateBlock.BLOCK_NAME, new NandGateBlock());
+    public static final LogicGateBlock BUFFER_GATE = (LogicGateBlock) registerBlock(BufferGateBlock.BLOCK_NAME, new BufferGateBlock());
     public static final LogicGateBlock NOT_GATE = (LogicGateBlock) registerBlock(NotGateBlock.BLOCK_NAME, new NotGateBlock());
     public static final LogicGateBlock OR_GATE = (LogicGateBlock) registerBlock(OrGateBlock.BLOCK_NAME, new OrGateBlock());
     public static final LogicGateBlock NOR_GATE = (LogicGateBlock) registerBlock(NorGateBlock.BLOCK_NAME, new NorGateBlock());

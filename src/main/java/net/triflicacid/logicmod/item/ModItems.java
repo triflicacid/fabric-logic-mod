@@ -18,6 +18,7 @@ public class ModItems {
 
     public static final Item AND_GATE = registerLogicGate(ModBlocks.AND_GATE, AndGateBlock.ITEM_NAME);
     public static final Item NAND_GATE = registerLogicGate(ModBlocks.NAND_GATE, NandGateBlock.ITEM_NAME);
+    public static final Item BUFFER_GATE = registerLogicGate(ModBlocks.BUFFER_GATE, BufferGateBlock.ITEM_NAME);
     public static final Item NOT_GATE = registerLogicGate(ModBlocks.NOT_GATE, NotGateBlock.ITEM_NAME);
     public static final Item OR_GATE = registerLogicGate(ModBlocks.OR_GATE, OrGateBlock.ITEM_NAME);
     public static final Item NOR_GATE = registerLogicGate(ModBlocks.NOR_GATE, NorGateBlock.ITEM_NAME);

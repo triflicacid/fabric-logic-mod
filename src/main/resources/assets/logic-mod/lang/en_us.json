@@ -3,6 +3,8 @@
 
   "item.logic-mod.wrench": "Wrench",
 
+  "item.logic-mod.buffer_gate": "BUFFER gate",
+  "block.logic-mod.buffer_gate_block": "BUFFER gate",
   "item.logic-mod.not_gate": "NOT gate",
   "block.logic-mod.not_gate_block": "NOT gate",
 

@@ -33,6 +33,9 @@ This mod contain the following logic gates:
   | 1 | 0 | 1        |
   | 1 | 1 | 0        |
 
+- BUFFER gate
+  - Propagates the input
+
 - NOT gate
   - Inverts the input
 
