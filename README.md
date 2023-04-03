@@ -11,6 +11,8 @@ Logic gates accept inputs and outputs are signal only if a predicate is met.
 - Output : the output is indicated visually by the icon on the block
   - If the output is on, particles will be emitted from the block
 
+The advanced wrench toggles each get between its NOT variant
+
 This mod contain the following logic gates:
 
 - AND gate
@@ -86,7 +88,7 @@ This mod contain the following logic gates:
 
 ## Other
 
- Wrench
+- Wrench
   - Rotates horizontally-rotatable blocks around the Y axis
   - Crafting recipe:
 
@@ -96,8 +98,14 @@ This mod contain the following logic gates:
   |  | # |  |
 
   where `#` is an iron bar
+
+- Advanced Wrench
+  - Configures certain blocks
+  - Crafted equivalently to the wrench, but using gold ingots
   
 ## Signal Emitters
+The advanced wrench toggles between LO and HI
+
 - Constant LO
   - Outputs a directional constant signal strength of 0
 

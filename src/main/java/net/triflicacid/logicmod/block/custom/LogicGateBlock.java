@@ -19,10 +19,11 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.tick.TickPriority;
+import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
 import java.util.function.Function;
 
-public abstract class LogicGateBlock extends HorizontalFacingBlock {
+public abstract class LogicGateBlock extends HorizontalFacingBlock implements AdvancedWrenchable {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
 
@@ -191,5 +192,14 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(new Property[]{ FACING, ACTIVE });
+    }
+
+    public abstract boolean isNotVariant();
+
+    public abstract LogicGateBlock getInverse();
+
+    public BlockState onWrenchApplied(BlockState state, boolean holdingShift) {
+        LogicGateBlock inverse = this.getInverse();
+        return inverse == null ? null : inverse.getDefaultState().with(FACING, state.get(FACING));
     }
 }

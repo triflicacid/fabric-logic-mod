@@ -1,33 +1,37 @@
 package net.triflicacid.logicmod.item.custom;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.text.Text;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.triflicacid.logicmod.block.custom.LogicGateBlock;
+import net.triflicacid.logicmod.block.ModBlocks;
+import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class WrenchItem extends Item {
-    public static final String NAME = "wrench";
+public class AdvancedWrenchItem extends Item {
+    public static final String NAME = "advanced_wrench";
 
-    public WrenchItem(Settings settings) {
+    public AdvancedWrenchItem(Settings settings) {
         super(settings);
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Able to rotate some blocks").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
+        tooltip.add(Text.literal("Configure some logical components").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
         super.appendTooltip(stack, world, tooltip, context);
     }
 
@@ -44,15 +48,17 @@ public class WrenchItem extends Item {
             BlockState state = world.getBlockState(pos);
             boolean doCooldown = false;
 
-            if (state.contains(HorizontalFacingBlock.FACING)) {
-                Direction newDirection = state.get(HorizontalFacingBlock.FACING).rotateYClockwise();
-                world.setBlockState(pos, state.with(HorizontalFacingBlock.FACING, newDirection));
-                doCooldown = true;
+            if (state.getBlock() instanceof AdvancedWrenchable wrenchableBlock) {
+                BlockState newState = wrenchableBlock.onWrenchApplied(state, Screen.hasShiftDown());
+                if (newState != null) {
+                    world.setBlockState(pos, newState);
+                    doCooldown = true;
+                }
             }
 
             // Set cooldown to prevent spamming
             if (doCooldown)
-                context.getPlayer().getItemCooldownManager().set(this, 5);
+                context.getPlayer().getItemCooldownManager().set(this, 7);
         }
 
         return super.useOnBlock(context);

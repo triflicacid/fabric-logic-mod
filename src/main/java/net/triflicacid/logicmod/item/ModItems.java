@@ -12,10 +12,12 @@ import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.block.custom.*;
+import net.triflicacid.logicmod.item.custom.AdvancedWrenchItem;
 import net.triflicacid.logicmod.item.custom.WrenchItem;
 
 public class ModItems {
     public static final Item WRENCH = addToItemGroup(registerItem(WrenchItem.NAME, new WrenchItem(new FabricItemSettings())), ModItemGroup.LOGIC);
+    public static final Item ADV_WRENCH = addToItemGroup(registerItem(AdvancedWrenchItem.NAME, new AdvancedWrenchItem(new FabricItemSettings())), ModItemGroup.LOGIC);
 
     public static final Item AND_GATE = registerAliased(ModBlocks.AND_GATE, AndGateBlock.ITEM_NAME);
     public static final Item NAND_GATE = registerAliased(ModBlocks.NAND_GATE, NandGateBlock.ITEM_NAME);

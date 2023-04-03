@@ -5,6 +5,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.Util;
+import net.triflicacid.logicmod.block.ModBlocks;
 
 public class NorGateBlock extends LogicGateBlock {
     public static final String BLOCK_NAME = "nor_gate_block";
@@ -18,5 +19,15 @@ public class NorGateBlock extends LogicGateBlock {
     protected boolean shouldBeActive(World world, BlockPos pos, BlockState state) {
         boolean[] inputs = this.areInputsRecievingPower(world, pos, state);
         return Util.logicalNor(inputs);
+    }
+
+    @Override
+    public boolean isNotVariant() {
+        return true;
+    }
+
+    @Override
+    public LogicGateBlock getInverse() {
+        return ModBlocks.OR_GATE;
     }
 }
