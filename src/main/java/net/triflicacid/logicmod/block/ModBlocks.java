@@ -22,6 +22,9 @@ public class ModBlocks {
     public static final LogicGateBlock XOR_GATE = (LogicGateBlock) registerBlock(XorGateBlock.BLOCK_NAME, new XorGateBlock());
     public static final LogicGateBlock XNOR_GATE = (LogicGateBlock) registerBlock(XnorGateBlock.BLOCK_NAME, new XnorGateBlock());
 
+    public static final Block CONSTANT_LO = registerBlock(ConstantLoBlock.BLOCK_NAME, new ConstantLoBlock());
+    public static final Block CONSTANT_HI = registerBlock(ConstantHiBlock.BLOCK_NAME, new ConstantHiBlock());
+
 
     /** Register block with no associated item */
     private static Block registerBlock(String name, Block block) {

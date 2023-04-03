@@ -21,5 +21,11 @@
   "item.logic-mod.xor_gate": "XOR Gate",
   "block.logic-mod.xor_gate_block": "XOR Gate",
   "item.logic-mod.xnor_gate": "XNOR Gate",
-  "block.logic-mod.xnor_gate_block": "XNOR Gate"
+  "block.logic-mod.xnor_gate_block": "XNOR Gate",
+
+  "item.logic-mod.constant_lo": "Constant Lo",
+  "block.logic-mod.constant_lo_block": "Constant Lo",
+
+  "item.logic-mod.constant_hi": "Constant Hi",
+  "block.logic-mod.constant_hi_block": "Constant Hi"
 }

@@ -96,3 +96,10 @@ This mod contain the following logic gates:
   |  | # |  |
 
   where `#` is an iron bar
+  
+## Signal Emitters
+- Constant LO
+  - Outputs a directional constant signal strength of 0
+
+- Constant HI
+  - Outputs a directional constant signal strength of 15

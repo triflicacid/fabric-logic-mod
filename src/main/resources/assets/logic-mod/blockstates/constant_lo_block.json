@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "logic-mod:block/constant_lo_block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "logic-mod:block/constant_lo_block"
+    },
+    "facing=south": {
+      "model": "logic-mod:block/constant_lo_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "logic-mod:block/constant_lo_block",
+      "y": 270
+    }
+  }
+}
