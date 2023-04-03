@@ -8,9 +8,13 @@ This mod adds basic logic utilities to Minecraft
 
 Input positions vary, but output signal is always indicated by the logic gate icon. If active, the block will emit particles as an indicator.
 
+- AND gate
+  - Only outputs if both inputs are on
+  - Outputs are on left and right
+
 - NOT gate
   - Inverts the input
-  - Single input, opposite to output.
+  - Single input, opposite to output
 
 ## Other
 

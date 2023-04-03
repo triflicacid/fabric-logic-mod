@@ -1,8 +1,11 @@
 {
-  "itemgroup.logic": "Logic Mod Items",
+  "itemgroup.logic-mod": "Logic Mod Items",
 
   "item.logic-mod.wrench": "Wrench",
 
   "item.logic-mod.not_gate": "NOT gate",
-  "block.logic-mod.not_gate_block": "NOT gate"
+  "block.logic-mod.not_gate_block": "NOT gate",
+
+  "item.logic-mod.and_gate": "AND gate",
+  "block.logic-mod.and_gate_block": "AND gate"
 }

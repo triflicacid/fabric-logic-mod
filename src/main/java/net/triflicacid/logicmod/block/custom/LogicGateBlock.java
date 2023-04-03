@@ -156,15 +156,6 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!world.isClient() && hand == Hand.MAIN_HAND) {
-            world.setBlockState(pos, state.cycle(ACTIVE));
-        }
-
-        return super.onUse(state, world, pos, player, hand, hit);
-    }
-
-    @Override
     public boolean hasRandomTicks(BlockState state) {
         /** If we are active, we want to do stuff on random ticks */
         return state.get(ACTIVE);

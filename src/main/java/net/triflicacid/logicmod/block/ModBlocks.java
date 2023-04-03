@@ -13,10 +13,13 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.LogicMod;
+import net.triflicacid.logicmod.block.custom.AndGateBlock;
 import net.triflicacid.logicmod.block.custom.NotGateBlock;
 
 public class ModBlocks {
     public static final Block NOT_GATE = registerBlock(NotGateBlock.BLOCK_NAME, new NotGateBlock(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly()));
+    public static final Block AND_GATE = registerBlock(AndGateBlock.BLOCK_NAME, new AndGateBlock(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly()));
+
 
     /** Register block with no associated item */
     private static Block registerBlock(String name, Block block) {

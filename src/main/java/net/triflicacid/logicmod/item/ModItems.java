@@ -10,12 +10,14 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.ModBlocks;
+import net.triflicacid.logicmod.block.custom.AndGateBlock;
 import net.triflicacid.logicmod.block.custom.NotGateBlock;
 import net.triflicacid.logicmod.item.custom.WrenchItem;
 
 public class ModItems {
     public static final Item WRENCH = registerItem(WrenchItem.NAME, new WrenchItem(new FabricItemSettings()));
     public static final Item NOT_GATE = registerItem(NotGateBlock.ITEM_NAME, new AliasedBlockItem(ModBlocks.NOT_GATE, new FabricItemSettings()));
+    public static final Item AND_GATE = registerItem(AndGateBlock.ITEM_NAME, new AliasedBlockItem(ModBlocks.AND_GATE, new FabricItemSettings()));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(LogicMod.MOD_ID, name), item);
@@ -24,6 +26,7 @@ public class ModItems {
     public static void addItemsToItemGroup() {
         addToItemGroup(WRENCH, ModItemGroup.LOGIC);
         addToItemGroup(NOT_GATE, ModItemGroup.LOGIC);
+        addToItemGroup(AND_GATE, ModItemGroup.LOGIC);
     }
 
     private static void addToItemGroup(Item item, ItemGroup group) {

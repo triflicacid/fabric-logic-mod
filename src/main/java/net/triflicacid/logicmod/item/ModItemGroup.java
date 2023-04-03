@@ -13,8 +13,8 @@ public class ModItemGroup {
     public static void registerItemGroups() {
         LogicMod.LOGGER.info("Registering item groups...");
 
-        LOGIC = FabricItemGroup.builder(new Identifier(LogicMod.MOD_ID, "logic"))
-                .displayName(Text.translatable("itemgroup.logic"))
+        LOGIC = FabricItemGroup.builder(new Identifier(LogicMod.MOD_ID, "base"))
+                .displayName(Text.translatable("itemgroup.logic-mod"))
                 .icon(() -> new ItemStack(ModItems.WRENCH))
                 .build();
     }
