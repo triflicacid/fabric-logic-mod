@@ -27,7 +27,7 @@ This mod contain the following logic gates:
   - Outputs if either input is off (not-and)
 
   | A | B | `¬(A & B)` |
-      |---|---|----------|
+  |---|---|----------|
   | 0 | 0 | 1        |
   | 0 | 1 | 1        |
   | 1 | 0 | 1        |
@@ -37,7 +37,7 @@ This mod contain the following logic gates:
   - Inverts the input
 
   | A | `¬ A` |
-      |---|-------|
+  |---|-------|
   | 0 | 1     |
   | 1 | 0     |
 
@@ -55,7 +55,7 @@ This mod contain the following logic gates:
   - Outputs if both inputs are off (not-or)
 
   | A | B | `¬(A \| B)` |
-        |---|---|-------------|
+  |---|---|-------------|
   | 0 | 0 | 1           |
   | 0 | 1 | 0           |
   | 1 | 0 | 0           |
@@ -65,7 +65,7 @@ This mod contain the following logic gates:
   - Outputs if either inputs are on, but not both
 
   | A | B | `(A \| B) & ¬(A & B)` |
-    |---|---|-----------------------|
+  |---|---|-----------------------|
   | 0 | 0 | 0                     |
   | 0 | 1 | 1                     |
   | 1 | 0 | 1                     |
