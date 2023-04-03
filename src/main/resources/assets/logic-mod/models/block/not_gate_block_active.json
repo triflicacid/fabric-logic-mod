@@ -1,11 +1,11 @@
 {
   "parent": "block/orientable",
   "textures": {
-    "up": "logic-mod:block/nand_gate_block",
+    "up": "logic-mod:block/not_gate_block_active",
     "down": "logic-mod:block/logic_gate_side",
     "north": "logic-mod:block/logic_gate_side",
     "east": "logic-mod:block/logic_gate_side",
-    "south": "logic-mod:block/logic_gate_indicator",
+    "south": "logic-mod:block/logic_gate_indicator_active",
     "west": "logic-mod:block/logic_gate_side",
     "particle": "logic-mod:block/logic_gate_side"
   }

@@ -1,8 +1,12 @@
 {
   "parent": "block/orientable",
   "textures": {
-    "top": "logic-mod:block/xor_gate_block",
-    "front": "logic-mod:block/logic_gate_side",
-    "side": "logic-mod:block/logic_gate_side"
+    "up": "logic-mod:block/xor_gate_block",
+    "down": "logic-mod:block/logic_gate_side",
+    "north": "logic-mod:block/logic_gate_side",
+    "east": "logic-mod:block/logic_gate_side",
+    "south": "logic-mod:block/logic_gate_indicator",
+    "west": "logic-mod:block/logic_gate_side",
+    "particle": "logic-mod:block/logic_gate_side"
   }
 }

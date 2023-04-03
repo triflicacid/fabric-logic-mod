@@ -11,7 +11,7 @@ public class ConstantLoBlock extends SignalEmitterBlock implements AdvancedWrenc
     public static final String ITEM_NAME = "constant_lo";
 
     public ConstantLoBlock() {
-        super(0, true);
+        super(0, false);
     }
 
     @Override

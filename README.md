@@ -9,6 +9,7 @@ This mod adds basic logic utilities to Minecraft
 Logic gates accept inputs and outputs are signal only if a predicate is met.
 - Inputs : if accept only one input, this is opposite the output. If accepts two inputs, these are left/right of the input.
 - Output : the output is indicated visually by the icon on the block
+  - This is indicated with a small black indicator which will turn on when active
   - If the output is on, particles will be emitted from the block
 
 The advanced wrench toggles each get between its NOT variant
@@ -107,8 +108,8 @@ This mod contain the following logic gates:
 
 - Clock
   - Pulses on and off a predetermined amount of ticks (default 20)
-    - Stored as NBT data in `OnTickCount` and `OffTickCount` repectively
-    - Currenty no way to change these, other than the `/data` command
+    - Stored as NBT data in `OnTickCount` and `OffTickCount` respectively
+    - Currently, there is no way to change these other than the `/data` command
   - The advanced wrench locks/unlocks the clock (pauses/resumes pulsing)
 
 - Constants
