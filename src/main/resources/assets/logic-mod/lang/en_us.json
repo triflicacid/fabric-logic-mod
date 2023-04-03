@@ -28,5 +28,8 @@
   "block.logic-mod.constant_lo_block": "Constant Lo",
 
   "item.logic-mod.constant_hi": "Constant Hi",
-  "block.logic-mod.constant_hi_block": "Constant Hi"
+  "block.logic-mod.constant_hi_block": "Constant Hi",
+
+  "item.logic-mod.clock": "Clock",
+  "block.logic-mod.clock_block": "Clock"
 }

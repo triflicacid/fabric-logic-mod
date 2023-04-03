@@ -2,40 +2,30 @@ package net.triflicacid.logicmod.block.custom;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Property;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.tick.TickPriority;
-import net.triflicacid.logicmod.Util;
 
-import java.util.function.Function;
-
-public abstract class ConstantBlock extends HorizontalFacingBlock {
+public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+    public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
     protected final int SIGNAL_STRENGTH;
 
 
-    public ConstantBlock(int signalStrength) {
+    public SignalEmitterBlock(int signalStrength, boolean initiallyActive) {
         super(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly());
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
+        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(ACTIVE, initiallyActive));
         SIGNAL_STRENGTH = signalStrength;
     }
 
@@ -51,7 +41,7 @@ public abstract class ConstantBlock extends HorizontalFacingBlock {
 
     @Override
     public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return state.get(FACING) == direction ? SIGNAL_STRENGTH : 0;
+        return state.get(FACING) == direction && state.get(ACTIVE) ? SIGNAL_STRENGTH : 0;
     }
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -85,12 +75,12 @@ public abstract class ConstantBlock extends HorizontalFacingBlock {
     @Override
     public boolean hasRandomTicks(BlockState state) {
         // If we are active, we want to do stuff on random ticks
-        return SIGNAL_STRENGTH > 0;
+        return state.get(ACTIVE) && SIGNAL_STRENGTH > 0;
     }
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (SIGNAL_STRENGTH > 0) {
+        if (hasRandomTicks(state)) {
             spawnParticles(world, pos);
         }
     }
@@ -113,6 +103,7 @@ public abstract class ConstantBlock extends HorizontalFacingBlock {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{ FACING });
+        builder.add(new Property[]{ FACING, ACTIVE });
+        super.appendProperties(builder);
     }
 }

@@ -1,8 +1,6 @@
 package net.triflicacid.logicmod.item.custom;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
@@ -14,9 +12,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import org.jetbrains.annotations.Nullable;
 
@@ -49,7 +45,7 @@ public class AdvancedWrenchItem extends Item {
             boolean doCooldown = false;
 
             if (state.getBlock() instanceof AdvancedWrenchable wrenchableBlock) {
-                BlockState newState = wrenchableBlock.onWrenchApplied(state, Screen.hasShiftDown());
+                BlockState newState = wrenchableBlock.applyAdvancedWrench(state, Screen.hasShiftDown());
                 if (newState != null) {
                     world.setBlockState(pos, newState);
                     doCooldown = true;

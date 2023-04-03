@@ -104,10 +104,19 @@ This mod contain the following logic gates:
   - Crafted equivalently to the wrench, but using gold ingots
   
 ## Signal Emitters
-The advanced wrench toggles between LO and HI
 
-- Constant LO
-  - Outputs a directional constant signal strength of 0
+- Clock
+  - Pulses on and off a predetermined amount of ticks (default 20)
+    - Stored as NBT data in `OnTickCount` and `OffTickCount` repectively
+    - Currenty no way to change these, other than the `/data` command
+  - The advanced wrench locks/unlocks the clock (pauses/resumes pulsing)
 
-- Constant HI
-  - Outputs a directional constant signal strength of 15
+- Constants
+  
+  The advanced wrench toggles between LO and HI
+
+  - Constant LO
+    - Outputs a directional constant signal strength of 0
+
+  - Constant HI
+    - Outputs a directional constant signal strength of 15

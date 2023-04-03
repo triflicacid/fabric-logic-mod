@@ -24,6 +24,7 @@ public class ModBlocks {
 
     public static final Block CONSTANT_LO = registerBlock(ConstantLoBlock.BLOCK_NAME, new ConstantLoBlock());
     public static final Block CONSTANT_HI = registerBlock(ConstantHiBlock.BLOCK_NAME, new ConstantHiBlock());
+    public static final Block CLOCK = registerBlock(ClockBlock.BLOCK_NAME, new ClockBlock());
 
 
     /** Register block with no associated item */

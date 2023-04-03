@@ -23,32 +23,14 @@ import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
 import java.util.function.Function;
 
-public abstract class LogicGateBlock extends HorizontalFacingBlock implements AdvancedWrenchable {
-    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
-
+public abstract class LogicGateBlock extends SignalEmitterBlock implements AdvancedWrenchable {
     protected Function<Direction, Direction[]> getInputDirections; // Given current direction block is facing in, return array of directions we accept as inputs
 
-    public LogicGateBlock(Function<Direction, Direction[]> getInputDirections, boolean active) {
-        super(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly());
+    public LogicGateBlock(Function<Direction, Direction[]> getInputDirections, boolean initiallyActive) {
+        super(15, initiallyActive);
         this.getInputDirections = getInputDirections;
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(ACTIVE, active));
     }
 
-    @Override
-    public boolean emitsRedstonePower(BlockState state) {
-        return true;
-    }
-
-    @Override
-    public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return state.getWeakRedstonePower(world, pos, direction);
-    }
-
-    @Override
-    public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return state.get(FACING) == direction && state.get(ACTIVE) ? 15 : 0;
-    }
 
     /** Are we recieving power from any direction? */
     protected boolean recievingAnyPower(World world, BlockPos pos, BlockState state) {
@@ -91,10 +73,6 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock implements Ad
     /** Should ACTIVE be set to true? */
     protected abstract boolean shouldBeActive(World world, BlockPos pos, BlockState state) ;
 
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
-    }
-
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         if (state.canPlaceAt(world, pos)) {
             this.updateActive(world, pos, state);
@@ -131,26 +109,6 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock implements Ad
     }
 
     @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        this.updateTarget(world, pos, state);
-    }
-
-    @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!moved && !state.isOf(newState.getBlock())) {
-            super.onStateReplaced(state, world, pos, newState, moved);
-            this.updateTarget(world, pos, state);
-        }
-    }
-
-    protected void updateTarget(World world, BlockPos pos, BlockState state) {
-        Direction direction = state.get(FACING);
-        BlockPos blockPos = pos.offset(direction.getOpposite());
-        world.updateNeighbor(blockPos, this, pos);
-        world.updateNeighborsExcept(blockPos, this, direction);
-    }
-
-    @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         boolean active = state.get(ACTIVE);
         boolean shouldBeActive = this.shouldBeActive(world, pos, state);
@@ -160,45 +118,11 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock implements Ad
         }
     }
 
-    @Override
-    public boolean hasRandomTicks(BlockState state) {
-        // If we are active, we want to do stuff on random ticks
-        return state.get(ACTIVE);
-    }
-
-    @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (state.get(ACTIVE)) {
-            spawnParticles(world, pos);
-        }
-    }
-
-    private static void spawnParticles(World world, BlockPos pos) {
-        double d = 0.5625;
-        Random random = world.random;
-
-        for(Direction direction : Direction.values()) {
-            BlockPos blockPos = pos.offset(direction);
-            if (!world.getBlockState(blockPos).isOpaqueFullCube(world, blockPos)) {
-                Direction.Axis axis = direction.getAxis();
-                double dx = axis == Direction.Axis.X ? 0.5 + d * (double)direction.getOffsetX() : (double)random.nextFloat();
-                double dy = axis == Direction.Axis.Y ? 0.5 + d * (double)direction.getOffsetY() : (double)random.nextFloat();
-                double dz = axis == Direction.Axis.Z ? 0.5 + d * (double)direction.getOffsetZ() : (double)random.nextFloat();
-                world.addParticle(DustParticleEffect.DEFAULT, (double)pos.getX() + dx, (double)pos.getY() + dy, (double)pos.getZ() + dz, 0.0, 0.0, 0.0);
-            }
-        }
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{ FACING, ACTIVE });
-    }
-
     public abstract boolean isNotVariant();
 
     public abstract LogicGateBlock getInverse();
 
-    public BlockState onWrenchApplied(BlockState state, boolean holdingShift) {
+    public BlockState applyAdvancedWrench(BlockState state, boolean holdingShift) {
         LogicGateBlock inverse = this.getInverse();
         return inverse == null ? null : inverse.getDefaultState().with(FACING, state.get(FACING));
     }

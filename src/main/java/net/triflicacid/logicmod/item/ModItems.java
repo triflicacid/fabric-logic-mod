@@ -30,6 +30,7 @@ public class ModItems {
 
     public static final Item CONSTANT_LO = registerAliased(ModBlocks.CONSTANT_LO, ConstantLoBlock.ITEM_NAME);
     public static final Item CONSTANT_HI = registerAliased(ModBlocks.CONSTANT_HI, ConstantHiBlock.ITEM_NAME);
+    public static final Item CLOCK = registerAliased(ModBlocks.CLOCK, ClockBlock.ITEM_NAME);
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(LogicMod.MOD_ID, name), item);
