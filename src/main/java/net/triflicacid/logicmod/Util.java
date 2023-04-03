@@ -15,11 +15,27 @@ public class Util {
         return true;
     }
 
+    public static boolean logicalNand(boolean[] inputs) {
+        for (boolean input : inputs)
+            if (!input)
+                return true;
+
+        return false;
+    }
+
     public static boolean logicalOr(boolean[] inputs) {
         for (boolean input : inputs)
             if (input)
                 return true;
 
         return false;
+    }
+
+    public static boolean logicalNor(boolean[] inputs) {
+        for (boolean input : inputs)
+            if (input)
+                return false;
+
+        return true;
     }
 }

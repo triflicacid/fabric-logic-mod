@@ -8,7 +8,11 @@
 
   "item.logic-mod.and_gate": "AND gate",
   "block.logic-mod.and_gate_block": "AND gate",
+  "item.logic-mod.nand_gate": "NAND gate",
+  "block.logic-mod.nand_gate_block": "NAND gate",
 
   "item.logic-mod.or_gate": "OR gate",
-  "block.logic-mod.or_gate_block": "OR gate"
+  "block.logic-mod.or_gate_block": "OR gate",
+  "item.logic-mod.nor_gate": "NOR gate",
+  "block.logic-mod.nor_gate_block": "NOR gate"
 }

@@ -6,15 +6,60 @@ This mod adds basic logic utilities to Minecraft
 
 ## Logic Gates
 
-Input positions vary, but output signal is always indicated by the logic gate icon. If active, the block will emit particles as an indicator.
+Logic gates accept inputs and outputs are signal only if a predicate is met.
+- Inputs : if accept only one input, this is opposite the output. If accepts two inputs, these are left/right of the input.
+- Output : the output is indicated visually by the icon on the block
+  - If the output is on, particles will be emitted from the block
+
+This mod contain the following logic gates:
 
 - AND gate
-  - Only outputs if both inputs are on
-  - Outputs are on left and right
+   - Outputs if both inputs are on
+   
+    | A | B | `A & B` |
+    |---|---|---------|
+    | 0 | 0 | 0       |
+    | 0 | 1 | 0       |
+    | 1 | 0 | 0       |
+    | 1 | 1 | 1       |
+
+- NAND gate
+  - Outputs if either input is off (not-and)
+
+  | A | B | `¬(A & B)` |
+      |---|---|----------|
+  | 0 | 0 | 1        |
+  | 0 | 1 | 1        |
+  | 1 | 0 | 1        |
+  | 1 | 1 | 0        |
 
 - NOT gate
   - Inverts the input
-  - Single input, opposite to output
+
+  | A | `¬ A` |
+      |---|-------|
+  | 0 | 1     |
+  | 1 | 0     |
+
+- OR gate
+  - Outputs if either inputs are on
+
+  | A | B | `A \| B` |
+  |---|---|----------|
+  | 0 | 0 | 0        |
+  | 0 | 1 | 1        |
+  | 1 | 0 | 1        |
+  | 1 | 1 | 1        |
+
+- NOR gate
+  - Outputs if both inputs are off (not-or)
+
+  | A | B | `¬(A \| B)` |
+        |---|---|-------------|
+  | 0 | 0 | 1           |
+  | 0 | 1 | 0           |
+  | 1 | 0 | 0           |
+  | 1 | 1 | 0           |
 
 ## Other
 
