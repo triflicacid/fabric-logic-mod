@@ -8,9 +8,7 @@ This mod adds basic logic utilities to Minecraft
 
 Logic gates accept inputs and outputs are signal only if a predicate is met.
 - Inputs : if accept only one input, this is opposite the output. If accepts two inputs, these are left/right of the input.
-- Output : the output is indicated visually by the icon on the block
-  - This is indicated with a small black indicator which will turn on when active
-  - If the output is on, particles will be emitted from the block
+- Output : the output is indicated visually by the icon on the block, and by a black indicator lamp which glows red when the gate is active.
 
 The advanced wrench toggles each get between its NOT variant
 

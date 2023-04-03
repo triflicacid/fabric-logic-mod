@@ -72,19 +72,6 @@ public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
         world.updateNeighborsExcept(blockPos, this, direction);
     }
 
-    @Override
-    public boolean hasRandomTicks(BlockState state) {
-        // If we are active, we want to do stuff on random ticks
-        return state.get(ACTIVE) && SIGNAL_STRENGTH > 0;
-    }
-
-    @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (hasRandomTicks(state)) {
-            spawnParticles(world, pos);
-        }
-    }
-
     private static void spawnParticles(World world, BlockPos pos) {
         double d = 0.5625;
         Random random = world.random;
