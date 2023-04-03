@@ -11,30 +11,33 @@ import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.block.custom.AndGateBlock;
+import net.triflicacid.logicmod.block.custom.LogicGateBlock;
 import net.triflicacid.logicmod.block.custom.NotGateBlock;
+import net.triflicacid.logicmod.block.custom.OrGateBlock;
 import net.triflicacid.logicmod.item.custom.WrenchItem;
 
 public class ModItems {
     public static final Item WRENCH = registerItem(WrenchItem.NAME, new WrenchItem(new FabricItemSettings()));
-    public static final Item NOT_GATE = registerItem(NotGateBlock.ITEM_NAME, new AliasedBlockItem(ModBlocks.NOT_GATE, new FabricItemSettings()));
-    public static final Item AND_GATE = registerItem(AndGateBlock.ITEM_NAME, new AliasedBlockItem(ModBlocks.AND_GATE, new FabricItemSettings()));
+
+    public static final Item AND_GATE = createLogicGate(ModBlocks.AND_GATE, AndGateBlock.ITEM_NAME);
+    public static final Item NOT_GATE = createLogicGate(ModBlocks.NOT_GATE, NotGateBlock.ITEM_NAME);
+    public static final Item OR_GATE = createLogicGate(ModBlocks.OR_GATE, OrGateBlock.ITEM_NAME);
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(LogicMod.MOD_ID, name), item);
     }
 
-    public static void addItemsToItemGroup() {
-        addToItemGroup(WRENCH, ModItemGroup.LOGIC);
-        addToItemGroup(NOT_GATE, ModItemGroup.LOGIC);
-        addToItemGroup(AND_GATE, ModItemGroup.LOGIC);
+    private static Item addToItemGroup(Item item, ItemGroup group) {
+        ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
+        return item;
     }
 
-    private static void addToItemGroup(Item item, ItemGroup group) {
-        ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
+    /** Add a logic gate */
+    private static Item createLogicGate(LogicGateBlock block, String name) {
+        return addToItemGroup(registerItem(name, new AliasedBlockItem(block, new FabricItemSettings())), ModItemGroup.LOGIC);
     }
 
     public static void registerItems() {
         LogicMod.LOGGER.info("Registering items...");
-        addItemsToItemGroup();
     }
 }

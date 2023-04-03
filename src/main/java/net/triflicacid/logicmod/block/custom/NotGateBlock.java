@@ -10,8 +10,8 @@ public class NotGateBlock extends LogicGateBlock {
     public static final String BLOCK_NAME = "not_gate_block";
     public static final String ITEM_NAME = "not_gate";
 
-    public NotGateBlock(Settings settings) {
-        super(settings, facing -> new Direction[] { facing }, true);
+    public NotGateBlock() {
+        super(facing -> new Direction[] { facing }, true);
     }
 
     @Override

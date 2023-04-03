@@ -1,5 +1,6 @@
 package net.triflicacid.logicmod.block.custom;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
@@ -8,6 +9,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -30,8 +32,8 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock {
 
     protected Function<Direction, Direction[]> getInputDirections;
 
-    public LogicGateBlock(Settings settings, Function<Direction, Direction[]> getInputDirections, boolean active) {
-        super(settings);
+    public LogicGateBlock(Function<Direction, Direction[]> getInputDirections, boolean active) {
+        super(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly());
         this.getInputDirections = getInputDirections;
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(ACTIVE, active));
     }

@@ -7,5 +7,8 @@
   "block.logic-mod.not_gate_block": "NOT gate",
 
   "item.logic-mod.and_gate": "AND gate",
-  "block.logic-mod.and_gate_block": "AND gate"
+  "block.logic-mod.and_gate_block": "AND gate",
+
+  "item.logic-mod.or_gate": "OR gate",
+  "block.logic-mod.or_gate_block": "OR gate"
 }

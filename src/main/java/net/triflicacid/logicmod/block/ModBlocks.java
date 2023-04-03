@@ -3,6 +3,7 @@ package net.triflicacid.logicmod.block;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.item.BlockItem;
@@ -14,11 +15,14 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.custom.AndGateBlock;
+import net.triflicacid.logicmod.block.custom.LogicGateBlock;
 import net.triflicacid.logicmod.block.custom.NotGateBlock;
+import net.triflicacid.logicmod.block.custom.OrGateBlock;
 
 public class ModBlocks {
-    public static final Block NOT_GATE = registerBlock(NotGateBlock.BLOCK_NAME, new NotGateBlock(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly()));
-    public static final Block AND_GATE = registerBlock(AndGateBlock.BLOCK_NAME, new AndGateBlock(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly()));
+    public static final LogicGateBlock AND_GATE = (LogicGateBlock) registerBlock(AndGateBlock.BLOCK_NAME, new AndGateBlock());
+    public static final LogicGateBlock NOT_GATE = (LogicGateBlock) registerBlock(NotGateBlock.BLOCK_NAME, new NotGateBlock());
+    public static final LogicGateBlock OR_GATE = (LogicGateBlock) registerBlock(OrGateBlock.BLOCK_NAME, new OrGateBlock());
 
 
     /** Register block with no associated item */

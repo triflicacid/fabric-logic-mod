@@ -11,7 +11,15 @@ public class Util {
         for (boolean input : inputs)
             if (!input)
                 return false;
-        
+
         return true;
+    }
+
+    public static boolean logicalOr(boolean[] inputs) {
+        for (boolean input : inputs)
+            if (input)
+                return true;
+
+        return false;
     }
 }
