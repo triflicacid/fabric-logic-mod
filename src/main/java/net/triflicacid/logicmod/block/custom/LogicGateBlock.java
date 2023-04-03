@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
@@ -14,9 +13,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Property;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -28,9 +24,9 @@ import java.util.function.Function;
 
 public abstract class LogicGateBlock extends HorizontalFacingBlock {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    public static final BooleanProperty ACTIVE = BooleanProperty.of("active"); // output
+    public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
 
-    protected Function<Direction, Direction[]> getInputDirections;
+    protected Function<Direction, Direction[]> getInputDirections; // Given current direction block is facing in, return array of directions we accept as inputs
 
     public LogicGateBlock(Function<Direction, Direction[]> getInputDirections, boolean active) {
         super(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly());
@@ -38,14 +34,17 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock {
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(ACTIVE, active));
     }
 
+    @Override
     public boolean emitsRedstonePower(BlockState state) {
         return true;
     }
 
+    @Override
     public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
         return state.getWeakRedstonePower(world, pos, direction);
     }
 
+    @Override
     public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
         return state.get(FACING) == direction && state.get(ACTIVE) ? 15 : 0;
     }
@@ -72,7 +71,7 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock {
             return i;
         } else {
             BlockState blockState = world.getBlockState(blockPos);
-            return Math.max(i, blockState.isOf(Blocks.REDSTONE_WIRE) ? (Integer)blockState.get(RedstoneWireBlock.POWER) : 0);
+            return Math.max(i, blockState.isOf(Blocks.REDSTONE_WIRE) ? blockState.get(RedstoneWireBlock.POWER) : 0);
         }
     }
 
@@ -92,7 +91,7 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock {
     protected abstract boolean shouldBeActive(World world, BlockPos pos, BlockState state) ;
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return (BlockState)this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
     }
 
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
@@ -130,10 +129,12 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock {
 
     }
 
+    @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         this.updateTarget(world, pos, state);
     }
 
+    @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!moved && !state.isOf(newState.getBlock())) {
             super.onStateReplaced(state, world, pos, newState, moved);
@@ -142,24 +143,25 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock {
     }
 
     protected void updateTarget(World world, BlockPos pos, BlockState state) {
-        Direction direction = (Direction)state.get(FACING);
+        Direction direction = state.get(FACING);
         BlockPos blockPos = pos.offset(direction.getOpposite());
         world.updateNeighbor(blockPos, this, pos);
         world.updateNeighborsExcept(blockPos, this, direction);
     }
 
+    @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         boolean active = state.get(ACTIVE);
         boolean shouldBeActive = this.shouldBeActive(world, pos, state);
 
         if (active != shouldBeActive) {
-            world.setBlockState(pos, (BlockState)state.with(ACTIVE, shouldBeActive), 2);
+            world.setBlockState(pos, state.with(ACTIVE, shouldBeActive), 2);
         }
     }
 
     @Override
     public boolean hasRandomTicks(BlockState state) {
-        /** If we are active, we want to do stuff on random ticks */
+        // If we are active, we want to do stuff on random ticks
         return state.get(ACTIVE);
     }
 
@@ -173,10 +175,8 @@ public abstract class LogicGateBlock extends HorizontalFacingBlock {
     private static void spawnParticles(World world, BlockPos pos) {
         double d = 0.5625;
         Random random = world.random;
-        Direction[] directions = Direction.values();
 
-        for(int i = 0; i < directions.length; ++i) {
-            Direction direction = directions[i];
+        for(Direction direction : Direction.values()) {
             BlockPos blockPos = pos.offset(direction);
             if (!world.getBlockState(blockPos).isOpaqueFullCube(world, blockPos)) {
                 Direction.Axis axis = direction.getAxis();

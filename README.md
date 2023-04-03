@@ -86,5 +86,13 @@ This mod contain the following logic gates:
 
 ## Other
 
-- Wrench
-  - No use at the moment
+ Wrench
+  - Rotates horizontally-rotatable blocks around the Y axis
+  - Crafting recipe:
+
+  | # |  | # |
+  | - | - | - |
+  |  | # |  |
+  |  | # |  |
+
+  where `#` is an iron bar
