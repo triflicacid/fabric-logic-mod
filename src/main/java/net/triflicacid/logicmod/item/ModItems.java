@@ -21,6 +21,8 @@ public class ModItems {
     public static final Item NOT_GATE = registerLogicGate(ModBlocks.NOT_GATE, NotGateBlock.ITEM_NAME);
     public static final Item OR_GATE = registerLogicGate(ModBlocks.OR_GATE, OrGateBlock.ITEM_NAME);
     public static final Item NOR_GATE = registerLogicGate(ModBlocks.NOR_GATE, NorGateBlock.ITEM_NAME);
+    public static final Item XOR_GATE = registerLogicGate(ModBlocks.XOR_GATE, XorGateBlock.ITEM_NAME);
+    public static final Item XNOR_GATE = registerLogicGate(ModBlocks.XNOR_GATE, XnorGateBlock.ITEM_NAME);
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(LogicMod.MOD_ID, name), item);

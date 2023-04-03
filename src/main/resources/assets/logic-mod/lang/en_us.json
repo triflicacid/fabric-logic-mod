@@ -14,5 +14,10 @@
   "item.logic-mod.or_gate": "OR gate",
   "block.logic-mod.or_gate_block": "OR gate",
   "item.logic-mod.nor_gate": "NOR gate",
-  "block.logic-mod.nor_gate_block": "NOR gate"
+  "block.logic-mod.nor_gate_block": "NOR gate",
+
+  "item.logic-mod.xor_gate": "XOR gate",
+  "block.logic-mod.xor_gate_block": "XOR gate",
+  "item.logic-mod.xnor_gate": "XNOR gate",
+  "block.logic-mod.xnor_gate_block": "XNOR gate"
 }

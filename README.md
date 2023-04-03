@@ -61,6 +61,26 @@ This mod contain the following logic gates:
   | 1 | 0 | 0           |
   | 1 | 1 | 0           |
 
+- XOR gate
+  - Outputs if either inputs are on, but not both
+
+  | A | B | `(A \| B) & ¬(A & B)` |
+    |---|---|-----------------------|
+  | 0 | 0 | 0                     |
+  | 0 | 1 | 1                     |
+  | 1 | 0 | 1                     |
+  | 1 | 1 | 0                     |
+
+- XNOR gate
+  - Output if both inputs are equal (not-xor)
+
+  | A | B | `¬(A & B) \| (A & B)` |
+  |---|---|-------------|
+  | 0 | 0 | 1           |
+  | 0 | 1 | 0           |
+  | 1 | 0 | 0           |
+  | 1 | 1 | 1           |
+
 ## Other
 
 - Wrench

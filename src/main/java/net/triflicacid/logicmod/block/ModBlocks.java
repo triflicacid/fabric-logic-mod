@@ -22,6 +22,8 @@ public class ModBlocks {
     public static final LogicGateBlock NOT_GATE = (LogicGateBlock) registerBlock(NotGateBlock.BLOCK_NAME, new NotGateBlock());
     public static final LogicGateBlock OR_GATE = (LogicGateBlock) registerBlock(OrGateBlock.BLOCK_NAME, new OrGateBlock());
     public static final LogicGateBlock NOR_GATE = (LogicGateBlock) registerBlock(NorGateBlock.BLOCK_NAME, new NorGateBlock());
+    public static final LogicGateBlock XOR_GATE = (LogicGateBlock) registerBlock(XorGateBlock.BLOCK_NAME, new XorGateBlock());
+    public static final LogicGateBlock XNOR_GATE = (LogicGateBlock) registerBlock(XnorGateBlock.BLOCK_NAME, new XnorGateBlock());
 
 
     /** Register block with no associated item */
