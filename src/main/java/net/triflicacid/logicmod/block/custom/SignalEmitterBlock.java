@@ -36,7 +36,7 @@ public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
 
     @Override
     public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return state.getWeakRedstonePower(world, pos, direction);
+        return 0;
     }
 
     @Override

@@ -8,7 +8,7 @@ import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
 import java.util.function.Function;
 
-public abstract class LogicGateBlock extends SignalRecieverBlock implements AdvancedWrenchable {
+public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWrenchable {
     protected Function<Direction, Direction[]> getInputDirections; // Given current direction block is facing in, return array of directions we accept as inputs
 
     public LogicGateBlock(Function<Direction, Direction[]> getInputDirections, boolean initiallyActive) {

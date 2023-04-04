@@ -108,6 +108,7 @@ This mod contain the following logic gates:
   - Pulses on and off a predetermined amount of ticks (default 20)
     - Stored as NBT data in `OnTickCount` and `OffTickCount` respectively
     - Currently, there is no way to change these other than the `/data` command
+  - May be locked by powering from behind
   - The advanced wrench locks/unlocks the clock (pauses/resumes pulsing)
 
 - Constants

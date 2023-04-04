@@ -9,20 +9,33 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Property;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.tick.TickPriority;
 import net.triflicacid.logicmod.blockentity.custom.AbstractClockBlockEntity;
 import net.triflicacid.logicmod.blockentity.custom.ClockBlockEntity;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractClockBlock extends SignalEmitterBlock implements BlockEntityProvider, AdvancedWrenchable {
+public abstract class AbstractClockBlock extends SignalIOBlock implements BlockEntityProvider, AdvancedWrenchable {
     public static final BooleanProperty LOCKED = BooleanProperty.of("locked");
 
     public AbstractClockBlock() {
         super(15, false);
         this.setDefaultState(this.stateManager.getDefaultState().with(LOCKED, false));
+    }
+
+    @Override
+    protected void update(World world, BlockPos pos, BlockState state) {
+        boolean behind = this.getPower(world, pos, state, state.get(FACING)) > 0;
+        if (behind != state.get(LOCKED)) {
+            world.setBlockState(pos, state.with(LOCKED, behind));
+        }
+    }
+
+    @Override
+    protected int getUpdateDelayInternal(BlockState state) {
+        return 0;
     }
 
     public void update(BlockState state, ServerWorld world, BlockPos pos) {
@@ -39,6 +52,7 @@ public abstract class AbstractClockBlock extends SignalEmitterBlock implements B
             }
         }
     }
+
 
     public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
         super.onSyncedBlockEvent(state, world, pos, type, data);
