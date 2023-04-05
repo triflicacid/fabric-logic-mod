@@ -116,7 +116,7 @@ This mod contain the following logic gates:
 ## Tools
 
 - Wrench
-  - Rotates horizontally-rotatable blocks around the Y axis
+  - Unless otherwise specified, applying the wrench rotates blocks around the Y axis (horizontally)
   - Crafting recipe:
 
   | # |   | # |
@@ -139,6 +139,8 @@ Wires are blocks which carry redstone signals. Key features:
   - *Normal mode*, indicated by a black square. No unique behaviour.
   - *Input mode*, indicated by a blue-filled square. This will accept any redstone signal into the wire.
   - *Output mode*, indicated by an orange-filled square. This will output the wire's redstone signal to any block adjacent to this face.
+  
+  Applying the wrench on an adapter rotates it around the axis the player is looking in.
 
 There are four wire/adapter variants:
 - Blue

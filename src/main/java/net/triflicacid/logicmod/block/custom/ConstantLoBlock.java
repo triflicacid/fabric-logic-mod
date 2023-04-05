@@ -18,7 +18,7 @@ public class ConstantLoBlock extends SignalEmitterBlock implements AdvancedWrenc
     }
 
     @Override
-    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side) {
+    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
         return ModBlocks.CONSTANT_HI.getDefaultState().with(HorizontalFacingBlock.FACING, state.get(HorizontalFacingBlock.FACING));
     }
 }

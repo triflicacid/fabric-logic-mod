@@ -11,6 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.triflicacid.logicmod.interfaces.Wrenchable;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -41,7 +42,13 @@ public class WrenchItem extends Item {
             BlockState state = world.getBlockState(pos);
             boolean doCooldown = false;
 
-            if (state.contains(HorizontalFacingBlock.FACING)) {
+            if (state.getBlock() instanceof Wrenchable wrenchableBlock) {
+                BlockState newState = wrenchableBlock.applyWrench(world, pos, state, context.getSide(), context.getPlayerFacing());
+                if (newState != null) {
+                    world.setBlockState(pos, newState);
+                    doCooldown = true;
+                }
+            } else if (state.contains(HorizontalFacingBlock.FACING)) {
                 Direction newDirection = state.get(HorizontalFacingBlock.FACING).rotateYClockwise();
                 world.setBlockState(pos, state.with(HorizontalFacingBlock.FACING, newDirection));
                 doCooldown = true;

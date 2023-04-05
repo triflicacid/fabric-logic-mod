@@ -45,7 +45,7 @@ public class AdvancedWrenchItem extends Item {
             boolean doCooldown = false;
 
             if (state.getBlock() instanceof AdvancedWrenchable wrenchableBlock) {
-                BlockState newState = wrenchableBlock.applyAdvancedWrench(world, pos, state, context.getSide());
+                BlockState newState = wrenchableBlock.applyAdvancedWrench(world, pos, state, context.getSide(), context.getPlayerFacing());
                 if (newState != null) {
                     world.setBlockState(pos, newState);
                     doCooldown = true;

@@ -40,7 +40,7 @@ public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWr
     public abstract LogicGateBlock getInverse();
 
     @Override
-    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side) {
+    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
         LogicGateBlock inverse = this.getInverse();
         return inverse == null ? null : inverse.getDefaultState().with(FACING, state.get(FACING));
     }
