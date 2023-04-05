@@ -4,8 +4,7 @@ import net.triflicacid.logicmod.util.WireColor;
 
 public class YellowWireAdapterBlock extends WireAdapterBlock {
     public static final WireColor COLOR = WireColor.YELLOW;
-    public static final String BLOCK_NAME = getBlockName(COLOR);
-    public static final String ITEM_NAME = getItemName(COLOR);
+    public static final String NAME = getName(COLOR);
 
     public YellowWireAdapterBlock() {
         super(COLOR);

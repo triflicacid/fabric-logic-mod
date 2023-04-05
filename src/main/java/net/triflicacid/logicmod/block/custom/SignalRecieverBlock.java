@@ -8,8 +8,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 public abstract class SignalRecieverBlock extends SignalEmitterBlock {
-    public SignalRecieverBlock(int outputSignalStrength, boolean initiallyActive) {
-        super(outputSignalStrength, initiallyActive);
+    public SignalRecieverBlock(boolean initiallyActive) {
+        super(initiallyActive);
     }
 
     /** Get power being received in a given direction */

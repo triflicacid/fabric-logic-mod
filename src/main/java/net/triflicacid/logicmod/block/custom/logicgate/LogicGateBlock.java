@@ -14,8 +14,13 @@ public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWr
     protected Function<Direction, Direction[]> getInputDirections; // Given current direction block is facing in, return array of directions we accept as inputs
 
     public LogicGateBlock(Function<Direction, Direction[]> getInputDirections, boolean initiallyActive) {
-        super(15, initiallyActive);
+        super(initiallyActive);
         this.getInputDirections = getInputDirections;
+    }
+
+    @Override
+    public int getSignalStrength() {
+        return 15;
     }
 
     /** Return array indicating if each direction returned by getInputDirections is recieving power */

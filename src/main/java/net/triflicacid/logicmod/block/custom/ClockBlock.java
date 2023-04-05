@@ -10,8 +10,7 @@ import net.triflicacid.logicmod.blockentity.ModBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 public class ClockBlock extends AbstractClockBlock {
-    public static final String BLOCK_NAME = "clock_block";
-    public static final String ITEM_NAME = "clock";
+    public static final String NAME = "clock";
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {

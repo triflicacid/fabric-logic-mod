@@ -8,8 +8,7 @@ import net.triflicacid.logicmod.Util;
 import net.triflicacid.logicmod.block.ModBlocks;
 
 public class OrGateBlock extends LogicGateBlock {
-    public static final String BLOCK_NAME = "or_gate_block";
-    public static final String ITEM_NAME = "or_gate";
+    public static final String NAME = "or_gate";
 
     public OrGateBlock() {
         super(facing -> new Direction[] { facing.rotateYClockwise(), facing.rotateYCounterclockwise() }, false);

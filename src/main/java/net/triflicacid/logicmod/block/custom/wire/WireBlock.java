@@ -58,11 +58,7 @@ public abstract class WireBlock extends AbstractWireBlock {
         }
     }
 
-    protected static final String getBlockName(WireColor color) {
-        return color + "_wire_block";
-    }
-
-    protected static final String getItemName(WireColor color) {
+    protected static final String getName(WireColor color) {
         return color + "_wire";
     }
 }

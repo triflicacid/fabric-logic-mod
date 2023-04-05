@@ -2,6 +2,7 @@ package net.triflicacid.logicmod.item.custom;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -49,7 +50,8 @@ public class WrenchItem extends Item {
                     doCooldown = true;
                 }
             } else if (state.contains(HorizontalFacingBlock.FACING)) {
-                Direction newDirection = state.get(HorizontalFacingBlock.FACING).rotateYClockwise();
+                Direction newDirection = state.get(HorizontalFacingBlock.FACING);
+                newDirection = Screen.hasShiftDown() ? newDirection.rotateYCounterclockwise() : newDirection.rotateYClockwise();
                 world.setBlockState(pos, state.with(HorizontalFacingBlock.FACING, newDirection));
                 doCooldown = true;
             }

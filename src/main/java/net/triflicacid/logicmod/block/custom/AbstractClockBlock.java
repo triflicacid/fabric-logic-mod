@@ -21,8 +21,13 @@ public abstract class AbstractClockBlock extends SignalIOBlock implements BlockE
     public static final BooleanProperty LOCKED = BooleanProperty.of("locked");
 
     public AbstractClockBlock() {
-        super(15, false);
+        super(false);
         this.setDefaultState(this.stateManager.getDefaultState().with(LOCKED, false));
+    }
+
+    @Override
+    public int getSignalStrength() {
+        return 15;
     }
 
     @Override

@@ -21,28 +21,29 @@ public class ModItems {
     public static final Item WRENCH = addToItemGroup(registerItem(WrenchItem.NAME, new WrenchItem(new FabricItemSettings())), ModItemGroup.LOGIC);
     public static final Item ADV_WRENCH = addToItemGroup(registerItem(AdvancedWrenchItem.NAME, new AdvancedWrenchItem(new FabricItemSettings())), ModItemGroup.LOGIC);
 
-    public static final Item AND_GATE = registerAliased(ModBlocks.AND_GATE, AndGateBlock.ITEM_NAME);
-    public static final Item NAND_GATE = registerAliased(ModBlocks.NAND_GATE, NandGateBlock.ITEM_NAME);
-    public static final Item BUFFER_GATE = registerAliased(ModBlocks.BUFFER_GATE, BufferGateBlock.ITEM_NAME);
-    public static final Item NOT_GATE = registerAliased(ModBlocks.NOT_GATE, NotGateBlock.ITEM_NAME);
-    public static final Item OR_GATE = registerAliased(ModBlocks.OR_GATE, OrGateBlock.ITEM_NAME);
-    public static final Item NOR_GATE = registerAliased(ModBlocks.NOR_GATE, NorGateBlock.ITEM_NAME);
-    public static final Item XOR_GATE = registerAliased(ModBlocks.XOR_GATE, XorGateBlock.ITEM_NAME);
-    public static final Item XNOR_GATE = registerAliased(ModBlocks.XNOR_GATE, XnorGateBlock.ITEM_NAME);
+    /** Logic gates */
+    public static final Item AND_GATE = registerAliased(ModBlocks.AND_GATE, AndGateBlock.NAME);
+    public static final Item NAND_GATE = registerAliased(ModBlocks.NAND_GATE, NandGateBlock.NAME);
+    public static final Item BUFFER_GATE = registerAliased(ModBlocks.BUFFER_GATE, BufferGateBlock.NAME);
+    public static final Item NOT_GATE = registerAliased(ModBlocks.NOT_GATE, NotGateBlock.NAME);
+    public static final Item OR_GATE = registerAliased(ModBlocks.OR_GATE, OrGateBlock.NAME);
+    public static final Item NOR_GATE = registerAliased(ModBlocks.NOR_GATE, NorGateBlock.NAME);
+    public static final Item XOR_GATE = registerAliased(ModBlocks.XOR_GATE, XorGateBlock.NAME);
+    public static final Item XNOR_GATE = registerAliased(ModBlocks.XNOR_GATE, XnorGateBlock.NAME);
 
-    public static final Item CONSTANT_LO = registerAliased(ModBlocks.CONSTANT_LO, ConstantLoBlock.ITEM_NAME);
-    public static final Item CONSTANT_HI = registerAliased(ModBlocks.CONSTANT_HI, ConstantHiBlock.ITEM_NAME);
-    public static final Item CLOCK = registerAliased(ModBlocks.CLOCK, ClockBlock.ITEM_NAME);
+    public static final Item CONSTANT_LO = registerAliased(ModBlocks.CONSTANT_LO, ConstantLoBlock.NAME);
+    public static final Item CONSTANT_HI = registerAliased(ModBlocks.CONSTANT_HI, ConstantHiBlock.NAME);
+    public static final Item CLOCK = registerAliased(ModBlocks.CLOCK, ClockBlock.NAME);
 
     /** Wires and adapters */
-    public static final Item BLUE_WIRE = registerAliased(ModBlocks.BLUE_WIRE, BlueWireBlock.ITEM_NAME);
-    public static final Item BLUE_WIRE_ADAPTER = registerAliased(ModBlocks.BLUE_WIRE_ADAPTER, BlueWireAdapterBlock.ITEM_NAME);
-    public static final Item GREEN_WIRE = registerAliased(ModBlocks.GREEN_WIRE, GreenWireBlock.ITEM_NAME);
-    public static final Item GREEN_WIRE_ADAPTER = registerAliased(ModBlocks.GREEN_WIRE_ADAPTER, GreenWireAdapterBlock.ITEM_NAME);
-    public static final Item RED_WIRE = registerAliased(ModBlocks.RED_WIRE, RedWireBlock.ITEM_NAME);
-    public static final Item RED_WIRE_ADAPTER = registerAliased(ModBlocks.RED_WIRE_ADAPTER, RedWireAdapterBlock.ITEM_NAME);
-    public static final Item YELLOW_WIRE = registerAliased(ModBlocks.YELLOW_WIRE, YellowWireBlock.ITEM_NAME);
-    public static final Item YELLOW_WIRE_ADAPTER = registerAliased(ModBlocks.YELLOW_WIRE_ADAPTER, YellowWireAdapterBlock.ITEM_NAME);
+    public static final Item BLUE_WIRE = registerAliased(ModBlocks.BLUE_WIRE, BlueWireBlock.NAME);
+    public static final Item BLUE_WIRE_ADAPTER = registerAliased(ModBlocks.BLUE_WIRE_ADAPTER, BlueWireAdapterBlock.NAME);
+    public static final Item GREEN_WIRE = registerAliased(ModBlocks.GREEN_WIRE, GreenWireBlock.NAME);
+    public static final Item GREEN_WIRE_ADAPTER = registerAliased(ModBlocks.GREEN_WIRE_ADAPTER, GreenWireAdapterBlock.NAME);
+    public static final Item RED_WIRE = registerAliased(ModBlocks.RED_WIRE, RedWireBlock.NAME);
+    public static final Item RED_WIRE_ADAPTER = registerAliased(ModBlocks.RED_WIRE_ADAPTER, RedWireAdapterBlock.NAME);
+    public static final Item YELLOW_WIRE = registerAliased(ModBlocks.YELLOW_WIRE, YellowWireBlock.NAME);
+    public static final Item YELLOW_WIRE_ADAPTER = registerAliased(ModBlocks.YELLOW_WIRE_ADAPTER, YellowWireAdapterBlock.NAME);
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(LogicMod.MOD_ID, name), item);

@@ -8,8 +8,7 @@ import net.triflicacid.logicmod.Util;
 import net.triflicacid.logicmod.block.ModBlocks;
 
 public class BufferGateBlock extends LogicGateBlock {
-    public static final String BLOCK_NAME = "buffer_gate_block";
-    public static final String ITEM_NAME = "buffer_gate";
+    public static final String NAME = "buffer_gate";
 
     public BufferGateBlock() {
         super(facing -> new Direction[] { facing }, false);

@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.tick.TickPriority;
 
 public abstract class SignalIOBlock extends SignalRecieverBlock  {
-    public SignalIOBlock(int outputSignalStrength, boolean initiallyActive) {
-        super(outputSignalStrength, initiallyActive);
+    public SignalIOBlock(boolean initiallyActive) {
+        super(initiallyActive);
     }
 
     protected abstract int getUpdateDelayInternal(BlockState state);

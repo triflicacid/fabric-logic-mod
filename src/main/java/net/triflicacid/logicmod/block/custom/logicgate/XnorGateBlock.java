@@ -8,8 +8,7 @@ import net.triflicacid.logicmod.Util;
 import net.triflicacid.logicmod.block.ModBlocks;
 
 public class XnorGateBlock extends LogicGateBlock {
-    public static final String BLOCK_NAME = "xnor_gate_block";
-    public static final String ITEM_NAME = "xnor_gate";
+    public static final String NAME = "xnor_gate";
 
     public XnorGateBlock() {
         super(facing -> new Direction[] { facing.rotateYClockwise(), facing.rotateYCounterclockwise() }, true);

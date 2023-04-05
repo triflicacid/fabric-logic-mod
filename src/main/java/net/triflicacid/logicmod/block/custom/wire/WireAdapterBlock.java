@@ -1,6 +1,7 @@
 package net.triflicacid.logicmod.block.custom.wire;
 
 import net.minecraft.block.*;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.text.Text;
@@ -13,7 +14,9 @@ import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.interfaces.Wrenchable;
 import net.triflicacid.logicmod.util.DirectionState;
 import net.triflicacid.logicmod.util.WireColor;
+import org.apache.commons.lang3.ArrayUtils;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -144,7 +147,14 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
             }
         }
 
-        return directions == null ? null : rotateProperties(state, directions);
+        if (directions == null)
+            return null;
+
+        if (Screen.hasShiftDown()) {
+            ArrayUtils.reverse(directions);
+        }
+
+        return rotateProperties(state, directions);
     }
 
     protected BlockState rotateProperties(BlockState state, EnumProperty<DirectionState>[] properties) {
@@ -188,11 +198,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
         super.appendProperties(builder);
     }
 
-    protected static final String getBlockName(WireColor color) {
-        return color + "_wire_adapter_block";
-    }
-
-    protected static final String getItemName(WireColor color) {
+    protected static final String getName(WireColor color) {
         return color + "_wire_adapter";
     }
 }

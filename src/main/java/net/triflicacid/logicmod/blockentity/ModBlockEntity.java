@@ -13,7 +13,7 @@ import net.triflicacid.logicmod.block.custom.ClockBlock;
 import net.triflicacid.logicmod.blockentity.custom.ClockBlockEntity;
 
 public class ModBlockEntity {
-    public static BlockEntityType<ClockBlockEntity> CLOCK = registerBlockEntity(ClockBlock.ITEM_NAME, BlockEntityType.Builder.create(ClockBlockEntity::new, ModBlocks.CLOCK));
+    public static BlockEntityType<ClockBlockEntity> CLOCK = registerBlockEntity(ClockBlock.NAME, BlockEntityType.Builder.create(ClockBlockEntity::new, ModBlocks.CLOCK));
 
     private static <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(String name, BlockEntityType.Builder<T> builder) {
         Type<?> type = Util.getChoiceType(TypeReferences.BLOCK_ENTITY, name);

@@ -8,8 +8,7 @@ import net.triflicacid.logicmod.Util;
 import net.triflicacid.logicmod.block.ModBlocks;
 
 public class NotGateBlock extends LogicGateBlock {
-    public static final String BLOCK_NAME = "not_gate_block";
-    public static final String ITEM_NAME = "not_gate";
+    public static final String NAME = "not_gate";
 
     public NotGateBlock() {
         super(facing -> new Direction[] { facing }, true);

@@ -9,11 +9,15 @@ import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
 public class ConstantHiBlock extends SignalEmitterBlock implements AdvancedWrenchable {
-    public static final String BLOCK_NAME = "constant_hi_block";
-    public static final String ITEM_NAME = "constant_hi";
+    public static final String NAME = "constant_hi";
 
     public ConstantHiBlock() {
-        super(15, true);
+        super(true);
+    }
+
+    @Override
+    public int getSignalStrength() {
+        return 15;
     }
 
     @Override

@@ -116,7 +116,8 @@ This mod contain the following logic gates:
 ## Tools
 
 - Wrench
-  - Unless otherwise specified, applying the wrench rotates blocks around the Y axis (horizontally)
+  - Unless otherwise specified, applying the wrench rotates the block clockwise around the Y axis (horizontally)
+  - Holding shift will rotate anti-clockwise
   - Crafting recipe:
 
   | # |   | # |

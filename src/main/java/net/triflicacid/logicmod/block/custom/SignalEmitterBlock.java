@@ -20,19 +20,20 @@ import net.minecraft.world.World;
 public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
-    protected final int SIGNAL_STRENGTH;
 
 
-    public SignalEmitterBlock(int signalStrength, boolean initiallyActive) {
+    public SignalEmitterBlock(boolean initiallyActive) {
         super(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly());
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(ACTIVE, initiallyActive));
-        SIGNAL_STRENGTH = signalStrength;
     }
 
     @Override
     public boolean emitsRedstonePower(BlockState state) {
         return true;
     }
+
+    /** If active, what signal strength should we output? */
+    public abstract int getSignalStrength();
 
     @Override
     public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
@@ -41,7 +42,7 @@ public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
 
     @Override
     public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return state.get(FACING) == direction && state.get(ACTIVE) ? SIGNAL_STRENGTH : 0;
+        return state.get(FACING) == direction && state.get(ACTIVE) ? getSignalStrength() : 0;
     }
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
