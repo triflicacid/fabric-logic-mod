@@ -67,6 +67,10 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
         if (dstBlock instanceof AbstractWireBlock wireBlock) {
             if (wireBlock.getWireColor() == getWireColor()) {
                 power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : wireBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+            } else if (wireBlock instanceof WireAdapterBlock adapterBlock) {
+                if (this.isInput(srcState, direction) && adapterBlock.isOutput(dstState, direction.getOpposite())) {
+                    power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : wireBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+                }
             }
         } else if (isInput(srcState, direction)) {
             power = getPower(world, srcPos, srcState, direction);

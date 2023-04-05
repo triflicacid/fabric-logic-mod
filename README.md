@@ -130,17 +130,20 @@ This mod contain the following logic gates:
   - Configures certain blocks
   - Crafted equivalently to the wrench, but using gold ingots
 
-## Wires
+## Wires and Adapters
 Wires are blocks which carry redstone signals. Key features:
 - Signals are transmitted immediately.
 - Signal does not decay.
 - Signal is transferred to any adjacent wire blocks *of the same color*. This means that different colored wires may be adjacent without interfering.
-- To get a signal in/out of a wire, use an *adapter* of the same color. These transmit signals just like the wire. Additional behaviour is introduced by changing the mode of a face by right-clicking it with the advanced wrench:
-  - *Normal mode*, indicated by a black square. No unique behaviour.
-  - *Input mode*, indicated by a blue-filled square. This will accept any redstone signal into the wire.
-  - *Output mode*, indicated by an orange-filled square. This will output the wire's redstone signal to any block adjacent to this face.
-  
-  Applying the wrench on an adapter rotates it around the axis the player is looking in.
+- To get a signal in/out of a wire, use an *adapter* of the same color.
+
+Adapters are wires with extra, optional functionality. The behaviour of each face may be changed by right-clicking on it with an advanced wrench, and will cycle between
+- *Normal mode*, indicated by a black square. No unique behaviour.
+- *Input mode*, indicated by a blue-filled square. This will accept any redstone signal into the wire.
+- *Output mode*, indicated by an orange-filled square. This will output the wire's redstone signal to any block adjacent to this face. The signal will also transfer to an adjacent adapter if the face is in input mode, allowing for communication between different colored wires.
+
+Applying the wrench on an adapter rotates it around the axis the player is looking in.
+
 
 There are four wire/adapter variants:
 - Blue
