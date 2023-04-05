@@ -3,6 +3,9 @@ package net.triflicacid.logicmod.block.custom;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
 import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
@@ -15,7 +18,7 @@ public class ConstantLoBlock extends SignalEmitterBlock implements AdvancedWrenc
     }
 
     @Override
-    public BlockState applyAdvancedWrench(BlockState state, boolean holdingShift) {
+    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side) {
         return ModBlocks.CONSTANT_HI.getDefaultState().with(HorizontalFacingBlock.FACING, state.get(HorizontalFacingBlock.FACING));
     }
 }

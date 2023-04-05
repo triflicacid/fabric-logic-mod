@@ -1,12 +1,12 @@
 {
   "parent": "block/orientable",
   "textures": {
-    "up": "logic-mod:block/constant_1_block",
-    "down": "logic-mod:block/logic_gate_side",
-    "north": "logic-mod:block/logic_gate_side",
-    "east": "logic-mod:block/logic_gate_side",
-    "south": "logic-mod:block/logic_gate_indicator_active",
-    "west": "logic-mod:block/logic_gate_side",
-    "particle": "logic-mod:block/logic_gate_side"
+    "up": "logic-mod:block/constant_1",
+    "down": "logic-mod:block/white_side",
+    "north": "logic-mod:block/white_side",
+    "east": "logic-mod:block/white_side",
+    "south": "logic-mod:block/white_indicator_active",
+    "west": "logic-mod:block/white_side",
+    "particle": "logic-mod:block/white_side"
   }
 }

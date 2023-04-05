@@ -12,6 +12,8 @@ import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.block.custom.*;
+import net.triflicacid.logicmod.block.custom.logicgate.*;
+import net.triflicacid.logicmod.block.custom.wire.*;
 import net.triflicacid.logicmod.item.custom.AdvancedWrenchItem;
 import net.triflicacid.logicmod.item.custom.WrenchItem;
 
@@ -31,6 +33,16 @@ public class ModItems {
     public static final Item CONSTANT_LO = registerAliased(ModBlocks.CONSTANT_LO, ConstantLoBlock.ITEM_NAME);
     public static final Item CONSTANT_HI = registerAliased(ModBlocks.CONSTANT_HI, ConstantHiBlock.ITEM_NAME);
     public static final Item CLOCK = registerAliased(ModBlocks.CLOCK, ClockBlock.ITEM_NAME);
+
+    /** Wires and adapters */
+    public static final Item BLUE_WIRE = registerAliased(ModBlocks.BLUE_WIRE, BlueWireBlock.ITEM_NAME);
+    public static final Item BLUE_WIRE_ADAPTER = registerAliased(ModBlocks.BLUE_WIRE_ADAPTER, BlueWireAdapterBlock.ITEM_NAME);
+    public static final Item GREEN_WIRE = registerAliased(ModBlocks.GREEN_WIRE, GreenWireBlock.ITEM_NAME);
+    public static final Item GREEN_WIRE_ADAPTER = registerAliased(ModBlocks.GREEN_WIRE_ADAPTER, GreenWireAdapterBlock.ITEM_NAME);
+    public static final Item RED_WIRE = registerAliased(ModBlocks.RED_WIRE, RedWireBlock.ITEM_NAME);
+    public static final Item RED_WIRE_ADAPTER = registerAliased(ModBlocks.RED_WIRE_ADAPTER, RedWireAdapterBlock.ITEM_NAME);
+    public static final Item YELLOW_WIRE = registerAliased(ModBlocks.YELLOW_WIRE, YellowWireBlock.ITEM_NAME);
+    public static final Item YELLOW_WIRE_ADAPTER = registerAliased(ModBlocks.YELLOW_WIRE_ADAPTER, YellowWireAdapterBlock.ITEM_NAME);
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(LogicMod.MOD_ID, name), item);

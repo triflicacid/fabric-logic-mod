@@ -49,7 +49,8 @@ public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
     }
 
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        world.scheduleBlockTick(pos, this, 1);
+        if (!world.isClient)
+            world.scheduleBlockTick(pos, this, 1);
     }
 
     @Override
@@ -59,32 +60,18 @@ public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
 
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!moved && !state.isOf(newState.getBlock())) {
+        if (!world.isClient && !moved && !state.isOf(newState.getBlock())) {
             super.onStateReplaced(state, world, pos, newState, moved);
             this.updateTarget(world, pos, state);
         }
     }
 
     protected void updateTarget(World world, BlockPos pos, BlockState state) {
-        Direction direction = state.get(FACING);
-        BlockPos blockPos = pos.offset(direction.getOpposite());
-        world.updateNeighbor(blockPos, this, pos);
-        world.updateNeighborsExcept(blockPos, this, direction);
-    }
-
-    private static void spawnParticles(World world, BlockPos pos) {
-        double d = 0.5625;
-        Random random = world.random;
-
-        for(Direction direction : Direction.values()) {
-            BlockPos blockPos = pos.offset(direction);
-            if (!world.getBlockState(blockPos).isOpaqueFullCube(world, blockPos)) {
-                Direction.Axis axis = direction.getAxis();
-                double dx = axis == Direction.Axis.X ? 0.5 + d * (double)direction.getOffsetX() : (double)random.nextFloat();
-                double dy = axis == Direction.Axis.Y ? 0.5 + d * (double)direction.getOffsetY() : (double)random.nextFloat();
-                double dz = axis == Direction.Axis.Z ? 0.5 + d * (double)direction.getOffsetZ() : (double)random.nextFloat();
-                world.addParticle(DustParticleEffect.DEFAULT, (double)pos.getX() + dx, (double)pos.getY() + dy, (double)pos.getZ() + dz, 0.0, 0.0, 0.0);
-            }
+        if (!world.isClient) {
+            Direction direction = state.get(FACING);
+            BlockPos blockPos = pos.offset(direction.getOpposite());
+            world.updateNeighbor(blockPos, this, pos);
+            world.updateNeighborsExcept(blockPos, this, direction);
         }
     }
 

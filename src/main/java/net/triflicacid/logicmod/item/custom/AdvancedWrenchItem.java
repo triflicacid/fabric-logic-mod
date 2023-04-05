@@ -45,7 +45,7 @@ public class AdvancedWrenchItem extends Item {
             boolean doCooldown = false;
 
             if (state.getBlock() instanceof AdvancedWrenchable wrenchableBlock) {
-                BlockState newState = wrenchableBlock.applyAdvancedWrench(state, Screen.hasShiftDown());
+                BlockState newState = wrenchableBlock.applyAdvancedWrench(world, pos, state, context.getSide());
                 if (newState != null) {
                     world.setBlockState(pos, newState);
                     doCooldown = true;
@@ -54,7 +54,7 @@ public class AdvancedWrenchItem extends Item {
 
             // Set cooldown to prevent spamming
             if (doCooldown)
-                context.getPlayer().getItemCooldownManager().set(this, 7);
+                context.getPlayer().getItemCooldownManager().set(this, 5);
         }
 
         return super.useOnBlock(context);

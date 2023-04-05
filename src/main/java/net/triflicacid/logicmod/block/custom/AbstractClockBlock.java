@@ -10,8 +10,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.minecraft.world.tick.TickPriority;
 import net.triflicacid.logicmod.blockentity.custom.AbstractClockBlockEntity;
 import net.triflicacid.logicmod.blockentity.custom.ClockBlockEntity;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
@@ -82,7 +82,7 @@ public abstract class AbstractClockBlock extends SignalIOBlock implements BlockE
     }
 
     @Override
-    public BlockState applyAdvancedWrench(BlockState state, boolean holdingShift) {
+    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side) {
         return state.cycle(LOCKED);
     }
 }

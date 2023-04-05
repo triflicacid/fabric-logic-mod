@@ -31,5 +31,25 @@
   "block.logic-mod.constant_hi_block": "Constant Hi",
 
   "item.logic-mod.clock": "Clock",
-  "block.logic-mod.clock_block": "Clock"
+  "block.logic-mod.clock_block": "Clock",
+
+  "item.logic-mod.blue_wire": "Blue Wire",
+  "block.logic-mod.blue_wire_block": "Blue Wire",
+  "block.logic-mod.blue_wire_adapter_block": "Blue Wire Adapter",
+  "item.logic-mod.blue_wire_adapter": "Blue Wire Adapter",
+
+  "item.logic-mod.green_wire": "Green Wire",
+  "block.logic-mod.green_wire_block": "Green Wire",
+  "block.logic-mod.green_wire_adapter_block": "Green Wire Adapter",
+  "item.logic-mod.green_wire_adapter": "Green Wire Adapter",
+
+  "item.logic-mod.red_wire": "Red Wire",
+  "block.logic-mod.red_wire_block": "Red Wire",
+  "block.logic-mod.red_wire_adapter_block": "Red Wire Adapter",
+  "item.logic-mod.red_wire_adapter": "Red Wire Adapter",
+
+  "item.logic-mod.yellow_wire": "Yellow Wire",
+  "block.logic-mod.yellow_wire_block": "Yellow Wire",
+  "block.logic-mod.yellow_wire_adapter_block": "Yellow Wire Adapter",
+  "item.logic-mod.yellow_wire_adapter": "Yellow Wire Adapter"
 }

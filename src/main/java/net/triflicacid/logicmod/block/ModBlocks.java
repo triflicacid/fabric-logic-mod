@@ -11,6 +11,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.custom.*;
+import net.triflicacid.logicmod.block.custom.logicgate.*;
+import net.triflicacid.logicmod.block.custom.wire.*;
 
 public class ModBlocks {
     public static final LogicGateBlock AND_GATE = (LogicGateBlock) registerBlock(AndGateBlock.BLOCK_NAME, new AndGateBlock());
@@ -25,6 +27,16 @@ public class ModBlocks {
     public static final Block CONSTANT_LO = registerBlock(ConstantLoBlock.BLOCK_NAME, new ConstantLoBlock());
     public static final Block CONSTANT_HI = registerBlock(ConstantHiBlock.BLOCK_NAME, new ConstantHiBlock());
     public static final Block CLOCK = registerBlock(ClockBlock.BLOCK_NAME, new ClockBlock());
+
+    /** Wires and adapters */
+    public static final Block BLUE_WIRE = registerBlock(BlueWireBlock.BLOCK_NAME, new BlueWireBlock());
+    public static final Block BLUE_WIRE_ADAPTER = registerBlock(BlueWireAdapterBlock.BLOCK_NAME, new BlueWireAdapterBlock());
+    public static final Block GREEN_WIRE = registerBlock(GreenWireBlock.BLOCK_NAME, new GreenWireBlock());
+    public static final Block GREEN_WIRE_ADAPTER = registerBlock(GreenWireAdapterBlock.BLOCK_NAME, new GreenWireAdapterBlock());
+    public static final Block RED_WIRE = registerBlock(RedWireBlock.BLOCK_NAME, new RedWireBlock());
+    public static final Block RED_WIRE_ADAPTER = registerBlock(RedWireAdapterBlock.BLOCK_NAME, new RedWireAdapterBlock());
+    public static final Block YELLOW_WIRE = registerBlock(YellowWireBlock.BLOCK_NAME, new YellowWireBlock());
+    public static final Block YELLOW_WIRE_ADAPTER = registerBlock(YellowWireAdapterBlock.BLOCK_NAME, new YellowWireAdapterBlock());
 
 
     /** Register block with no associated item */

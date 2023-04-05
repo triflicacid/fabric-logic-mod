@@ -1,0 +1,2191 @@
+{
+  "variants": {
+    "up=none,down=none,north=none,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_none_none_none"
+    },
+    "up=none,down=none,north=none,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_none_none_input"
+    },
+    "up=none,down=none,north=none,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_none_none_output"
+    },
+    "up=none,down=none,north=none,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_none_input_none"
+    },
+    "up=none,down=none,north=none,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_none_input_input"
+    },
+    "up=none,down=none,north=none,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_none_input_output"
+    },
+    "up=none,down=none,north=none,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_none_output_none"
+    },
+    "up=none,down=none,north=none,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_none_output_input"
+    },
+    "up=none,down=none,north=none,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_none_output_output"
+    },
+    "up=none,down=none,north=none,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_input_none_none"
+    },
+    "up=none,down=none,north=none,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_input_none_input"
+    },
+    "up=none,down=none,north=none,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_input_none_output"
+    },
+    "up=none,down=none,north=none,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_input_input_none"
+    },
+    "up=none,down=none,north=none,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_input_input_input"
+    },
+    "up=none,down=none,north=none,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_input_input_output"
+    },
+    "up=none,down=none,north=none,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_input_output_none"
+    },
+    "up=none,down=none,north=none,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_input_output_input"
+    },
+    "up=none,down=none,north=none,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_input_output_output"
+    },
+    "up=none,down=none,north=none,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_output_none_none"
+    },
+    "up=none,down=none,north=none,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_output_none_input"
+    },
+    "up=none,down=none,north=none,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_output_none_output"
+    },
+    "up=none,down=none,north=none,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_output_input_none"
+    },
+    "up=none,down=none,north=none,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_output_input_input"
+    },
+    "up=none,down=none,north=none,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_output_input_output"
+    },
+    "up=none,down=none,north=none,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_output_output_none"
+    },
+    "up=none,down=none,north=none,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_output_output_input"
+    },
+    "up=none,down=none,north=none,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_none_output_output_output"
+    },
+    "up=none,down=none,north=input,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_none_none_none"
+    },
+    "up=none,down=none,north=input,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_none_none_input"
+    },
+    "up=none,down=none,north=input,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_none_none_output"
+    },
+    "up=none,down=none,north=input,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_none_input_none"
+    },
+    "up=none,down=none,north=input,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_none_input_input"
+    },
+    "up=none,down=none,north=input,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_none_input_output"
+    },
+    "up=none,down=none,north=input,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_none_output_none"
+    },
+    "up=none,down=none,north=input,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_none_output_input"
+    },
+    "up=none,down=none,north=input,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_none_output_output"
+    },
+    "up=none,down=none,north=input,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_input_none_none"
+    },
+    "up=none,down=none,north=input,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_input_none_input"
+    },
+    "up=none,down=none,north=input,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_input_none_output"
+    },
+    "up=none,down=none,north=input,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_input_input_none"
+    },
+    "up=none,down=none,north=input,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_input_input_input"
+    },
+    "up=none,down=none,north=input,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_input_input_output"
+    },
+    "up=none,down=none,north=input,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_input_output_none"
+    },
+    "up=none,down=none,north=input,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_input_output_input"
+    },
+    "up=none,down=none,north=input,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_input_output_output"
+    },
+    "up=none,down=none,north=input,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_output_none_none"
+    },
+    "up=none,down=none,north=input,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_output_none_input"
+    },
+    "up=none,down=none,north=input,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_output_none_output"
+    },
+    "up=none,down=none,north=input,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_output_input_none"
+    },
+    "up=none,down=none,north=input,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_output_input_input"
+    },
+    "up=none,down=none,north=input,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_output_input_output"
+    },
+    "up=none,down=none,north=input,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_output_output_none"
+    },
+    "up=none,down=none,north=input,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_output_output_input"
+    },
+    "up=none,down=none,north=input,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_input_output_output_output"
+    },
+    "up=none,down=none,north=output,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_none_none_none"
+    },
+    "up=none,down=none,north=output,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_none_none_input"
+    },
+    "up=none,down=none,north=output,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_none_none_output"
+    },
+    "up=none,down=none,north=output,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_none_input_none"
+    },
+    "up=none,down=none,north=output,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_none_input_input"
+    },
+    "up=none,down=none,north=output,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_none_input_output"
+    },
+    "up=none,down=none,north=output,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_none_output_none"
+    },
+    "up=none,down=none,north=output,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_none_output_input"
+    },
+    "up=none,down=none,north=output,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_none_output_output"
+    },
+    "up=none,down=none,north=output,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_input_none_none"
+    },
+    "up=none,down=none,north=output,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_input_none_input"
+    },
+    "up=none,down=none,north=output,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_input_none_output"
+    },
+    "up=none,down=none,north=output,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_input_input_none"
+    },
+    "up=none,down=none,north=output,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_input_input_input"
+    },
+    "up=none,down=none,north=output,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_input_input_output"
+    },
+    "up=none,down=none,north=output,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_input_output_none"
+    },
+    "up=none,down=none,north=output,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_input_output_input"
+    },
+    "up=none,down=none,north=output,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_input_output_output"
+    },
+    "up=none,down=none,north=output,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_output_none_none"
+    },
+    "up=none,down=none,north=output,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_output_none_input"
+    },
+    "up=none,down=none,north=output,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_output_none_output"
+    },
+    "up=none,down=none,north=output,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_output_input_none"
+    },
+    "up=none,down=none,north=output,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_output_input_input"
+    },
+    "up=none,down=none,north=output,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_output_input_output"
+    },
+    "up=none,down=none,north=output,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_output_output_none"
+    },
+    "up=none,down=none,north=output,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_output_output_input"
+    },
+    "up=none,down=none,north=output,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_none_output_output_output_output"
+    },
+    "up=none,down=input,north=none,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_none_none_none"
+    },
+    "up=none,down=input,north=none,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_none_none_input"
+    },
+    "up=none,down=input,north=none,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_none_none_output"
+    },
+    "up=none,down=input,north=none,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_none_input_none"
+    },
+    "up=none,down=input,north=none,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_none_input_input"
+    },
+    "up=none,down=input,north=none,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_none_input_output"
+    },
+    "up=none,down=input,north=none,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_none_output_none"
+    },
+    "up=none,down=input,north=none,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_none_output_input"
+    },
+    "up=none,down=input,north=none,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_none_output_output"
+    },
+    "up=none,down=input,north=none,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_input_none_none"
+    },
+    "up=none,down=input,north=none,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_input_none_input"
+    },
+    "up=none,down=input,north=none,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_input_none_output"
+    },
+    "up=none,down=input,north=none,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_input_input_none"
+    },
+    "up=none,down=input,north=none,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_input_input_input"
+    },
+    "up=none,down=input,north=none,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_input_input_output"
+    },
+    "up=none,down=input,north=none,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_input_output_none"
+    },
+    "up=none,down=input,north=none,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_input_output_input"
+    },
+    "up=none,down=input,north=none,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_input_output_output"
+    },
+    "up=none,down=input,north=none,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_output_none_none"
+    },
+    "up=none,down=input,north=none,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_output_none_input"
+    },
+    "up=none,down=input,north=none,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_output_none_output"
+    },
+    "up=none,down=input,north=none,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_output_input_none"
+    },
+    "up=none,down=input,north=none,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_output_input_input"
+    },
+    "up=none,down=input,north=none,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_output_input_output"
+    },
+    "up=none,down=input,north=none,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_output_output_none"
+    },
+    "up=none,down=input,north=none,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_output_output_input"
+    },
+    "up=none,down=input,north=none,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_none_output_output_output"
+    },
+    "up=none,down=input,north=input,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_none_none_none"
+    },
+    "up=none,down=input,north=input,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_none_none_input"
+    },
+    "up=none,down=input,north=input,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_none_none_output"
+    },
+    "up=none,down=input,north=input,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_none_input_none"
+    },
+    "up=none,down=input,north=input,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_none_input_input"
+    },
+    "up=none,down=input,north=input,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_none_input_output"
+    },
+    "up=none,down=input,north=input,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_none_output_none"
+    },
+    "up=none,down=input,north=input,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_none_output_input"
+    },
+    "up=none,down=input,north=input,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_none_output_output"
+    },
+    "up=none,down=input,north=input,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_input_none_none"
+    },
+    "up=none,down=input,north=input,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_input_none_input"
+    },
+    "up=none,down=input,north=input,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_input_none_output"
+    },
+    "up=none,down=input,north=input,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_input_input_none"
+    },
+    "up=none,down=input,north=input,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_input_input_input"
+    },
+    "up=none,down=input,north=input,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_input_input_output"
+    },
+    "up=none,down=input,north=input,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_input_output_none"
+    },
+    "up=none,down=input,north=input,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_input_output_input"
+    },
+    "up=none,down=input,north=input,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_input_output_output"
+    },
+    "up=none,down=input,north=input,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_output_none_none"
+    },
+    "up=none,down=input,north=input,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_output_none_input"
+    },
+    "up=none,down=input,north=input,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_output_none_output"
+    },
+    "up=none,down=input,north=input,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_output_input_none"
+    },
+    "up=none,down=input,north=input,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_output_input_input"
+    },
+    "up=none,down=input,north=input,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_output_input_output"
+    },
+    "up=none,down=input,north=input,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_output_output_none"
+    },
+    "up=none,down=input,north=input,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_output_output_input"
+    },
+    "up=none,down=input,north=input,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_input_output_output_output"
+    },
+    "up=none,down=input,north=output,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_none_none_none"
+    },
+    "up=none,down=input,north=output,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_none_none_input"
+    },
+    "up=none,down=input,north=output,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_none_none_output"
+    },
+    "up=none,down=input,north=output,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_none_input_none"
+    },
+    "up=none,down=input,north=output,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_none_input_input"
+    },
+    "up=none,down=input,north=output,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_none_input_output"
+    },
+    "up=none,down=input,north=output,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_none_output_none"
+    },
+    "up=none,down=input,north=output,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_none_output_input"
+    },
+    "up=none,down=input,north=output,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_none_output_output"
+    },
+    "up=none,down=input,north=output,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_input_none_none"
+    },
+    "up=none,down=input,north=output,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_input_none_input"
+    },
+    "up=none,down=input,north=output,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_input_none_output"
+    },
+    "up=none,down=input,north=output,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_input_input_none"
+    },
+    "up=none,down=input,north=output,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_input_input_input"
+    },
+    "up=none,down=input,north=output,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_input_input_output"
+    },
+    "up=none,down=input,north=output,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_input_output_none"
+    },
+    "up=none,down=input,north=output,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_input_output_input"
+    },
+    "up=none,down=input,north=output,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_input_output_output"
+    },
+    "up=none,down=input,north=output,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_output_none_none"
+    },
+    "up=none,down=input,north=output,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_output_none_input"
+    },
+    "up=none,down=input,north=output,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_output_none_output"
+    },
+    "up=none,down=input,north=output,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_output_input_none"
+    },
+    "up=none,down=input,north=output,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_output_input_input"
+    },
+    "up=none,down=input,north=output,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_output_input_output"
+    },
+    "up=none,down=input,north=output,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_output_output_none"
+    },
+    "up=none,down=input,north=output,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_output_output_input"
+    },
+    "up=none,down=input,north=output,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_input_output_output_output_output"
+    },
+    "up=none,down=output,north=none,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_none_none_none"
+    },
+    "up=none,down=output,north=none,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_none_none_input"
+    },
+    "up=none,down=output,north=none,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_none_none_output"
+    },
+    "up=none,down=output,north=none,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_none_input_none"
+    },
+    "up=none,down=output,north=none,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_none_input_input"
+    },
+    "up=none,down=output,north=none,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_none_input_output"
+    },
+    "up=none,down=output,north=none,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_none_output_none"
+    },
+    "up=none,down=output,north=none,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_none_output_input"
+    },
+    "up=none,down=output,north=none,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_none_output_output"
+    },
+    "up=none,down=output,north=none,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_input_none_none"
+    },
+    "up=none,down=output,north=none,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_input_none_input"
+    },
+    "up=none,down=output,north=none,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_input_none_output"
+    },
+    "up=none,down=output,north=none,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_input_input_none"
+    },
+    "up=none,down=output,north=none,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_input_input_input"
+    },
+    "up=none,down=output,north=none,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_input_input_output"
+    },
+    "up=none,down=output,north=none,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_input_output_none"
+    },
+    "up=none,down=output,north=none,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_input_output_input"
+    },
+    "up=none,down=output,north=none,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_input_output_output"
+    },
+    "up=none,down=output,north=none,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_output_none_none"
+    },
+    "up=none,down=output,north=none,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_output_none_input"
+    },
+    "up=none,down=output,north=none,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_output_none_output"
+    },
+    "up=none,down=output,north=none,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_output_input_none"
+    },
+    "up=none,down=output,north=none,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_output_input_input"
+    },
+    "up=none,down=output,north=none,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_output_input_output"
+    },
+    "up=none,down=output,north=none,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_output_output_none"
+    },
+    "up=none,down=output,north=none,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_output_output_input"
+    },
+    "up=none,down=output,north=none,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_none_output_output_output"
+    },
+    "up=none,down=output,north=input,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_none_none_none"
+    },
+    "up=none,down=output,north=input,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_none_none_input"
+    },
+    "up=none,down=output,north=input,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_none_none_output"
+    },
+    "up=none,down=output,north=input,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_none_input_none"
+    },
+    "up=none,down=output,north=input,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_none_input_input"
+    },
+    "up=none,down=output,north=input,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_none_input_output"
+    },
+    "up=none,down=output,north=input,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_none_output_none"
+    },
+    "up=none,down=output,north=input,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_none_output_input"
+    },
+    "up=none,down=output,north=input,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_none_output_output"
+    },
+    "up=none,down=output,north=input,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_input_none_none"
+    },
+    "up=none,down=output,north=input,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_input_none_input"
+    },
+    "up=none,down=output,north=input,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_input_none_output"
+    },
+    "up=none,down=output,north=input,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_input_input_none"
+    },
+    "up=none,down=output,north=input,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_input_input_input"
+    },
+    "up=none,down=output,north=input,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_input_input_output"
+    },
+    "up=none,down=output,north=input,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_input_output_none"
+    },
+    "up=none,down=output,north=input,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_input_output_input"
+    },
+    "up=none,down=output,north=input,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_input_output_output"
+    },
+    "up=none,down=output,north=input,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_output_none_none"
+    },
+    "up=none,down=output,north=input,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_output_none_input"
+    },
+    "up=none,down=output,north=input,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_output_none_output"
+    },
+    "up=none,down=output,north=input,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_output_input_none"
+    },
+    "up=none,down=output,north=input,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_output_input_input"
+    },
+    "up=none,down=output,north=input,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_output_input_output"
+    },
+    "up=none,down=output,north=input,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_output_output_none"
+    },
+    "up=none,down=output,north=input,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_output_output_input"
+    },
+    "up=none,down=output,north=input,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_input_output_output_output"
+    },
+    "up=none,down=output,north=output,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_none_none_none"
+    },
+    "up=none,down=output,north=output,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_none_none_input"
+    },
+    "up=none,down=output,north=output,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_none_none_output"
+    },
+    "up=none,down=output,north=output,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_none_input_none"
+    },
+    "up=none,down=output,north=output,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_none_input_input"
+    },
+    "up=none,down=output,north=output,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_none_input_output"
+    },
+    "up=none,down=output,north=output,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_none_output_none"
+    },
+    "up=none,down=output,north=output,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_none_output_input"
+    },
+    "up=none,down=output,north=output,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_none_output_output"
+    },
+    "up=none,down=output,north=output,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_input_none_none"
+    },
+    "up=none,down=output,north=output,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_input_none_input"
+    },
+    "up=none,down=output,north=output,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_input_none_output"
+    },
+    "up=none,down=output,north=output,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_input_input_none"
+    },
+    "up=none,down=output,north=output,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_input_input_input"
+    },
+    "up=none,down=output,north=output,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_input_input_output"
+    },
+    "up=none,down=output,north=output,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_input_output_none"
+    },
+    "up=none,down=output,north=output,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_input_output_input"
+    },
+    "up=none,down=output,north=output,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_input_output_output"
+    },
+    "up=none,down=output,north=output,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_output_none_none"
+    },
+    "up=none,down=output,north=output,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_output_none_input"
+    },
+    "up=none,down=output,north=output,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_output_none_output"
+    },
+    "up=none,down=output,north=output,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_output_input_none"
+    },
+    "up=none,down=output,north=output,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_output_input_input"
+    },
+    "up=none,down=output,north=output,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_output_input_output"
+    },
+    "up=none,down=output,north=output,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_output_output_none"
+    },
+    "up=none,down=output,north=output,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_output_output_input"
+    },
+    "up=none,down=output,north=output,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/none_output_output_output_output_output"
+    },
+    "up=input,down=none,north=none,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_none_none_none"
+    },
+    "up=input,down=none,north=none,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_none_none_input"
+    },
+    "up=input,down=none,north=none,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_none_none_output"
+    },
+    "up=input,down=none,north=none,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_none_input_none"
+    },
+    "up=input,down=none,north=none,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_none_input_input"
+    },
+    "up=input,down=none,north=none,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_none_input_output"
+    },
+    "up=input,down=none,north=none,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_none_output_none"
+    },
+    "up=input,down=none,north=none,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_none_output_input"
+    },
+    "up=input,down=none,north=none,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_none_output_output"
+    },
+    "up=input,down=none,north=none,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_input_none_none"
+    },
+    "up=input,down=none,north=none,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_input_none_input"
+    },
+    "up=input,down=none,north=none,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_input_none_output"
+    },
+    "up=input,down=none,north=none,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_input_input_none"
+    },
+    "up=input,down=none,north=none,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_input_input_input"
+    },
+    "up=input,down=none,north=none,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_input_input_output"
+    },
+    "up=input,down=none,north=none,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_input_output_none"
+    },
+    "up=input,down=none,north=none,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_input_output_input"
+    },
+    "up=input,down=none,north=none,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_input_output_output"
+    },
+    "up=input,down=none,north=none,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_output_none_none"
+    },
+    "up=input,down=none,north=none,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_output_none_input"
+    },
+    "up=input,down=none,north=none,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_output_none_output"
+    },
+    "up=input,down=none,north=none,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_output_input_none"
+    },
+    "up=input,down=none,north=none,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_output_input_input"
+    },
+    "up=input,down=none,north=none,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_output_input_output"
+    },
+    "up=input,down=none,north=none,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_output_output_none"
+    },
+    "up=input,down=none,north=none,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_output_output_input"
+    },
+    "up=input,down=none,north=none,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_none_output_output_output"
+    },
+    "up=input,down=none,north=input,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_none_none_none"
+    },
+    "up=input,down=none,north=input,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_none_none_input"
+    },
+    "up=input,down=none,north=input,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_none_none_output"
+    },
+    "up=input,down=none,north=input,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_none_input_none"
+    },
+    "up=input,down=none,north=input,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_none_input_input"
+    },
+    "up=input,down=none,north=input,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_none_input_output"
+    },
+    "up=input,down=none,north=input,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_none_output_none"
+    },
+    "up=input,down=none,north=input,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_none_output_input"
+    },
+    "up=input,down=none,north=input,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_none_output_output"
+    },
+    "up=input,down=none,north=input,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_input_none_none"
+    },
+    "up=input,down=none,north=input,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_input_none_input"
+    },
+    "up=input,down=none,north=input,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_input_none_output"
+    },
+    "up=input,down=none,north=input,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_input_input_none"
+    },
+    "up=input,down=none,north=input,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_input_input_input"
+    },
+    "up=input,down=none,north=input,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_input_input_output"
+    },
+    "up=input,down=none,north=input,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_input_output_none"
+    },
+    "up=input,down=none,north=input,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_input_output_input"
+    },
+    "up=input,down=none,north=input,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_input_output_output"
+    },
+    "up=input,down=none,north=input,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_output_none_none"
+    },
+    "up=input,down=none,north=input,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_output_none_input"
+    },
+    "up=input,down=none,north=input,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_output_none_output"
+    },
+    "up=input,down=none,north=input,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_output_input_none"
+    },
+    "up=input,down=none,north=input,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_output_input_input"
+    },
+    "up=input,down=none,north=input,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_output_input_output"
+    },
+    "up=input,down=none,north=input,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_output_output_none"
+    },
+    "up=input,down=none,north=input,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_output_output_input"
+    },
+    "up=input,down=none,north=input,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_input_output_output_output"
+    },
+    "up=input,down=none,north=output,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_none_none_none"
+    },
+    "up=input,down=none,north=output,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_none_none_input"
+    },
+    "up=input,down=none,north=output,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_none_none_output"
+    },
+    "up=input,down=none,north=output,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_none_input_none"
+    },
+    "up=input,down=none,north=output,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_none_input_input"
+    },
+    "up=input,down=none,north=output,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_none_input_output"
+    },
+    "up=input,down=none,north=output,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_none_output_none"
+    },
+    "up=input,down=none,north=output,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_none_output_input"
+    },
+    "up=input,down=none,north=output,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_none_output_output"
+    },
+    "up=input,down=none,north=output,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_input_none_none"
+    },
+    "up=input,down=none,north=output,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_input_none_input"
+    },
+    "up=input,down=none,north=output,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_input_none_output"
+    },
+    "up=input,down=none,north=output,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_input_input_none"
+    },
+    "up=input,down=none,north=output,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_input_input_input"
+    },
+    "up=input,down=none,north=output,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_input_input_output"
+    },
+    "up=input,down=none,north=output,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_input_output_none"
+    },
+    "up=input,down=none,north=output,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_input_output_input"
+    },
+    "up=input,down=none,north=output,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_input_output_output"
+    },
+    "up=input,down=none,north=output,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_output_none_none"
+    },
+    "up=input,down=none,north=output,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_output_none_input"
+    },
+    "up=input,down=none,north=output,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_output_none_output"
+    },
+    "up=input,down=none,north=output,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_output_input_none"
+    },
+    "up=input,down=none,north=output,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_output_input_input"
+    },
+    "up=input,down=none,north=output,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_output_input_output"
+    },
+    "up=input,down=none,north=output,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_output_output_none"
+    },
+    "up=input,down=none,north=output,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_output_output_input"
+    },
+    "up=input,down=none,north=output,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_none_output_output_output_output"
+    },
+    "up=input,down=input,north=none,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_none_none_none"
+    },
+    "up=input,down=input,north=none,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_none_none_input"
+    },
+    "up=input,down=input,north=none,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_none_none_output"
+    },
+    "up=input,down=input,north=none,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_none_input_none"
+    },
+    "up=input,down=input,north=none,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_none_input_input"
+    },
+    "up=input,down=input,north=none,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_none_input_output"
+    },
+    "up=input,down=input,north=none,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_none_output_none"
+    },
+    "up=input,down=input,north=none,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_none_output_input"
+    },
+    "up=input,down=input,north=none,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_none_output_output"
+    },
+    "up=input,down=input,north=none,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_input_none_none"
+    },
+    "up=input,down=input,north=none,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_input_none_input"
+    },
+    "up=input,down=input,north=none,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_input_none_output"
+    },
+    "up=input,down=input,north=none,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_input_input_none"
+    },
+    "up=input,down=input,north=none,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_input_input_input"
+    },
+    "up=input,down=input,north=none,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_input_input_output"
+    },
+    "up=input,down=input,north=none,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_input_output_none"
+    },
+    "up=input,down=input,north=none,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_input_output_input"
+    },
+    "up=input,down=input,north=none,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_input_output_output"
+    },
+    "up=input,down=input,north=none,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_output_none_none"
+    },
+    "up=input,down=input,north=none,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_output_none_input"
+    },
+    "up=input,down=input,north=none,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_output_none_output"
+    },
+    "up=input,down=input,north=none,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_output_input_none"
+    },
+    "up=input,down=input,north=none,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_output_input_input"
+    },
+    "up=input,down=input,north=none,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_output_input_output"
+    },
+    "up=input,down=input,north=none,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_output_output_none"
+    },
+    "up=input,down=input,north=none,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_output_output_input"
+    },
+    "up=input,down=input,north=none,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_none_output_output_output"
+    },
+    "up=input,down=input,north=input,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_none_none_none"
+    },
+    "up=input,down=input,north=input,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_none_none_input"
+    },
+    "up=input,down=input,north=input,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_none_none_output"
+    },
+    "up=input,down=input,north=input,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_none_input_none"
+    },
+    "up=input,down=input,north=input,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_none_input_input"
+    },
+    "up=input,down=input,north=input,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_none_input_output"
+    },
+    "up=input,down=input,north=input,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_none_output_none"
+    },
+    "up=input,down=input,north=input,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_none_output_input"
+    },
+    "up=input,down=input,north=input,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_none_output_output"
+    },
+    "up=input,down=input,north=input,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_input_none_none"
+    },
+    "up=input,down=input,north=input,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_input_none_input"
+    },
+    "up=input,down=input,north=input,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_input_none_output"
+    },
+    "up=input,down=input,north=input,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_input_input_none"
+    },
+    "up=input,down=input,north=input,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_input_input_input"
+    },
+    "up=input,down=input,north=input,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_input_input_output"
+    },
+    "up=input,down=input,north=input,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_input_output_none"
+    },
+    "up=input,down=input,north=input,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_input_output_input"
+    },
+    "up=input,down=input,north=input,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_input_output_output"
+    },
+    "up=input,down=input,north=input,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_output_none_none"
+    },
+    "up=input,down=input,north=input,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_output_none_input"
+    },
+    "up=input,down=input,north=input,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_output_none_output"
+    },
+    "up=input,down=input,north=input,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_output_input_none"
+    },
+    "up=input,down=input,north=input,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_output_input_input"
+    },
+    "up=input,down=input,north=input,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_output_input_output"
+    },
+    "up=input,down=input,north=input,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_output_output_none"
+    },
+    "up=input,down=input,north=input,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_output_output_input"
+    },
+    "up=input,down=input,north=input,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_input_output_output_output"
+    },
+    "up=input,down=input,north=output,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_none_none_none"
+    },
+    "up=input,down=input,north=output,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_none_none_input"
+    },
+    "up=input,down=input,north=output,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_none_none_output"
+    },
+    "up=input,down=input,north=output,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_none_input_none"
+    },
+    "up=input,down=input,north=output,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_none_input_input"
+    },
+    "up=input,down=input,north=output,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_none_input_output"
+    },
+    "up=input,down=input,north=output,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_none_output_none"
+    },
+    "up=input,down=input,north=output,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_none_output_input"
+    },
+    "up=input,down=input,north=output,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_none_output_output"
+    },
+    "up=input,down=input,north=output,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_input_none_none"
+    },
+    "up=input,down=input,north=output,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_input_none_input"
+    },
+    "up=input,down=input,north=output,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_input_none_output"
+    },
+    "up=input,down=input,north=output,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_input_input_none"
+    },
+    "up=input,down=input,north=output,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_input_input_input"
+    },
+    "up=input,down=input,north=output,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_input_input_output"
+    },
+    "up=input,down=input,north=output,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_input_output_none"
+    },
+    "up=input,down=input,north=output,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_input_output_input"
+    },
+    "up=input,down=input,north=output,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_input_output_output"
+    },
+    "up=input,down=input,north=output,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_output_none_none"
+    },
+    "up=input,down=input,north=output,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_output_none_input"
+    },
+    "up=input,down=input,north=output,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_output_none_output"
+    },
+    "up=input,down=input,north=output,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_output_input_none"
+    },
+    "up=input,down=input,north=output,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_output_input_input"
+    },
+    "up=input,down=input,north=output,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_output_input_output"
+    },
+    "up=input,down=input,north=output,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_output_output_none"
+    },
+    "up=input,down=input,north=output,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_output_output_input"
+    },
+    "up=input,down=input,north=output,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_input_output_output_output_output"
+    },
+    "up=input,down=output,north=none,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_none_none_none"
+    },
+    "up=input,down=output,north=none,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_none_none_input"
+    },
+    "up=input,down=output,north=none,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_none_none_output"
+    },
+    "up=input,down=output,north=none,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_none_input_none"
+    },
+    "up=input,down=output,north=none,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_none_input_input"
+    },
+    "up=input,down=output,north=none,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_none_input_output"
+    },
+    "up=input,down=output,north=none,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_none_output_none"
+    },
+    "up=input,down=output,north=none,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_none_output_input"
+    },
+    "up=input,down=output,north=none,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_none_output_output"
+    },
+    "up=input,down=output,north=none,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_input_none_none"
+    },
+    "up=input,down=output,north=none,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_input_none_input"
+    },
+    "up=input,down=output,north=none,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_input_none_output"
+    },
+    "up=input,down=output,north=none,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_input_input_none"
+    },
+    "up=input,down=output,north=none,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_input_input_input"
+    },
+    "up=input,down=output,north=none,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_input_input_output"
+    },
+    "up=input,down=output,north=none,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_input_output_none"
+    },
+    "up=input,down=output,north=none,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_input_output_input"
+    },
+    "up=input,down=output,north=none,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_input_output_output"
+    },
+    "up=input,down=output,north=none,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_output_none_none"
+    },
+    "up=input,down=output,north=none,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_output_none_input"
+    },
+    "up=input,down=output,north=none,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_output_none_output"
+    },
+    "up=input,down=output,north=none,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_output_input_none"
+    },
+    "up=input,down=output,north=none,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_output_input_input"
+    },
+    "up=input,down=output,north=none,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_output_input_output"
+    },
+    "up=input,down=output,north=none,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_output_output_none"
+    },
+    "up=input,down=output,north=none,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_output_output_input"
+    },
+    "up=input,down=output,north=none,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_none_output_output_output"
+    },
+    "up=input,down=output,north=input,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_none_none_none"
+    },
+    "up=input,down=output,north=input,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_none_none_input"
+    },
+    "up=input,down=output,north=input,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_none_none_output"
+    },
+    "up=input,down=output,north=input,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_none_input_none"
+    },
+    "up=input,down=output,north=input,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_none_input_input"
+    },
+    "up=input,down=output,north=input,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_none_input_output"
+    },
+    "up=input,down=output,north=input,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_none_output_none"
+    },
+    "up=input,down=output,north=input,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_none_output_input"
+    },
+    "up=input,down=output,north=input,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_none_output_output"
+    },
+    "up=input,down=output,north=input,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_input_none_none"
+    },
+    "up=input,down=output,north=input,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_input_none_input"
+    },
+    "up=input,down=output,north=input,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_input_none_output"
+    },
+    "up=input,down=output,north=input,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_input_input_none"
+    },
+    "up=input,down=output,north=input,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_input_input_input"
+    },
+    "up=input,down=output,north=input,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_input_input_output"
+    },
+    "up=input,down=output,north=input,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_input_output_none"
+    },
+    "up=input,down=output,north=input,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_input_output_input"
+    },
+    "up=input,down=output,north=input,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_input_output_output"
+    },
+    "up=input,down=output,north=input,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_output_none_none"
+    },
+    "up=input,down=output,north=input,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_output_none_input"
+    },
+    "up=input,down=output,north=input,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_output_none_output"
+    },
+    "up=input,down=output,north=input,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_output_input_none"
+    },
+    "up=input,down=output,north=input,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_output_input_input"
+    },
+    "up=input,down=output,north=input,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_output_input_output"
+    },
+    "up=input,down=output,north=input,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_output_output_none"
+    },
+    "up=input,down=output,north=input,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_output_output_input"
+    },
+    "up=input,down=output,north=input,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_input_output_output_output"
+    },
+    "up=input,down=output,north=output,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_none_none_none"
+    },
+    "up=input,down=output,north=output,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_none_none_input"
+    },
+    "up=input,down=output,north=output,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_none_none_output"
+    },
+    "up=input,down=output,north=output,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_none_input_none"
+    },
+    "up=input,down=output,north=output,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_none_input_input"
+    },
+    "up=input,down=output,north=output,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_none_input_output"
+    },
+    "up=input,down=output,north=output,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_none_output_none"
+    },
+    "up=input,down=output,north=output,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_none_output_input"
+    },
+    "up=input,down=output,north=output,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_none_output_output"
+    },
+    "up=input,down=output,north=output,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_input_none_none"
+    },
+    "up=input,down=output,north=output,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_input_none_input"
+    },
+    "up=input,down=output,north=output,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_input_none_output"
+    },
+    "up=input,down=output,north=output,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_input_input_none"
+    },
+    "up=input,down=output,north=output,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_input_input_input"
+    },
+    "up=input,down=output,north=output,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_input_input_output"
+    },
+    "up=input,down=output,north=output,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_input_output_none"
+    },
+    "up=input,down=output,north=output,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_input_output_input"
+    },
+    "up=input,down=output,north=output,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_input_output_output"
+    },
+    "up=input,down=output,north=output,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_output_none_none"
+    },
+    "up=input,down=output,north=output,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_output_none_input"
+    },
+    "up=input,down=output,north=output,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_output_none_output"
+    },
+    "up=input,down=output,north=output,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_output_input_none"
+    },
+    "up=input,down=output,north=output,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_output_input_input"
+    },
+    "up=input,down=output,north=output,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_output_input_output"
+    },
+    "up=input,down=output,north=output,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_output_output_none"
+    },
+    "up=input,down=output,north=output,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_output_output_input"
+    },
+    "up=input,down=output,north=output,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/input_output_output_output_output_output"
+    },
+    "up=output,down=none,north=none,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_none_none_none"
+    },
+    "up=output,down=none,north=none,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_none_none_input"
+    },
+    "up=output,down=none,north=none,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_none_none_output"
+    },
+    "up=output,down=none,north=none,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_none_input_none"
+    },
+    "up=output,down=none,north=none,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_none_input_input"
+    },
+    "up=output,down=none,north=none,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_none_input_output"
+    },
+    "up=output,down=none,north=none,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_none_output_none"
+    },
+    "up=output,down=none,north=none,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_none_output_input"
+    },
+    "up=output,down=none,north=none,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_none_output_output"
+    },
+    "up=output,down=none,north=none,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_input_none_none"
+    },
+    "up=output,down=none,north=none,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_input_none_input"
+    },
+    "up=output,down=none,north=none,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_input_none_output"
+    },
+    "up=output,down=none,north=none,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_input_input_none"
+    },
+    "up=output,down=none,north=none,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_input_input_input"
+    },
+    "up=output,down=none,north=none,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_input_input_output"
+    },
+    "up=output,down=none,north=none,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_input_output_none"
+    },
+    "up=output,down=none,north=none,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_input_output_input"
+    },
+    "up=output,down=none,north=none,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_input_output_output"
+    },
+    "up=output,down=none,north=none,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_output_none_none"
+    },
+    "up=output,down=none,north=none,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_output_none_input"
+    },
+    "up=output,down=none,north=none,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_output_none_output"
+    },
+    "up=output,down=none,north=none,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_output_input_none"
+    },
+    "up=output,down=none,north=none,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_output_input_input"
+    },
+    "up=output,down=none,north=none,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_output_input_output"
+    },
+    "up=output,down=none,north=none,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_output_output_none"
+    },
+    "up=output,down=none,north=none,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_output_output_input"
+    },
+    "up=output,down=none,north=none,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_none_output_output_output"
+    },
+    "up=output,down=none,north=input,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_none_none_none"
+    },
+    "up=output,down=none,north=input,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_none_none_input"
+    },
+    "up=output,down=none,north=input,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_none_none_output"
+    },
+    "up=output,down=none,north=input,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_none_input_none"
+    },
+    "up=output,down=none,north=input,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_none_input_input"
+    },
+    "up=output,down=none,north=input,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_none_input_output"
+    },
+    "up=output,down=none,north=input,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_none_output_none"
+    },
+    "up=output,down=none,north=input,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_none_output_input"
+    },
+    "up=output,down=none,north=input,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_none_output_output"
+    },
+    "up=output,down=none,north=input,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_input_none_none"
+    },
+    "up=output,down=none,north=input,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_input_none_input"
+    },
+    "up=output,down=none,north=input,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_input_none_output"
+    },
+    "up=output,down=none,north=input,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_input_input_none"
+    },
+    "up=output,down=none,north=input,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_input_input_input"
+    },
+    "up=output,down=none,north=input,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_input_input_output"
+    },
+    "up=output,down=none,north=input,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_input_output_none"
+    },
+    "up=output,down=none,north=input,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_input_output_input"
+    },
+    "up=output,down=none,north=input,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_input_output_output"
+    },
+    "up=output,down=none,north=input,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_output_none_none"
+    },
+    "up=output,down=none,north=input,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_output_none_input"
+    },
+    "up=output,down=none,north=input,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_output_none_output"
+    },
+    "up=output,down=none,north=input,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_output_input_none"
+    },
+    "up=output,down=none,north=input,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_output_input_input"
+    },
+    "up=output,down=none,north=input,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_output_input_output"
+    },
+    "up=output,down=none,north=input,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_output_output_none"
+    },
+    "up=output,down=none,north=input,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_output_output_input"
+    },
+    "up=output,down=none,north=input,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_input_output_output_output"
+    },
+    "up=output,down=none,north=output,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_none_none_none"
+    },
+    "up=output,down=none,north=output,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_none_none_input"
+    },
+    "up=output,down=none,north=output,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_none_none_output"
+    },
+    "up=output,down=none,north=output,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_none_input_none"
+    },
+    "up=output,down=none,north=output,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_none_input_input"
+    },
+    "up=output,down=none,north=output,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_none_input_output"
+    },
+    "up=output,down=none,north=output,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_none_output_none"
+    },
+    "up=output,down=none,north=output,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_none_output_input"
+    },
+    "up=output,down=none,north=output,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_none_output_output"
+    },
+    "up=output,down=none,north=output,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_input_none_none"
+    },
+    "up=output,down=none,north=output,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_input_none_input"
+    },
+    "up=output,down=none,north=output,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_input_none_output"
+    },
+    "up=output,down=none,north=output,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_input_input_none"
+    },
+    "up=output,down=none,north=output,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_input_input_input"
+    },
+    "up=output,down=none,north=output,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_input_input_output"
+    },
+    "up=output,down=none,north=output,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_input_output_none"
+    },
+    "up=output,down=none,north=output,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_input_output_input"
+    },
+    "up=output,down=none,north=output,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_input_output_output"
+    },
+    "up=output,down=none,north=output,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_output_none_none"
+    },
+    "up=output,down=none,north=output,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_output_none_input"
+    },
+    "up=output,down=none,north=output,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_output_none_output"
+    },
+    "up=output,down=none,north=output,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_output_input_none"
+    },
+    "up=output,down=none,north=output,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_output_input_input"
+    },
+    "up=output,down=none,north=output,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_output_input_output"
+    },
+    "up=output,down=none,north=output,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_output_output_none"
+    },
+    "up=output,down=none,north=output,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_output_output_input"
+    },
+    "up=output,down=none,north=output,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_none_output_output_output_output"
+    },
+    "up=output,down=input,north=none,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_none_none_none"
+    },
+    "up=output,down=input,north=none,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_none_none_input"
+    },
+    "up=output,down=input,north=none,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_none_none_output"
+    },
+    "up=output,down=input,north=none,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_none_input_none"
+    },
+    "up=output,down=input,north=none,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_none_input_input"
+    },
+    "up=output,down=input,north=none,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_none_input_output"
+    },
+    "up=output,down=input,north=none,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_none_output_none"
+    },
+    "up=output,down=input,north=none,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_none_output_input"
+    },
+    "up=output,down=input,north=none,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_none_output_output"
+    },
+    "up=output,down=input,north=none,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_input_none_none"
+    },
+    "up=output,down=input,north=none,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_input_none_input"
+    },
+    "up=output,down=input,north=none,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_input_none_output"
+    },
+    "up=output,down=input,north=none,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_input_input_none"
+    },
+    "up=output,down=input,north=none,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_input_input_input"
+    },
+    "up=output,down=input,north=none,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_input_input_output"
+    },
+    "up=output,down=input,north=none,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_input_output_none"
+    },
+    "up=output,down=input,north=none,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_input_output_input"
+    },
+    "up=output,down=input,north=none,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_input_output_output"
+    },
+    "up=output,down=input,north=none,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_output_none_none"
+    },
+    "up=output,down=input,north=none,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_output_none_input"
+    },
+    "up=output,down=input,north=none,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_output_none_output"
+    },
+    "up=output,down=input,north=none,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_output_input_none"
+    },
+    "up=output,down=input,north=none,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_output_input_input"
+    },
+    "up=output,down=input,north=none,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_output_input_output"
+    },
+    "up=output,down=input,north=none,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_output_output_none"
+    },
+    "up=output,down=input,north=none,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_output_output_input"
+    },
+    "up=output,down=input,north=none,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_none_output_output_output"
+    },
+    "up=output,down=input,north=input,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_none_none_none"
+    },
+    "up=output,down=input,north=input,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_none_none_input"
+    },
+    "up=output,down=input,north=input,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_none_none_output"
+    },
+    "up=output,down=input,north=input,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_none_input_none"
+    },
+    "up=output,down=input,north=input,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_none_input_input"
+    },
+    "up=output,down=input,north=input,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_none_input_output"
+    },
+    "up=output,down=input,north=input,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_none_output_none"
+    },
+    "up=output,down=input,north=input,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_none_output_input"
+    },
+    "up=output,down=input,north=input,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_none_output_output"
+    },
+    "up=output,down=input,north=input,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_input_none_none"
+    },
+    "up=output,down=input,north=input,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_input_none_input"
+    },
+    "up=output,down=input,north=input,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_input_none_output"
+    },
+    "up=output,down=input,north=input,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_input_input_none"
+    },
+    "up=output,down=input,north=input,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_input_input_input"
+    },
+    "up=output,down=input,north=input,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_input_input_output"
+    },
+    "up=output,down=input,north=input,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_input_output_none"
+    },
+    "up=output,down=input,north=input,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_input_output_input"
+    },
+    "up=output,down=input,north=input,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_input_output_output"
+    },
+    "up=output,down=input,north=input,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_output_none_none"
+    },
+    "up=output,down=input,north=input,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_output_none_input"
+    },
+    "up=output,down=input,north=input,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_output_none_output"
+    },
+    "up=output,down=input,north=input,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_output_input_none"
+    },
+    "up=output,down=input,north=input,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_output_input_input"
+    },
+    "up=output,down=input,north=input,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_output_input_output"
+    },
+    "up=output,down=input,north=input,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_output_output_none"
+    },
+    "up=output,down=input,north=input,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_output_output_input"
+    },
+    "up=output,down=input,north=input,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_input_output_output_output"
+    },
+    "up=output,down=input,north=output,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_none_none_none"
+    },
+    "up=output,down=input,north=output,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_none_none_input"
+    },
+    "up=output,down=input,north=output,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_none_none_output"
+    },
+    "up=output,down=input,north=output,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_none_input_none"
+    },
+    "up=output,down=input,north=output,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_none_input_input"
+    },
+    "up=output,down=input,north=output,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_none_input_output"
+    },
+    "up=output,down=input,north=output,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_none_output_none"
+    },
+    "up=output,down=input,north=output,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_none_output_input"
+    },
+    "up=output,down=input,north=output,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_none_output_output"
+    },
+    "up=output,down=input,north=output,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_input_none_none"
+    },
+    "up=output,down=input,north=output,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_input_none_input"
+    },
+    "up=output,down=input,north=output,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_input_none_output"
+    },
+    "up=output,down=input,north=output,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_input_input_none"
+    },
+    "up=output,down=input,north=output,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_input_input_input"
+    },
+    "up=output,down=input,north=output,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_input_input_output"
+    },
+    "up=output,down=input,north=output,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_input_output_none"
+    },
+    "up=output,down=input,north=output,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_input_output_input"
+    },
+    "up=output,down=input,north=output,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_input_output_output"
+    },
+    "up=output,down=input,north=output,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_output_none_none"
+    },
+    "up=output,down=input,north=output,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_output_none_input"
+    },
+    "up=output,down=input,north=output,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_output_none_output"
+    },
+    "up=output,down=input,north=output,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_output_input_none"
+    },
+    "up=output,down=input,north=output,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_output_input_input"
+    },
+    "up=output,down=input,north=output,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_output_input_output"
+    },
+    "up=output,down=input,north=output,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_output_output_none"
+    },
+    "up=output,down=input,north=output,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_output_output_input"
+    },
+    "up=output,down=input,north=output,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_input_output_output_output_output"
+    },
+    "up=output,down=output,north=none,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_none_none_none"
+    },
+    "up=output,down=output,north=none,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_none_none_input"
+    },
+    "up=output,down=output,north=none,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_none_none_output"
+    },
+    "up=output,down=output,north=none,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_none_input_none"
+    },
+    "up=output,down=output,north=none,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_none_input_input"
+    },
+    "up=output,down=output,north=none,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_none_input_output"
+    },
+    "up=output,down=output,north=none,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_none_output_none"
+    },
+    "up=output,down=output,north=none,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_none_output_input"
+    },
+    "up=output,down=output,north=none,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_none_output_output"
+    },
+    "up=output,down=output,north=none,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_input_none_none"
+    },
+    "up=output,down=output,north=none,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_input_none_input"
+    },
+    "up=output,down=output,north=none,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_input_none_output"
+    },
+    "up=output,down=output,north=none,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_input_input_none"
+    },
+    "up=output,down=output,north=none,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_input_input_input"
+    },
+    "up=output,down=output,north=none,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_input_input_output"
+    },
+    "up=output,down=output,north=none,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_input_output_none"
+    },
+    "up=output,down=output,north=none,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_input_output_input"
+    },
+    "up=output,down=output,north=none,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_input_output_output"
+    },
+    "up=output,down=output,north=none,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_output_none_none"
+    },
+    "up=output,down=output,north=none,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_output_none_input"
+    },
+    "up=output,down=output,north=none,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_output_none_output"
+    },
+    "up=output,down=output,north=none,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_output_input_none"
+    },
+    "up=output,down=output,north=none,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_output_input_input"
+    },
+    "up=output,down=output,north=none,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_output_input_output"
+    },
+    "up=output,down=output,north=none,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_output_output_none"
+    },
+    "up=output,down=output,north=none,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_output_output_input"
+    },
+    "up=output,down=output,north=none,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_none_output_output_output"
+    },
+    "up=output,down=output,north=input,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_none_none_none"
+    },
+    "up=output,down=output,north=input,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_none_none_input"
+    },
+    "up=output,down=output,north=input,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_none_none_output"
+    },
+    "up=output,down=output,north=input,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_none_input_none"
+    },
+    "up=output,down=output,north=input,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_none_input_input"
+    },
+    "up=output,down=output,north=input,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_none_input_output"
+    },
+    "up=output,down=output,north=input,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_none_output_none"
+    },
+    "up=output,down=output,north=input,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_none_output_input"
+    },
+    "up=output,down=output,north=input,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_none_output_output"
+    },
+    "up=output,down=output,north=input,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_input_none_none"
+    },
+    "up=output,down=output,north=input,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_input_none_input"
+    },
+    "up=output,down=output,north=input,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_input_none_output"
+    },
+    "up=output,down=output,north=input,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_input_input_none"
+    },
+    "up=output,down=output,north=input,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_input_input_input"
+    },
+    "up=output,down=output,north=input,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_input_input_output"
+    },
+    "up=output,down=output,north=input,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_input_output_none"
+    },
+    "up=output,down=output,north=input,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_input_output_input"
+    },
+    "up=output,down=output,north=input,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_input_output_output"
+    },
+    "up=output,down=output,north=input,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_output_none_none"
+    },
+    "up=output,down=output,north=input,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_output_none_input"
+    },
+    "up=output,down=output,north=input,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_output_none_output"
+    },
+    "up=output,down=output,north=input,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_output_input_none"
+    },
+    "up=output,down=output,north=input,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_output_input_input"
+    },
+    "up=output,down=output,north=input,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_output_input_output"
+    },
+    "up=output,down=output,north=input,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_output_output_none"
+    },
+    "up=output,down=output,north=input,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_output_output_input"
+    },
+    "up=output,down=output,north=input,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_input_output_output_output"
+    },
+    "up=output,down=output,north=output,south=none,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_none_none_none"
+    },
+    "up=output,down=output,north=output,south=none,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_none_none_input"
+    },
+    "up=output,down=output,north=output,south=none,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_none_none_output"
+    },
+    "up=output,down=output,north=output,south=none,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_none_input_none"
+    },
+    "up=output,down=output,north=output,south=none,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_none_input_input"
+    },
+    "up=output,down=output,north=output,south=none,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_none_input_output"
+    },
+    "up=output,down=output,north=output,south=none,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_none_output_none"
+    },
+    "up=output,down=output,north=output,south=none,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_none_output_input"
+    },
+    "up=output,down=output,north=output,south=none,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_none_output_output"
+    },
+    "up=output,down=output,north=output,south=input,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_input_none_none"
+    },
+    "up=output,down=output,north=output,south=input,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_input_none_input"
+    },
+    "up=output,down=output,north=output,south=input,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_input_none_output"
+    },
+    "up=output,down=output,north=output,south=input,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_input_input_none"
+    },
+    "up=output,down=output,north=output,south=input,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_input_input_input"
+    },
+    "up=output,down=output,north=output,south=input,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_input_input_output"
+    },
+    "up=output,down=output,north=output,south=input,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_input_output_none"
+    },
+    "up=output,down=output,north=output,south=input,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_input_output_input"
+    },
+    "up=output,down=output,north=output,south=input,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_input_output_output"
+    },
+    "up=output,down=output,north=output,south=output,west=none,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_output_none_none"
+    },
+    "up=output,down=output,north=output,south=output,west=none,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_output_none_input"
+    },
+    "up=output,down=output,north=output,south=output,west=none,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_output_none_output"
+    },
+    "up=output,down=output,north=output,south=output,west=input,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_output_input_none"
+    },
+    "up=output,down=output,north=output,south=output,west=input,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_output_input_input"
+    },
+    "up=output,down=output,north=output,south=output,west=input,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_output_input_output"
+    },
+    "up=output,down=output,north=output,south=output,west=output,east=none": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_output_output_none"
+    },
+    "up=output,down=output,north=output,south=output,west=output,east=input": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_output_output_input"
+    },
+    "up=output,down=output,north=output,south=output,west=output,east=output": {
+      "model": "logic-mod:block/wire/yellow/variant/output_output_output_output_output_output"
+    }
+  }
+}

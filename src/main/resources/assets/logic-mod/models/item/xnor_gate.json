@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "logic-mod:item/xnor_gate_symbol"
+    "layer0": "logic-mod:item/xnor_gate"
   }
 }

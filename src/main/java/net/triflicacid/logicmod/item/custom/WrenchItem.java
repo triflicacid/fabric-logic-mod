@@ -3,17 +3,14 @@ package net.triflicacid.logicmod.item.custom;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.triflicacid.logicmod.block.custom.LogicGateBlock;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;

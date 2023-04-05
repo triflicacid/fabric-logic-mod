@@ -22,25 +22,29 @@ public abstract class SignalIOBlock extends SignalRecieverBlock  {
     protected abstract boolean shouldBeActive(World world, BlockPos pos, BlockState state);
 
     protected void update(World world, BlockPos pos, BlockState state) {
-        boolean active = state.get(ACTIVE);
-        boolean shouldBeActive = this.shouldBeActive(world, pos, state);
+        if (!world.isClient) {
+            boolean active = state.get(ACTIVE);
+            boolean shouldBeActive = this.shouldBeActive(world, pos, state);
 
-        if (active != shouldBeActive && !world.getBlockTickScheduler().isTicking(pos, this)) {
-            TickPriority tickPriority = active ? TickPriority.VERY_HIGH : TickPriority.HIGH;
-            world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), tickPriority);
+            if (active != shouldBeActive && !world.getBlockTickScheduler().isTicking(pos, this)) {
+                TickPriority tickPriority = active ? TickPriority.VERY_HIGH : TickPriority.HIGH;
+                world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), tickPriority);
+            }
         }
     }
 
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
-        if (state.canPlaceAt(world, pos)) {
-            this.update(world, pos, state);
-        } else {
-            BlockEntity blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;
-            dropStacks(state, world, pos, blockEntity);
-            world.removeBlock(pos, false);
+        if (!world.isClient) {
+            if (state.canPlaceAt(world, pos)) {
+                this.update(world, pos, state);
+            } else {
+                BlockEntity blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;
+                dropStacks(state, world, pos, blockEntity);
+                world.removeBlock(pos, false);
 
-            for (Direction direction : Direction.values()) {
-                world.updateNeighborsAlways(pos.offset(direction), this);
+                for (Direction direction : Direction.values()) {
+                    world.updateNeighborsAlways(pos.offset(direction), this);
+                }
             }
         }
     }
