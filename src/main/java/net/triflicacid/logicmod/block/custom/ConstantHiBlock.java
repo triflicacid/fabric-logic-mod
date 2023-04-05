@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
@@ -12,16 +13,16 @@ public class ConstantHiBlock extends SignalEmitterBlock implements AdvancedWrenc
     public static final String NAME = "constant_hi";
 
     public ConstantHiBlock() {
-        super(true);
-    }
-
-    @Override
-    public int getSignalStrength() {
-        return 15;
+        super(15);
     }
 
     @Override
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
         return ModBlocks.CONSTANT_LO.getDefaultState().with(HorizontalFacingBlock.FACING, state.get(HorizontalFacingBlock.FACING));
+    }
+
+    @Override
+    public int getSignalStrength(BlockState state, World world, BlockPos pos) {
+        return 15;
     }
 }

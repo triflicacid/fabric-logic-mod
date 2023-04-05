@@ -11,12 +11,11 @@ public class XnorGateBlock extends LogicGateBlock {
     public static final String NAME = "xnor_gate";
 
     public XnorGateBlock() {
-        super(facing -> new Direction[] { facing.rotateYClockwise(), facing.rotateYCounterclockwise() }, true);
+        super(2, true);
     }
 
     @Override
-    protected boolean shouldBeActive(World world, BlockPos pos, BlockState state) {
-        boolean[] inputs = this.areInputsRecievingPower(world, pos, state);
+    public boolean logicalFunction(boolean[] inputs) {
         return Util.logicalXnor(inputs);
     }
 

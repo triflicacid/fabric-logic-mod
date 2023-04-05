@@ -53,6 +53,14 @@ This mod contain the following logic gates:
   | 0 | 1     |
   | 1 | 0     |
 
+- Conditional gate
+  - Either returns its left/right input depending on whether it is recieving power from behind
+
+  | In | Out   |
+    |----|-------|
+  | 0  | Right |
+  | 1  | Left  |
+
 - OR gate
   - Outputs if either inputs are on
 
@@ -94,7 +102,7 @@ This mod contain the following logic gates:
   | 1 | 1 | 1                     |
 
 
-## Signal Emitters
+## Other Blocks
 
 - Clock
   - Pulses on and off a predetermined amount of ticks (default 20)

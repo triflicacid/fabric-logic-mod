@@ -8,9 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Property;
+import net.minecraft.state.property.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -20,11 +18,12 @@ import net.minecraft.world.World;
 public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
+    public static final IntProperty POWER = Properties.POWER;
 
 
-    public SignalEmitterBlock(boolean initiallyActive) {
+    public SignalEmitterBlock(int initialPower) {
         super(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly());
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(ACTIVE, initiallyActive));
+        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(ACTIVE, initialPower > 0).with(POWER, initialPower));
     }
 
     @Override
@@ -32,8 +31,8 @@ public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
         return true;
     }
 
-    /** If active, what signal strength should we output? */
-    public abstract int getSignalStrength();
+    /** What signal strength should we output? */
+    public abstract int getSignalStrength(BlockState state, World world, BlockPos pos);
 
     @Override
     public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
@@ -42,7 +41,7 @@ public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
 
     @Override
     public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return state.get(FACING) == direction && state.get(ACTIVE) ? getSignalStrength() : 0;
+        return state.get(FACING) == direction ? state.get(POWER) : 0;
     }
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -78,7 +77,7 @@ public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{ FACING, ACTIVE });
+        builder.add(new Property[]{ FACING, ACTIVE, POWER });
         super.appendProperties(builder);
     }
 }

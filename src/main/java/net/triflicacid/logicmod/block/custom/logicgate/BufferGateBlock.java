@@ -11,12 +11,12 @@ public class BufferGateBlock extends LogicGateBlock {
     public static final String NAME = "buffer_gate";
 
     public BufferGateBlock() {
-        super(facing -> new Direction[] { facing }, false);
+        super(1, false);
     }
 
     @Override
-    protected boolean shouldBeActive(World world, BlockPos pos, BlockState state) {
-        return Util.logicalBuffer(this.areInputsRecievingPower(world, pos, state));
+    public boolean logicalFunction(boolean[] inputs) {
+        return Util.logicalBuffer(inputs);
     }
 
     @Override

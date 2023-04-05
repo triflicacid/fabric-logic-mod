@@ -13,21 +13,19 @@ import net.minecraft.world.World;
 import net.minecraft.world.tick.TickPriority;
 
 public abstract class SignalIOBlock extends SignalRecieverBlock  {
-    public SignalIOBlock(boolean initiallyActive) {
-        super(initiallyActive);
+    public SignalIOBlock(int initialPower) {
+        super(initialPower);
     }
 
     protected abstract int getUpdateDelayInternal(BlockState state);
 
-    protected abstract boolean shouldBeActive(World world, BlockPos pos, BlockState state);
-
     protected void update(World world, BlockPos pos, BlockState state) {
         if (!world.isClient) {
-            boolean active = state.get(ACTIVE);
-            boolean shouldBeActive = this.shouldBeActive(world, pos, state);
+            int power = state.get(POWER);
+            int expectedPower = this.getSignalStrength(state, world, pos);
 
-            if (active != shouldBeActive && !world.getBlockTickScheduler().isTicking(pos, this)) {
-                TickPriority tickPriority = active ? TickPriority.VERY_HIGH : TickPriority.HIGH;
+            if (power != expectedPower && !world.getBlockTickScheduler().isTicking(pos, this)) {
+                TickPriority tickPriority = expectedPower > 0 ? TickPriority.VERY_HIGH : TickPriority.HIGH;
                 world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), tickPriority);
             }
         }
@@ -55,11 +53,11 @@ public abstract class SignalIOBlock extends SignalRecieverBlock  {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        boolean active = state.get(ACTIVE);
-        boolean shouldBeActive = this.shouldBeActive(world, pos, state);
+        int power = state.get(POWER);
+        int expectedPower = getSignalStrength(state, world, pos);
 
-        if (active != shouldBeActive) {
-            world.setBlockState(pos, state.with(ACTIVE, shouldBeActive), 2);
+        if (power != expectedPower) {
+            world.setBlockState(pos, state.with(POWER, expectedPower).with(ACTIVE, expectedPower > 0));
         }
     }
 }

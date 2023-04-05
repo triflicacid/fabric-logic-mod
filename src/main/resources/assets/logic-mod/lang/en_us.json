@@ -30,6 +30,9 @@
   "item.logic-mod.constant_hi": "Constant Hi",
   "block.logic-mod.constant_hi": "Constant Hi",
 
+  "item.logic-mod.conditional": "Conditional Gate",
+  "block.logic-mod.conditional": "Conditional Gate",
+
   "item.logic-mod.clock": "Clock",
   "block.logic-mod.clock": "Clock",
 

@@ -11,12 +11,11 @@ public class NandGateBlock extends LogicGateBlock {
     public static final String NAME = "nand_gate";
 
     public NandGateBlock() {
-        super(facing -> new Direction[] { facing.rotateYClockwise(), facing.rotateYCounterclockwise() }, true);
+        super(1, true);
     }
 
     @Override
-    protected boolean shouldBeActive(World world, BlockPos pos, BlockState state) {
-        boolean[] inputs = this.areInputsRecievingPower(world, pos, state);
+    public boolean logicalFunction(boolean[] inputs) {
         return Util.logicalNand(inputs);
     }
 

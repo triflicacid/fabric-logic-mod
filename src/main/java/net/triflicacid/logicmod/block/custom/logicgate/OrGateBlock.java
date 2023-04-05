@@ -11,12 +11,11 @@ public class OrGateBlock extends LogicGateBlock {
     public static final String NAME = "or_gate";
 
     public OrGateBlock() {
-        super(facing -> new Direction[] { facing.rotateYClockwise(), facing.rotateYCounterclockwise() }, false);
+        super(2, false);
     }
 
     @Override
-    protected boolean shouldBeActive(World world, BlockPos pos, BlockState state) {
-        boolean[] inputs = this.areInputsRecievingPower(world, pos, state);
+    public boolean logicalFunction(boolean[] inputs) {
         return Util.logicalOr(inputs);
     }
 

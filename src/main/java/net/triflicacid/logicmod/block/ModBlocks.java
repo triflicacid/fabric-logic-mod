@@ -13,6 +13,7 @@ import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.custom.*;
 import net.triflicacid.logicmod.block.custom.logicgate.*;
 import net.triflicacid.logicmod.block.custom.wire.*;
+import net.triflicacid.logicmod.item.ModItemGroup;
 
 public class ModBlocks {
     public static final LogicGateBlock AND_GATE = (LogicGateBlock) registerBlock(AndGateBlock.NAME, new AndGateBlock());
@@ -27,6 +28,7 @@ public class ModBlocks {
     public static final Block CONSTANT_LO = registerBlock(ConstantLoBlock.NAME, new ConstantLoBlock());
     public static final Block CONSTANT_HI = registerBlock(ConstantHiBlock.NAME, new ConstantHiBlock());
     public static final Block CLOCK = registerBlock(ClockBlock.NAME, new ClockBlock());
+    public static final Block CONDITIONAL = registerBlock(ConditionalBlock.NAME, new ConditionalBlock());
 
     /** Wires and adapters */
     public static final Block BLUE_WIRE = registerBlock(BlueWireBlock.NAME, new BlueWireBlock());

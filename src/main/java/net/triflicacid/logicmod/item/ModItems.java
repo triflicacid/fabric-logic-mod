@@ -34,6 +34,7 @@ public class ModItems {
     public static final Item CONSTANT_LO = registerAliased(ModBlocks.CONSTANT_LO, ConstantLoBlock.NAME);
     public static final Item CONSTANT_HI = registerAliased(ModBlocks.CONSTANT_HI, ConstantHiBlock.NAME);
     public static final Item CLOCK = registerAliased(ModBlocks.CLOCK, ClockBlock.NAME);
+    public static final Item CONDITIONAL = registerAliased(ModBlocks.CONDITIONAL, ConditionalBlock.NAME);
 
     /** Wires and adapters */
     public static final Item BLUE_WIRE = registerAliased(ModBlocks.BLUE_WIRE, BlueWireBlock.NAME);
