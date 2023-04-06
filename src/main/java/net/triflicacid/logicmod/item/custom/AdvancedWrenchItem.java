@@ -13,6 +13,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.tick.TickPriority;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import org.jetbrains.annotations.Nullable;
 
@@ -48,6 +49,7 @@ public class AdvancedWrenchItem extends Item {
                 BlockState newState = wrenchableBlock.applyAdvancedWrench(world, pos, state, context.getSide(), context.getPlayerFacing());
                 if (newState != null) {
                     world.setBlockState(pos, newState);
+                    world.scheduleBlockTick(pos, state.getBlock(), 1, TickPriority.NORMAL);
                     doCooldown = true;
                 }
             }

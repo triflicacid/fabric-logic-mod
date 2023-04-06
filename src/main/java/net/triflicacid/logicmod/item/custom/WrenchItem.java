@@ -12,6 +12,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.minecraft.world.tick.TickPriority;
 import net.triflicacid.logicmod.interfaces.Wrenchable;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,6 +48,7 @@ public class WrenchItem extends Item {
                 BlockState newState = wrenchableBlock.applyWrench(world, pos, state, context.getSide(), context.getPlayerFacing());
                 if (newState != null) {
                     world.setBlockState(pos, newState);
+                    world.scheduleBlockTick(pos, state.getBlock(), 1, TickPriority.NORMAL);
                     doCooldown = true;
                 }
             } else if (state.contains(HorizontalFacingBlock.FACING)) {

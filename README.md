@@ -12,7 +12,7 @@ This mod adds basic logic utilities to Minecraft
 
 # Features
 
-**NOTE** All blocks that accept input(s), unless otherwise stated, require **strong** redstone inputs.
+**NOTE** All blocks that accept input(s), unless otherwise stated, take **strong** redstone inputs and produce **weak** redstone outputs.
 
 ## Logic Gates
 
@@ -139,6 +139,7 @@ This mod contain the following logic gates:
   - Emits a constant signal 0-15
   - Signal defaults to 0
   - Right-clicking with an advanced wrench increments the signal (hold shift to decrement).
+  - Powering from behind disables the input
 
 ## Tools
 
