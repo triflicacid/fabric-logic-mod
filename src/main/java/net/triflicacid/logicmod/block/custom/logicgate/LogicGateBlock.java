@@ -1,57 +1,83 @@
 package net.triflicacid.logicmod.block.custom.logicgate;
 
 import net.minecraft.block.*;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.triflicacid.logicmod.Util;
 import net.triflicacid.logicmod.block.custom.SignalIOBlock;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
-import java.util.function.Function;
+import java.util.*;
 
 public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWrenchable {
     public static final int TICK_DELAY = 2;
-    private final int numberOfInputs;
+    private final int minInputs;
+    private final int maxInputs;
 
+    public LogicGateBlock(int inputCount, boolean initiallyActive) {
+        this(inputCount, inputCount, initiallyActive);
+    }
 
-    public LogicGateBlock(int numberOfInputs, boolean initiallyActive) {
+    public LogicGateBlock(int minInputs, int maxInputs, boolean initiallyActive) {
         super(initiallyActive ? 15 : 0);
-        if (numberOfInputs < 1 || numberOfInputs > 3)
-            throw new IllegalStateException("Invalid number of inputs to logic gate: " + numberOfInputs);
-        this.numberOfInputs = numberOfInputs;
+        if (minInputs < 1 || minInputs > 3)
+            throw new IllegalStateException("Invalid number of minInputs to logic gate: " + minInputs);
+        if (maxInputs < 1 || maxInputs > 3)
+            throw new IllegalStateException("Invalid number of maxInputs to logic gate: " + maxInputs);
+        if (maxInputs < minInputs)
+            throw new IllegalStateException("Invalid relation of maxInputs to minInputs to logic gate: " + minInputs + " and " + maxInputs);
+        this.minInputs = minInputs;
+        this.maxInputs = maxInputs;
     }
 
     public abstract boolean logicalFunction(boolean[] inputs);
 
     @Override
     public final int getSignalStrength(BlockState state, World world, BlockPos pos) {
-        return logicalFunction(this.areInputsRecievingPower(world, pos, state)) ? 15 : 0;
+        return logicalFunction(this.areInputsReceivingPower(world, pos, state)) ? 15 : 0;
     }
 
-    protected Direction[] getInputDirections(Direction facing) {
-        switch (numberOfInputs) {
-            case 1:
-                return new Direction[] { facing };
-            case 2:
-                return new Direction[] { facing.rotateYClockwise(), facing.rotateYCounterclockwise() };
-            case 3:
-                return new Direction[] { facing, facing.rotateYClockwise(), facing.rotateYCounterclockwise() };
+    /** Return array indicating if each direction returned by getInputDirections is receiving power */
+    public boolean[] areInputsReceivingPower(World world, BlockPos pos, BlockState state) {
+        Direction dirFacing = state.get(FACING);
+        Direction dirLeft = dirFacing.rotateYCounterclockwise();
+        Direction dirRight = dirFacing.rotateYClockwise();
+        Set<Direction> directions = new HashSet<>();
+
+        BlockState stateFacing = world.getBlockState(pos.offset(dirFacing));
+        if (minInputs == 1 && maxInputs == 1) {
+            directions.add(dirFacing);
+        } else {
+            BlockState stateLeft = world.getBlockState(pos.offset(dirLeft));
+            BlockState stateRight = world.getBlockState(pos.offset(dirRight));
+            if (minInputs == 2 && maxInputs == 2) {
+                directions.add(dirLeft);
+                directions.add(dirRight);
+            } else if (minInputs == 3 && maxInputs == 3) {
+                directions.add(dirFacing);
+                directions.add(dirLeft);
+                directions.add(dirRight);
+            } else {
+                if (!stateFacing.isAir()) directions.add(dirFacing);
+                if (!stateLeft.isAir()) directions.add(dirLeft);
+                if (!stateRight.isAir()) directions.add(dirRight);
+            }
         }
-        return new Direction[0];
-    }
 
-    /** Return array indicating if each direction returned by getInputDirections is recieving power */
-    public boolean[] areInputsRecievingPower(World world, BlockPos pos, BlockState state) {
-        Direction[] directions = getInputDirections(state.get(FACING));
-        boolean[] recieving = new boolean[directions.length];
+        boolean[] receiving = new boolean[Math.max(directions.size(), minInputs)];
 
-        for (int i = 0; i < directions.length; i++) {
-            recieving[i] = this.getPower(world, pos, state, directions[i]) > 0;
+        Iterator<Direction> it = directions.iterator();
+        int i = 0;
+        while (it.hasNext()) {
+            receiving[i++] = getPower(world, pos, state, it.next()) > 0;
         }
 
-        return recieving;
+        while (i < minInputs) {
+            receiving[i++] = false;
+        }
+
+        return receiving;
     }
 
     @Override

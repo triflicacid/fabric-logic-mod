@@ -11,7 +11,7 @@ public class NandGateBlock extends LogicGateBlock {
     public static final String NAME = "nand_gate";
 
     public NandGateBlock() {
-        super(1, true);
+        super(2, 3, true);
     }
 
     @Override

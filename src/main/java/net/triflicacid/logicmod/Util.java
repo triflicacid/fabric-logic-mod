@@ -60,10 +60,13 @@ public class Util {
     }
 
     public static boolean logicalXnor(boolean[] inputs) {
-        for (int i = 1; i < inputs.length; i++)
-            if (inputs[i - 1] != inputs[i])
-                return false;
+        int truthy = 0;
+        for (boolean input : inputs) {
+            if (input) {
+                truthy++;
+            }
+        }
 
-        return true;
+        return truthy != 1;
     }
 }

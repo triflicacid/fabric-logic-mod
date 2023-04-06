@@ -11,7 +11,7 @@ public class XorGateBlock extends LogicGateBlock {
     public static final String NAME = "xor_gate";
 
     public XorGateBlock() {
-        super(2, false);
+        super(2, 3, false);
     }
 
     @Override

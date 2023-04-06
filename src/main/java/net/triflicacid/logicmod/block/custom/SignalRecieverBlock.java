@@ -14,13 +14,16 @@ public abstract class SignalRecieverBlock extends SignalEmitterBlock {
 
     /** Get power being received in a given direction */
     protected int getPower(World world, BlockPos pos, BlockState state, Direction direction) {
-        BlockPos blockPos = pos.offset(direction);
-        int i = world.getEmittedRedstonePower(blockPos, direction);
-        if (i >= 15) {
-            return i;
-        } else {
-            BlockState blockState = world.getBlockState(blockPos);
-            return Math.max(i, blockState.isOf(Blocks.REDSTONE_WIRE) ? blockState.get(RedstoneWireBlock.POWER) : 0);
-        }
+        BlockPos dstPos = pos.offset(direction);
+        BlockState dstState = world.getBlockState(dstPos);
+        int i = dstState.getStrongRedstonePower(world, dstPos, direction);
+        return i;
+//        int i = world.getEmittedRedstonePower(dstPos, direction);
+//        if (i >= 15) {
+//            return i;
+//        } else {
+//            BlockState blockState = world.getBlockState(dstPos);
+//            return Math.max(i, blockState.isOf(Blocks.REDSTONE_WIRE) ? blockState.get(RedstoneWireBlock.POWER) : 0);
+//        }
     }
 }

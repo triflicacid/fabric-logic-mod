@@ -11,7 +11,7 @@ public class AndGateBlock extends LogicGateBlock {
     public static final String NAME = "and_gate";
 
     public AndGateBlock() {
-        super(2, false);
+        super(2, 3, false);
     }
 
     @Override

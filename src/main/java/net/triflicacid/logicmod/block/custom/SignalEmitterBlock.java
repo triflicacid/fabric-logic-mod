@@ -2,6 +2,7 @@ package net.triflicacid.logicmod.block.custom;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,13 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.triflicacid.logicmod.interfaces.Wrenchable;
+import net.triflicacid.logicmod.util.DirectionState;
+import org.apache.commons.lang3.ArrayUtils;
 
-public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
+import java.util.function.Function;
+
+public abstract class SignalEmitterBlock extends Block {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active"); // !ONLY USED FOR TEXTURES, SHOULD NOT BE USED FOR FUNCTIONALITY!
     public static final IntProperty POWER = Properties.POWER;
@@ -36,7 +42,7 @@ public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
 
     @Override
     public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return 0;
+        return getWeakRedstonePower(state, world, pos, direction);
     }
 
     @Override

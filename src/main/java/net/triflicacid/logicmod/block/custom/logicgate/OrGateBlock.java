@@ -11,7 +11,7 @@ public class OrGateBlock extends LogicGateBlock {
     public static final String NAME = "or_gate";
 
     public OrGateBlock() {
-        super(2, false);
+        super(2, 3, false);
     }
 
     @Override

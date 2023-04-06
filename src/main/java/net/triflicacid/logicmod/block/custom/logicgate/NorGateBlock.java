@@ -11,7 +11,7 @@ public class NorGateBlock extends LogicGateBlock {
     public static final String NAME = "nor_gate";
 
     public NorGateBlock() {
-        super(2, true);
+        super(2, 3, true);
     }
 
     @Override

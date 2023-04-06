@@ -12,10 +12,18 @@ This mod adds basic logic utilities to Minecraft
 
 # Features
 
+**NOTE** All blocks that accept input(s), unless otherwise stated, require **strong** redstone inputs.
+
 ## Logic Gates
 
 Logic gates accept inputs and outputs are signal only if a predicate is met.
-- Inputs : if accept only one input, this is opposite the output. If accepts two inputs, these are left/right of the input.
+- Inputs : different gates accept a different number of inputs
+  - One input: opposite of indicator.
+  - Two inputs: left/right of indicator.
+  - Three inputs: both of the above.
+
+  Some two-input gates can be extended to three inputs. This will occur is there is a (potential) redstone-emitting block behind it.
+
 - Output : the output is indicated visually by the icon on the block, and by a black indicator lamp which glows red when the gate is active.
 
 The advanced wrench toggles each get between its NOT variant
@@ -32,6 +40,8 @@ This mod contain the following logic gates:
     | 1 | 0 | 0       |
     | 1 | 1 | 1       |
 
+  - Two inputs, but extends to work with three
+
 - NAND gate
   - Outputs if either input is off (not-and)
 
@@ -42,8 +52,11 @@ This mod contain the following logic gates:
   | 1 | 0 | 1          |
   | 1 | 1 | 0          |
 
+  - Two inputs, but extends to work with three
+
 - BUFFER gate
   - Propagates the input
+  - One input
 
 - NOT gate
   - Inverts the input
@@ -53,13 +66,7 @@ This mod contain the following logic gates:
   | 0 | 1     |
   | 1 | 0     |
 
-- Conditional gate
-  - Either returns its left/right input depending on whether it is recieving power from behind
-
-  | In | Out   |
-    |----|-------|
-  | 0  | Right |
-  | 1  | Left  |
+  - One input
 
 - OR gate
   - Outputs if either inputs are on
@@ -71,6 +78,8 @@ This mod contain the following logic gates:
   | 1 | 0 | 1        |
   | 1 | 1 | 1        |
 
+  - Two inputs, but extends to work with three
+
 - NOR gate
   - Outputs if both inputs are off (not-or)
 
@@ -80,6 +89,8 @@ This mod contain the following logic gates:
   | 0 | 1 | 0           |
   | 1 | 0 | 0           |
   | 1 | 1 | 0           |
+
+  - Two inputs, but extends to work with three
 
 - XOR gate
   - Outputs if either inputs are on, but not both
@@ -91,6 +102,8 @@ This mod contain the following logic gates:
   | 1 | 0 | 1                     |
   | 1 | 1 | 0                     |
 
+  - Two inputs, but extends to work with three
+
 - XNOR gate
   - Output if both inputs are equal (not-xor)
 
@@ -101,6 +114,8 @@ This mod contain the following logic gates:
   | 1 | 0 | 0                     |
   | 1 | 1 | 1                     |
 
+  - Two inputs, but extends to work with three
+
 
 ## Other Blocks
 
@@ -110,6 +125,15 @@ This mod contain the following logic gates:
     - Currently, there is no way to change these other than the `/data` command
   - May be locked by powering from behind
   - The advanced wrench locks/unlocks the clock (pauses/resumes pulsing)
+
+- Conditional gate
+  - Either returns its left/right input depending on whether it is receiving power from behind
+
+  | In | Out   |
+  |----|-------|
+  | 0  | Right |
+  | 1  | Left  |
+
 
 - Input
   - Emits a constant signal 0-15
@@ -148,6 +172,7 @@ Adapters are wires with extra, optional functionality. The behaviour of each fac
 
 Applying the wrench on an adapter rotates it around the axis the player is looking in.
 
+**NOTE** Adapters accept both weak and strong redstone inputs.
 
 There are four wire/adapter variants:
 - Blue
