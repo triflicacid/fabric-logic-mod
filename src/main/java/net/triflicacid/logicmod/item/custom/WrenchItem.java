@@ -42,25 +42,18 @@ public class WrenchItem extends Item {
             World world = context.getWorld();
             BlockPos pos = context.getBlockPos();
             BlockState state = world.getBlockState(pos);
-            boolean doCooldown = false;
 
             if (state.getBlock() instanceof Wrenchable wrenchableBlock) {
                 BlockState newState = wrenchableBlock.applyWrench(world, pos, state, context.getSide(), context.getPlayerFacing());
                 if (newState != null) {
                     world.setBlockState(pos, newState);
                     world.scheduleBlockTick(pos, state.getBlock(), 1, TickPriority.NORMAL);
-                    doCooldown = true;
                 }
             } else if (state.contains(HorizontalFacingBlock.FACING)) {
                 Direction newDirection = state.get(HorizontalFacingBlock.FACING);
                 newDirection = Screen.hasShiftDown() ? newDirection.rotateYCounterclockwise() : newDirection.rotateYClockwise();
                 world.setBlockState(pos, state.with(HorizontalFacingBlock.FACING, newDirection));
-                doCooldown = true;
             }
-
-            // Set cooldown to prevent spamming
-            if (doCooldown)
-                context.getPlayer().getItemCooldownManager().set(this, 5);
         }
 
         return super.useOnBlock(context);

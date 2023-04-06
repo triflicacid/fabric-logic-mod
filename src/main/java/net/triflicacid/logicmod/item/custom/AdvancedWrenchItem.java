@@ -43,20 +43,14 @@ public class AdvancedWrenchItem extends Item {
             World world = context.getWorld();
             BlockPos pos = context.getBlockPos();
             BlockState state = world.getBlockState(pos);
-            boolean doCooldown = false;
 
             if (state.getBlock() instanceof AdvancedWrenchable wrenchableBlock) {
                 BlockState newState = wrenchableBlock.applyAdvancedWrench(world, pos, state, context.getSide(), context.getPlayerFacing());
                 if (newState != null) {
                     world.setBlockState(pos, newState);
                     world.scheduleBlockTick(pos, state.getBlock(), 1, TickPriority.NORMAL);
-                    doCooldown = true;
                 }
             }
-
-            // Set cooldown to prevent spamming
-            if (doCooldown)
-                context.getPlayer().getItemCooldownManager().set(this, 5);
         }
 
         return super.useOnBlock(context);
