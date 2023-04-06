@@ -1,29 +1,29 @@
 package net.triflicacid.logicmod.block.custom;
 
-
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
-public class ConstantLoBlock extends SignalEmitterBlock implements AdvancedWrenchable {
-    public static final String NAME = "constant_lo";
+public class InputBlock extends SignalEmitterBlock implements AdvancedWrenchable {
+    public static final String NAME = "input";
 
-    public ConstantLoBlock() {
+    public InputBlock() {
         super(0);
     }
 
     @Override
     public int getSignalStrength(BlockState state, World world, BlockPos pos) {
-        return 0;
+        return state.get(POWER);
     }
 
     @Override
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
-        return ModBlocks.CONSTANT_HI.getDefaultState().with(HorizontalFacingBlock.FACING, state.get(HorizontalFacingBlock.FACING));
+        int newPower = state.get(POWER) + (Screen.hasShiftDown() ? (-1) : 1);
+        if (newPower < 0) newPower = 15;
+        else if (newPower > 15) newPower = 0;
+        return state.with(POWER, newPower).with(ACTIVE, state.get(POWER) > 0);
     }
 }

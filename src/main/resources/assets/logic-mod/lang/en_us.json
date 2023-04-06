@@ -24,11 +24,8 @@
   "item.logic-mod.xnor_gate": "XNOR Gate",
   "block.logic-mod.xnor_gate": "XNOR Gate",
 
-  "item.logic-mod.constant_lo": "Constant Lo",
-  "block.logic-mod.constant_lo": "Constant Lo",
-
-  "item.logic-mod.constant_hi": "Constant Hi",
-  "block.logic-mod.constant_hi": "Constant Hi",
+  "item.logic-mod.input": "Input",
+  "block.logic-mod.input": "Input",
 
   "item.logic-mod.conditional": "Conditional Gate",
   "block.logic-mod.conditional": "Conditional Gate",

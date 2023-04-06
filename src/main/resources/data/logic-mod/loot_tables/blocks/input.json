@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "logic-mod:constant_lo"
+          "name": "logic-mod:input"
         }
       ]
     }

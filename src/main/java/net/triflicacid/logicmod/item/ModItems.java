@@ -31,8 +31,7 @@ public class ModItems {
     public static final Item XOR_GATE = registerAliased(ModBlocks.XOR_GATE, XorGateBlock.NAME);
     public static final Item XNOR_GATE = registerAliased(ModBlocks.XNOR_GATE, XnorGateBlock.NAME);
 
-    public static final Item CONSTANT_LO = registerAliased(ModBlocks.CONSTANT_LO, ConstantLoBlock.NAME);
-    public static final Item CONSTANT_HI = registerAliased(ModBlocks.CONSTANT_HI, ConstantHiBlock.NAME);
+    public static final Item INPUT = registerAliased(ModBlocks.INPUT, InputBlock.NAME);
     public static final Item CLOCK = registerAliased(ModBlocks.CLOCK, ClockBlock.NAME);
     public static final Item CONDITIONAL = registerAliased(ModBlocks.CONDITIONAL, ConditionalBlock.NAME);
 

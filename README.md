@@ -111,15 +111,10 @@ This mod contain the following logic gates:
   - May be locked by powering from behind
   - The advanced wrench locks/unlocks the clock (pauses/resumes pulsing)
 
-- Constants
-  
-  The advanced wrench toggles between LO and HI
-
-  - Constant LO
-    - Outputs a directional constant signal strength of 0
-
-  - Constant HI
-    - Outputs a directional constant signal strength of 15
+- Input
+  - Emits a constant signal 0-15
+  - Signal defaults to 0
+  - Right-clicking with an advanced wrench increments the signal (hold shift to decrement).
 
 ## Tools
 

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "logic-mod:item/constant_0_symbol"
+    "layer0": "logic-mod:item/input"
   }
 }

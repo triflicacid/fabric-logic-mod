@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 public abstract class SignalEmitterBlock extends HorizontalFacingBlock {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
+    public static final BooleanProperty ACTIVE = BooleanProperty.of("active"); // !ONLY USED FOR TEXTURES, SHOULD NOT BE USED FOR FUNCTIONALITY!
     public static final IntProperty POWER = Properties.POWER;
 
 
