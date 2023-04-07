@@ -1,11 +1,11 @@
 {
   "parent": "block/orientable",
   "textures": {
-    "up": "logic-mod:block/constant/0",
+    "up": "logic-mod:block/input/2",
     "down": "logic-mod:block/white_side",
     "north": "logic-mod:block/white_side",
     "east": "logic-mod:block/white_side",
-    "south": "logic-mod:block/white_indicator",
+    "south": "logic-mod:block/white_indicator_active",
     "west": "logic-mod:block/white_side",
     "particle": "logic-mod:block/white_side"
   }

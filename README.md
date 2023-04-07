@@ -3,7 +3,7 @@
 This mod adds basic logic utilities to Minecraft
 
 **IMPORTANT** some asset files are not included by default. To generate them, follow the following steps:
-- Navigate to `src/mainresources/assets/logic-mod/`
+- Navigate to `src/main/resources/assets/logic-mod/`
 - Run `python generate-wire-assets.py` providing the following values each run:
   - `blue`
   - `green`
@@ -140,6 +140,9 @@ This mod contain the following logic gates:
   - Signal defaults to 0
   - Right-clicking with an advanced wrench increments the signal (hold shift to decrement).
   - Powering from behind disables the input
+
+- Output
+  - Given a signal, displays its signal strength
 
 ## Tools
 

@@ -26,6 +26,7 @@ public class ModBlocks {
     public static final LogicGateBlock XNOR_GATE = (LogicGateBlock) registerBlock(XnorGateBlock.NAME, new XnorGateBlock());
 
     public static final Block INPUT = registerBlock(InputBlock.NAME, new InputBlock());
+    public static final Block OUTPUT = registerBlock(OutputBlock.NAME, new OutputBlock());
     public static final Block CLOCK = registerBlock(ClockBlock.NAME, new ClockBlock());
     public static final Block CONDITIONAL = registerBlock(ConditionalBlock.NAME, new ConditionalBlock());
 

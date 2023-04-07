@@ -1,0 +1,12 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "up": "logic-mod:block/output/8",
+    "down": "logic-mod:block/white_side",
+    "north": "logic-mod:block/white_indicator_active",
+    "east": "logic-mod:block/white_side",
+    "south": "logic-mod:block/white_side",
+    "west": "logic-mod:block/white_side",
+    "particle": "logic-mod:block/white_side"
+  }
+}
