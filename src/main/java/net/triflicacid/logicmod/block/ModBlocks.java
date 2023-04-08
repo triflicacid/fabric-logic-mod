@@ -36,6 +36,10 @@ public class ModBlocks {
     public static final Block BLUE_WIRE_ADAPTER = registerBlock(BlueWireAdapterBlock.NAME, new BlueWireAdapterBlock());
     public static final Block GREEN_WIRE = registerBlock(GreenWireBlock.NAME, new GreenWireBlock());
     public static final Block GREEN_WIRE_ADAPTER = registerBlock(GreenWireAdapterBlock.NAME, new GreenWireAdapterBlock());
+    public static final Block ORANGE_WIRE = registerBlock(OrangeWireBlock.NAME, new OrangeWireBlock());
+    public static final Block ORANGE_WIRE_ADAPTER = registerBlock(OrangeWireAdapterBlock.NAME, new OrangeWireAdapterBlock());
+    public static final Block PURPLE_WIRE = registerBlock(PurpleWireBlock.NAME, new PurpleWireBlock());
+    public static final Block PURPLE_WIRE_ADAPTER = registerBlock(PurpleWireAdapterBlock.NAME, new PurpleWireAdapterBlock());
     public static final Block RED_WIRE = registerBlock(RedWireBlock.NAME, new RedWireBlock());
     public static final Block RED_WIRE_ADAPTER = registerBlock(RedWireAdapterBlock.NAME, new RedWireAdapterBlock());
     public static final Block YELLOW_WIRE = registerBlock(YellowWireBlock.NAME, new YellowWireBlock());

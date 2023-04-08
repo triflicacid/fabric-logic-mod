@@ -42,6 +42,10 @@ public class ModItems {
     public static final Item BLUE_WIRE_ADAPTER = registerAliased(ModBlocks.BLUE_WIRE_ADAPTER, BlueWireAdapterBlock.NAME);
     public static final Item GREEN_WIRE = registerAliased(ModBlocks.GREEN_WIRE, GreenWireBlock.NAME);
     public static final Item GREEN_WIRE_ADAPTER = registerAliased(ModBlocks.GREEN_WIRE_ADAPTER, GreenWireAdapterBlock.NAME);
+    public static final Item ORANGE_WIRE = registerAliased(ModBlocks.ORANGE_WIRE, OrangeWireBlock.NAME);
+    public static final Item ORANGE_WIRE_ADAPTER = registerAliased(ModBlocks.ORANGE_WIRE_ADAPTER, OrangeWireAdapterBlock.NAME);
+    public static final Item PURPLE_WIRE = registerAliased(ModBlocks.PURPLE_WIRE, PurpleWireBlock.NAME);
+    public static final Item PURPLE_WIRE_ADAPTER = registerAliased(ModBlocks.PURPLE_WIRE_ADAPTER, PurpleWireAdapterBlock.NAME);
     public static final Item RED_WIRE = registerAliased(ModBlocks.RED_WIRE, RedWireBlock.NAME);
     public static final Item RED_WIRE_ADAPTER = registerAliased(ModBlocks.RED_WIRE_ADAPTER, RedWireAdapterBlock.NAME);
     public static final Item YELLOW_WIRE = registerAliased(ModBlocks.YELLOW_WIRE, YellowWireBlock.NAME);

@@ -4,7 +4,9 @@ import net.minecraft.util.StringIdentifiable;
 
 public enum WireColor implements StringIdentifiable {
     RED("red"),
+    ORANGE("orange"),
     GREEN("green"),
+    PURPLE("purple"),
     BLUE("blue"),
     YELLOW("yellow");
 

@@ -48,6 +48,16 @@
   "block.logic-mod.green_wire_adapter": "Green Wire Adapter",
   "item.logic-mod.green_wire_adapter": "Green Wire Adapter",
 
+  "item.logic-mod.orange_wire": "Orange Wire",
+  "block.logic-mod.orange_wire": "Orange Wire",
+  "block.logic-mod.orange_wire_adapter": "Orange Wire Adapter",
+  "item.logic-mod.orange_wire_adapter": "Orange Wire Adapter",
+
+  "item.logic-mod.purple_wire": "Purple Wire",
+  "block.logic-mod.purple_wire": "Purple Wire",
+  "block.logic-mod.purple_wire_adapter": "Purple Wire Adapter",
+  "item.logic-mod.purple_wire_adapter": "Purple Wire Adapter",
+
   "item.logic-mod.red_wire": "Red Wire",
   "block.logic-mod.red_wire": "Red Wire",
   "block.logic-mod.red_wire_adapter": "Red Wire Adapter",

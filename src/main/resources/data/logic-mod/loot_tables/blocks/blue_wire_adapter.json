@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "logic-mod:blue_wire_adapter_block"
+          "name": "logic-mod:blue_wire_adapter"
         }
       ]
     }

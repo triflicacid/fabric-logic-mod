@@ -4,11 +4,7 @@ This mod adds basic logic utilities to Minecraft
 
 **IMPORTANT** some asset files are not included by default. To generate them, follow the following steps:
 - Navigate to `src/main/resources/assets/logic-mod/`
-- Run `python generate-wire-assets.py` providing the following values each run:
-  - `blue`
-  - `green`
-  - `red`
-  - `yellow`
+- Run `python generate-wire-assets.py blue green red yellow purple orange`
 
 # Features
 
@@ -181,8 +177,10 @@ Applying the wrench on an adapter rotates it around the axis the player is looki
 
 **NOTE** Adapters accept both weak and strong redstone inputs.
 
-There are four wire/adapter variants:
+There are six wire/adapter variants:
 - Blue
 - Green
+- Orange
+- Purple
 - Red
 - Yellow
