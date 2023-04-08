@@ -1,11 +1,6 @@
 package net.triflicacid.logicmod.block.custom.logicgate;
 
-import net.minecraft.block.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.triflicacid.logicmod.Util;
+import net.triflicacid.logicmod.util.Util;
 import net.triflicacid.logicmod.block.ModBlocks;
 
 public class NotGateBlock extends LogicGateBlock {

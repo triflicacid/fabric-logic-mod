@@ -35,6 +35,9 @@
   "item.logic-mod.clock": "Clock",
   "block.logic-mod.clock": "Clock",
 
+  "item.logic-mod.equality": "Equality Gate",
+  "block.logic-mod.equality": "Equality Gate",
+
   "item.logic-mod.blue_wire": "Blue Wire",
   "block.logic-mod.blue_wire": "Blue Wire",
   "block.logic-mod.blue_wire_adapter": "Blue Wire Adapter",

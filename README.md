@@ -134,6 +134,9 @@ This mod contain the following logic gates:
   | 0  | Right |
   | 1  | Left  |
 
+- Equality gate
+  - If both inputs are equal (or all three if a third is connected) then outputs the received signal, else outputs 0.
+
 
 - Input
   - Emits a constant signal 0-15
