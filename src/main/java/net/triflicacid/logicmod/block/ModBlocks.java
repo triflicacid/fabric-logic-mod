@@ -30,6 +30,7 @@ public class ModBlocks {
     public static final Block CLOCK = registerBlock(ClockBlock.NAME, new ClockBlock());
     public static final Block CONDITIONAL = registerBlock(ConditionalBlock.NAME, new ConditionalBlock());
     public static final Block EQUALITY = registerBlock(EqualityBlock.NAME, new EqualityBlock());
+    public static final Block MEMORY_CELL = registerBlock(MemoryCellBlock.NAME, new MemoryCellBlock());
 
     /** Wires and adapters */
     public static final Block BLUE_WIRE = registerBlock(BlueWireBlock.NAME, new BlueWireBlock());

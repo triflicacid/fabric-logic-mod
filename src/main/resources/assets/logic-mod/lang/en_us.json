@@ -38,6 +38,9 @@
   "item.logic-mod.equality": "Equality Gate",
   "block.logic-mod.equality": "Equality Gate",
 
+  "item.logic-mod.memory_cell": "Memory Cell",
+  "block.logic-mod.memory_cell": "Memory Cell",
+
   "item.logic-mod.blue_wire": "Blue Wire",
   "block.logic-mod.blue_wire": "Blue Wire",
   "block.logic-mod.blue_wire_adapter": "Blue Wire Adapter",

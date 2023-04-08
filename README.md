@@ -140,6 +140,13 @@ This mod contain the following logic gates:
   - Right-clicking with an advanced wrench increments the signal (hold shift to decrement).
   - Powering from behind disables the input
 
+- Memory Cell
+  - Stores a redstone signal in memory, which it outputs
+  - Accepts a control input from behind
+    - 0: `read` mode.
+    - 1-15: `write` mode. Sets internal memory to signal it is receiving from its left.
+  - Use the advanced wrench to manually increment the stored redstone signal (shift to decrement).
+
 - Output
   - Given a signal, displays its signal strength
 
