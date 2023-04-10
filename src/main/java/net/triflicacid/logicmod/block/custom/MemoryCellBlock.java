@@ -16,21 +16,34 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
     public static final String NAME = "memory_cell";
     public static final IntProperty MEMORY = IntProperty.of("memory", 0, 15);
 
+    public static final int READ = 1;
+    public static final int WRITE = 2;
+    public static final int CLEAR = 3;
+
     public MemoryCellBlock() {
         super(0);
     }
 
     private int getControlPower(World world, BlockPos pos, BlockState state) {
-        return getPower(world, pos, state, state.get(FACING));
+        return getPower(world, pos, state, state.get(FACING).rotateYClockwise());
     }
 
     private int getInputPower(World world, BlockPos pos, BlockState state) {
-        return getPower(world, pos, state, state.get(FACING).rotateYClockwise());
+        return getPower(world, pos, state, state.get(FACING));
     }
 
     @Override
     public int getSignalStrength(BlockState state, World world, BlockPos pos) {
-        return getControlPower(world, pos, state) == 0 ? state.get(MEMORY) : getInputPower(world, pos, state);
+        switch (getControlPower(world, pos, state)) {
+            case READ:
+                return state.get(MEMORY);
+            case WRITE:
+                return getInputPower(world, pos, state);
+            case CLEAR:
+                return 0;
+            default:
+                return 0;
+        }
     }
 
     @Override
@@ -45,7 +58,13 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
 
         if (power != expectedPower) {
             state = state.with(POWER, expectedPower).with(ACTIVE, expectedPower > 0);
-            if (getControlPower(world, pos, state) > 0) state = state.with(MEMORY, getInputPower(world, pos, state));
+            switch (getControlPower(world, pos, state)) {
+                case WRITE:
+                    state = state.with(MEMORY, getInputPower(world, pos, state));
+                    break;
+                case CLEAR:
+                    state = state.with(MEMORY, 0);
+            }
             world.setBlockState(pos, state);
         }
     }

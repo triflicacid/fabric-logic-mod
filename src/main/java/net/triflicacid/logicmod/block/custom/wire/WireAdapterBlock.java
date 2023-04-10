@@ -35,32 +35,8 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
     /** Get power being received in a given direction */
     protected int getPower(World world, BlockPos pos, BlockState state, Direction direction) {
         BlockPos blockPos = pos.offset(direction);
-        int i = world.getEmittedRedstonePower(blockPos, direction);
-        if (i >= 15) {
-            return i;
-        } else {
-            BlockState blockState = world.getBlockState(blockPos);
-            return Math.max(i, blockState.isOf(Blocks.REDSTONE_WIRE) ? blockState.get(RedstoneWireBlock.POWER) : 0);
-        }
-    }
-
-    private Set<Direction> getDirectionsWithState(BlockState state, DirectionState directionState) {
-        Set<Direction> directions = new HashSet<>();
-
-        if (state.get(UP) == directionState)
-            directions.add(Direction.UP);
-        if (state.get(DOWN) == directionState)
-            directions.add(Direction.DOWN);
-        if (state.get(NORTH) == directionState)
-            directions.add(Direction.NORTH);
-        if (state.get(SOUTH) == directionState)
-            directions.add(Direction.SOUTH);
-        if (state.get(WEST) == directionState)
-            directions.add(Direction.WEST);
-        if (state.get(EAST) == directionState)
-            directions.add(Direction.EAST);
-
-        return directions;
+        BlockState blockState = world.getBlockState(blockPos);
+        return blockState.getStrongRedstonePower(world, pos, direction);
     }
 
     @Override
@@ -72,7 +48,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
                 power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : wireBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
             } else if (wireBlock instanceof WireAdapterBlock adapterBlock) {
                 if (this.isInput(srcState, direction) && adapterBlock.isOutput(dstState, direction.getOpposite())) {
-                    power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : wireBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+                    power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : dstState.getStrongRedstonePower(world, dstPos, direction);
                 }
             }
         } else if (isInput(srcState, direction)) {

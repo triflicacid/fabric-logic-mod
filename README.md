@@ -142,9 +142,11 @@ This mod contain the following logic gates:
 
 - Memory Cell
   - Stores a redstone signal in memory, which it outputs
-  - Accepts a control input from behind
-    - 0: `read` mode.
-    - 1-15: `write` mode. Sets internal memory to signal it is receiving from its left.
+- Accepts a control input from the side, and a write line from the left.
+    - 0: `nothing`. Don't output anything (signal 0).
+    - 1: `read`. Output the stored signal.
+    - 2: `write`. Sets internal memory to signal it is receiving from its left.
+    - 3: `clear`. Clears the internal memory (sets it to 0).
   - Use the advanced wrench to manually increment the stored redstone signal (shift to decrement).
 
 - Output
@@ -182,7 +184,7 @@ Adapters are wires with extra, optional functionality. The behaviour of each fac
 
 Applying the wrench on an adapter rotates it around the axis the player is looking in.
 
-**NOTE** Adapters accept both weak and strong redstone inputs.
+**NOTE** Adapters accept strong inputs only, and emits strong outputs.
 
 There are six wire/adapter variants:
 - Blue
