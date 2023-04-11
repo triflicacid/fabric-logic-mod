@@ -41,6 +41,9 @@
   "item.logic-mod.memory_cell": "Memory Cell",
   "block.logic-mod.memory_cell": "Memory Cell",
 
+  "item.logic-mod.random": "Random Signal Generator",
+  "block.logic-mod.random": "Random Signal Generator",
+
   "item.logic-mod.blue_wire": "Blue Wire",
   "block.logic-mod.blue_wire": "Blue Wire",
   "block.logic-mod.blue_wire_adapter": "Blue Wire Adapter",

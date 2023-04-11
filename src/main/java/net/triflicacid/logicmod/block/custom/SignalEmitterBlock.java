@@ -17,8 +17,10 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.Wrenchable;
 import net.triflicacid.logicmod.util.DirectionState;
+import net.triflicacid.logicmod.util.WireColor;
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.util.Map;
 import java.util.function.Function;
 
 public abstract class SignalEmitterBlock extends Block {
@@ -28,7 +30,7 @@ public abstract class SignalEmitterBlock extends Block {
 
 
     public SignalEmitterBlock(int initialPower) {
-        super(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly());
+        super(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.STONE).breakInstantly());
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(ACTIVE, initialPower > 0).with(POWER, initialPower));
     }
 

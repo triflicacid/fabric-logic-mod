@@ -5,7 +5,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.block.custom.SignalIOBlock;
+import net.triflicacid.logicmod.block.custom.wire.BusBlock;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
 import java.util.*;

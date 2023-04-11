@@ -133,7 +133,6 @@ This mod contain the following logic gates:
 - Equality gate
   - If both inputs are equal (or all three if a third is connected) then outputs the received signal, else outputs 0.
 
-
 - Input
   - Emits a constant signal 0-15
   - Signal defaults to 0
@@ -151,6 +150,12 @@ This mod contain the following logic gates:
 
 - Output
   - Given a signal, displays its signal strength
+
+- Random Signal Generator
+  - If powered from behind, it will generate and output a new number. This will happen every 2 ticks whiles powered.
+  - If in binary mode, generates either a 0 or a 1, else generates a number in the range 0-15.
+    - Give a 1-tick pulse to change number once!
+  - Toggle in/out of binary mode using an advanced wrench.
 
 ## Tools
 

@@ -15,6 +15,8 @@ import net.triflicacid.logicmod.block.custom.logicgate.*;
 import net.triflicacid.logicmod.block.custom.wire.*;
 import net.triflicacid.logicmod.item.ModItemGroup;
 
+import java.util.Random;
+
 public class ModBlocks {
     public static final LogicGateBlock AND_GATE = (LogicGateBlock) registerBlock(AndGateBlock.NAME, new AndGateBlock());
     public static final LogicGateBlock NAND_GATE = (LogicGateBlock) registerBlock(NandGateBlock.NAME, new NandGateBlock());
@@ -31,6 +33,7 @@ public class ModBlocks {
     public static final Block CONDITIONAL = registerBlock(ConditionalBlock.NAME, new ConditionalBlock());
     public static final Block EQUALITY = registerBlock(EqualityBlock.NAME, new EqualityBlock());
     public static final Block MEMORY_CELL = registerBlock(MemoryCellBlock.NAME, new MemoryCellBlock());
+    public static final Block RANDOM = registerBlock(RandomBlock.NAME, new RandomBlock());
 
     /** Wires and adapters */
     public static final Block BLUE_WIRE = registerBlock(BlueWireBlock.NAME, new BlueWireBlock());

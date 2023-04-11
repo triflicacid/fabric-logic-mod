@@ -1,11 +1,14 @@
 package net.triflicacid.logicmod.block.custom;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.RedstoneWireBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.triflicacid.logicmod.block.custom.wire.AbstractWireBlock;
+import net.triflicacid.logicmod.block.custom.wire.WireAdapterBlock;
 
 public abstract class SignalRecieverBlock extends SignalEmitterBlock {
     public SignalRecieverBlock(int initialPower) {
@@ -17,12 +20,5 @@ public abstract class SignalRecieverBlock extends SignalEmitterBlock {
         BlockPos dstPos = pos.offset(direction);
         BlockState dstState = world.getBlockState(dstPos);
         return dstState.getStrongRedstonePower(world, dstPos, direction);
-//        int i = world.getEmittedRedstonePower(dstPos, direction);
-//        if (i >= 15) {
-//            return i;
-//        } else {
-//            BlockState blockState = world.getBlockState(dstPos);
-//            return Math.max(i, blockState.isOf(Blocks.REDSTONE_WIRE) ? blockState.get(RedstoneWireBlock.POWER) : 0);
-//        }
     }
 }

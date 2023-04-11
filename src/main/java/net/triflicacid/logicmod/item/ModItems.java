@@ -17,6 +17,8 @@ import net.triflicacid.logicmod.block.custom.wire.*;
 import net.triflicacid.logicmod.item.custom.AdvancedWrenchItem;
 import net.triflicacid.logicmod.item.custom.WrenchItem;
 
+import java.util.Random;
+
 public class ModItems {
     public static final Item WRENCH = addToItemGroup(registerItem(WrenchItem.NAME, new WrenchItem(new FabricItemSettings())), ModItemGroup.LOGIC);
     public static final Item ADV_WRENCH = addToItemGroup(registerItem(AdvancedWrenchItem.NAME, new AdvancedWrenchItem(new FabricItemSettings())), ModItemGroup.LOGIC);
@@ -37,6 +39,7 @@ public class ModItems {
     public static final Item CONDITIONAL = registerAliased(ModBlocks.CONDITIONAL, ConditionalBlock.NAME);
     public static final Item EQUALITY = registerAliased(ModBlocks.EQUALITY, EqualityBlock.NAME);
     public static final Item MEMORY_CELL = registerAliased(ModBlocks.MEMORY_CELL, MemoryCellBlock.NAME);
+    public static final Item RANDOM = registerAliased(ModBlocks.RANDOM, RandomBlock.NAME);
 
     /** Wires and adapters */
     public static final Item BLUE_WIRE = registerAliased(ModBlocks.BLUE_WIRE, BlueWireBlock.NAME);

@@ -21,14 +21,8 @@ public abstract class SignalIOBlock extends SignalRecieverBlock  {
     protected abstract int getUpdateDelayInternal(BlockState state);
 
     protected void update(World world, BlockPos pos, BlockState state) {
-        if (!world.isClient) {
-            int power = state.get(POWER);
-            int expectedPower = this.getSignalStrength(state, world, pos);
-
-            if (power != expectedPower && !world.getBlockTickScheduler().isTicking(pos, this)) {
-                TickPriority tickPriority = expectedPower > 0 ? TickPriority.VERY_HIGH : TickPriority.HIGH;
-                world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), tickPriority);
-            }
+        if (!world.isClient && !world.getBlockTickScheduler().isTicking(pos, this)) {
+            world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.NORMAL);
         }
     }
 
