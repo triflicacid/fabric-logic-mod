@@ -10,15 +10,14 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.tick.TickPriority;
+import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.interfaces.Wrenchable;
 import net.triflicacid.logicmod.util.DirectionState;
 import net.triflicacid.logicmod.util.WireColor;
 import org.apache.commons.lang3.ArrayUtils;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public abstract class WireAdapterBlock extends AbstractWireBlock implements Wrenchable, AdvancedWrenchable {
     public static final EnumProperty<DirectionState> DOWN = EnumProperty.of("down", DirectionState.class);
@@ -36,7 +35,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
     protected int getPower(World world, BlockPos pos, BlockState state, Direction direction) {
         BlockPos blockPos = pos.offset(direction);
         BlockState blockState = world.getBlockState(blockPos);
-        return blockState.getStrongRedstonePower(world, pos, direction);
+        return blockState.getStrongRedstonePower(world, blockPos, direction);
     }
 
     @Override
@@ -51,6 +50,10 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
                     power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : dstState.getStrongRedstonePower(world, dstPos, direction);
                 }
             }
+        } else if (dstBlock instanceof BusAdapterBlock busAdapterBlock) {
+            Map<WireColor, Integer> powerMap = knownBlocks.contains(dstPos) ? ((BusBlockEntity) world.getBlockEntity(dstPos)).getPowerMap() : busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+            if (powerMap.containsKey(getWireColor()))
+                power = powerMap.get(getWireColor());
         } else if (isInput(srcState, direction)) {
             power = getPower(world, srcPos, srcState, direction);
         }

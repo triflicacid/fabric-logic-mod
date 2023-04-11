@@ -16,8 +16,7 @@ public abstract class SignalRecieverBlock extends SignalEmitterBlock {
     protected int getPower(World world, BlockPos pos, BlockState state, Direction direction) {
         BlockPos dstPos = pos.offset(direction);
         BlockState dstState = world.getBlockState(dstPos);
-        int i = dstState.getStrongRedstonePower(world, dstPos, direction);
-        return i;
+        return dstState.getStrongRedstonePower(world, dstPos, direction);
 //        int i = world.getEmittedRedstonePower(dstPos, direction);
 //        if (i >= 15) {
 //            return i;

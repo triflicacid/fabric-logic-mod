@@ -69,5 +69,10 @@
   "item.logic-mod.yellow_wire": "Yellow Wire",
   "block.logic-mod.yellow_wire": "Yellow Wire",
   "block.logic-mod.yellow_wire_adapter": "Yellow Wire Adapter",
-  "item.logic-mod.yellow_wire_adapter": "Yellow Wire Adapter"
+  "item.logic-mod.yellow_wire_adapter": "Yellow Wire Adapter",
+
+  "item.logic-mod.bus": "Bus",
+  "block.logic-mod.bus": "Bus",
+  "block.logic-mod.bus_adapter": "Bus Adapter",
+  "item.logic-mod.bus_adapter": "Bus Adapter"
 }

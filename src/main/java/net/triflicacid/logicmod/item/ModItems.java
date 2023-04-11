@@ -51,6 +51,8 @@ public class ModItems {
     public static final Item RED_WIRE_ADAPTER = registerAliased(ModBlocks.RED_WIRE_ADAPTER, RedWireAdapterBlock.NAME);
     public static final Item YELLOW_WIRE = registerAliased(ModBlocks.YELLOW_WIRE, YellowWireBlock.NAME);
     public static final Item YELLOW_WIRE_ADAPTER = registerAliased(ModBlocks.YELLOW_WIRE_ADAPTER, YellowWireAdapterBlock.NAME);
+    public static final Item BUS = registerAliased(ModBlocks.BUS, BusBlock.NAME);
+    public static final Item BUS_ADAPTER = registerAliased(ModBlocks.BUS_ADAPTER, BusAdapterBlock.NAME);
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(LogicMod.MOD_ID, name), item);

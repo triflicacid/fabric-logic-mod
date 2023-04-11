@@ -11,16 +11,16 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
+import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.util.WireColor;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public abstract class AbstractWireBlock extends Block {
     public static final IntProperty POWER = Properties.POWER;
@@ -48,6 +48,7 @@ public abstract class AbstractWireBlock extends Block {
 
     /** Explore to get received power, but do not loop back */
     protected final int getReceivedPower(World world, BlockPos pos, BlockState state, Set<BlockPos> exploredPositions, Set<BlockPos> knownBlocks) {
+        exploredPositions.add(pos);
         int power = 0;
 
         for (Direction direction : Direction.values()) {
@@ -75,15 +76,22 @@ public abstract class AbstractWireBlock extends Block {
             if (wireBlock.getWireColor() == getWireColor()) {
                 power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : wireBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
             }
+        } else if (dstBlock instanceof BusAdapterBlock busAdapterBlock) {
+            Map<WireColor, Integer> powerMap = knownBlocks.contains(dstPos) ? ((BusBlockEntity) world.getBlockEntity(dstPos)).getPowerMap() : busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+            if (powerMap.containsKey(getWireColor()))
+                power = powerMap.get(getWireColor());
         }
 
         return power;
     }
 
-    /** Update oneself and all connected AbstractWireBlocks */
     public static final void update(World world, BlockPos origin) {
+        update(world, origin, new HashSet<>());
+    }
+
+    /** Update oneself and all connected AbstractWireBlocks */
+    public static final void update(World world, BlockPos origin, Set<BlockPos> explored) {
         Deque<BlockPos> positions = new ArrayDeque<>();
-        Set<BlockPos> explored = new HashSet<>();
 
         positions.add(origin);
 
@@ -118,6 +126,9 @@ public abstract class AbstractWireBlock extends Block {
                         }
                     }
                 }
+            } else if (block instanceof BusBlock) {
+                BusBlock.update(world, pos, explored);
+                explored.add(pos);
             }
         }
     }

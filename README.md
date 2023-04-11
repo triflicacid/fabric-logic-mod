@@ -193,3 +193,8 @@ There are six wire/adapter variants:
 - Purple
 - Red
 - Yellow
+
+The bus component resembles a white wire, but has an internal cable for each wire color. The bus adapter is different to the normal wire adapters: it has no side modes. It cannot accept nor output a redstone signal. If a colored wire is placed adjacent to the bus adapter, that color's signal is fed into the bus.
+Basically, a bus acts as all the colored wires condensed into one, and the adapters allow for individual colored wires to input/output that color's signal.
+
+The bus cable and adapter are white to symbolise all the colors combined.

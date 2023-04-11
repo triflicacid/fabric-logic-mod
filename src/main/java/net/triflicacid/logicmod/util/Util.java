@@ -1,5 +1,7 @@
 package net.triflicacid.logicmod.util;
 
+import net.minecraft.state.property.IntProperty;
+
 public class Util {
     public static boolean logicalBuffer(boolean[] inputs) {
         if (inputs.length != 1)
@@ -70,10 +72,23 @@ public class Util {
         return truthy != 1;
     }
 
+    /** Return if every int value in an array is equal */
     public static boolean allEqual(int[] values) {
         for (int i = 1; i < values.length; i++)
             if (values[i - 1] != values[i])
                 return false;
         return true;
+    }
+
+    /** Mutate array1 to contain so that array1[i] = max(array1[i], array2[i]) */
+    public static void arrayMaxValues(int[] array1, int[] array2) {
+        int lim = Math.min(array1.length, array2.length);
+        for (int i = 0; i < lim; i++)
+            array1[i] = Math.max(array1[i], array2[i]);
+    }
+
+    /** Create power IntProperty */
+    public static IntProperty powerProperty(String name) {
+        return IntProperty.of(name, 0, 15);
     }
 }

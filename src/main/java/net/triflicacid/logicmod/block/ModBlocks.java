@@ -46,6 +46,9 @@ public class ModBlocks {
     public static final Block YELLOW_WIRE = registerBlock(YellowWireBlock.NAME, new YellowWireBlock());
     public static final Block YELLOW_WIRE_ADAPTER = registerBlock(YellowWireAdapterBlock.NAME, new YellowWireAdapterBlock());
 
+    public static final Block BUS = registerBlock(BusBlock.NAME, new BusBlock());
+    public static final Block BUS_ADAPTER = registerBlock(BusAdapterBlock.NAME, new BusAdapterBlock());
+
 
     /** Register block with no associated item */
     private static Block registerBlock(String name, Block block) {
