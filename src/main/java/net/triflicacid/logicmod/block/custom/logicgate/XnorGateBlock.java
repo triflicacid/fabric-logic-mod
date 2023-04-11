@@ -16,6 +16,11 @@ public class XnorGateBlock extends LogicGateBlock {
     }
 
     @Override
+    public String getType() {
+        return "xnor";
+    }
+
+    @Override
     public boolean isNotVariant() {
         return true;
     }

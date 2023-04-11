@@ -3,8 +3,11 @@ package net.triflicacid.logicmod.block.custom;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -24,10 +27,11 @@ public class InputBlock extends SignalIOBlock implements AdvancedWrenchable {
     }
 
     @Override
-    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         int newPower = state.get(POTENTIAL_POWER) + (Screen.hasShiftDown() ? (-1) : 1);
         if (newPower < 0) newPower = 15;
         else if (newPower > 15) newPower = 0;
+        player.sendMessage(Text.literal("Set " + POTENTIAL_POWER.getName() + " to ").append(Text.literal(String.valueOf(newPower)).formatted(Formatting.GOLD)));
         return state.with(POTENTIAL_POWER, newPower);
     }
 

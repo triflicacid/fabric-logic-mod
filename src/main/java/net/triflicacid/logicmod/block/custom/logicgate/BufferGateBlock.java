@@ -16,6 +16,11 @@ public class BufferGateBlock extends LogicGateBlock {
     }
 
     @Override
+    public String getType() {
+        return "buffer";
+    }
+
+    @Override
     public boolean isNotVariant() {
         return false;
     }

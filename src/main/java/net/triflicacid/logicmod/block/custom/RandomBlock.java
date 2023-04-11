@@ -2,10 +2,13 @@ package net.triflicacid.logicmod.block.custom;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -53,7 +56,9 @@ public class RandomBlock extends SignalIOBlock implements AdvancedWrenchable {
     }
 
     @Override
-    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        Text stateText = state.get(BINARY) ? Text.literal("false").formatted(Formatting.RED) : Text.literal("true").formatted(Formatting.GREEN);
+        player.sendMessage(Text.literal("Set " + BINARY.getName() + " to ").append(stateText));
         return state.cycle(BINARY);
     }
 }

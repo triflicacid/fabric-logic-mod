@@ -21,7 +21,7 @@ import net.triflicacid.logicmod.util.WireColor;
 
 import java.util.*;
 
-public class BusBlock extends Block implements AdvancedWrenchable, BlockEntityProvider {
+public class BusBlock extends Block implements BlockEntityProvider {
     public static final String NAME = "bus";
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
 
@@ -142,14 +142,6 @@ public class BusBlock extends Block implements AdvancedWrenchable, BlockEntityPr
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         update(world, pos);
-    }
-
-    @Override
-    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
-        BusBlockEntity entity = (BusBlockEntity) world.getBlockEntity(pos);
-        for (var player : world.getPlayers())
-            player.sendMessage(Text.of(pos + " -> " + entity.getPowerMap()));
-        return null;
     }
 
     @Override

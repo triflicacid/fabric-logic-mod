@@ -16,6 +16,11 @@ public class NandGateBlock extends LogicGateBlock {
     }
 
     @Override
+    public String getType() {
+        return "nand";
+    }
+
+    @Override
     public boolean isNotVariant() {
         return true;
     }

@@ -3,9 +3,12 @@ package net.triflicacid.logicmod.block.custom;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -70,11 +73,12 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
     }
 
     @Override
-    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
-        int newPower = state.get(MEMORY) + (Screen.hasShiftDown() ? (-1) : 1);
-        if (newPower < 0) newPower = 15;
-        else if (newPower > 15) newPower = 0;
-        return state.with(MEMORY, newPower);
+    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        int newMemory = state.get(MEMORY) + (Screen.hasShiftDown() ? (-1) : 1);
+        if (newMemory < 0) newMemory = 15;
+        else if (newMemory > 15) newMemory = 0;
+        player.sendMessage(Text.literal("Set " + MEMORY.getName() + " to ").append(Text.literal(String.valueOf(newMemory)).formatted(Formatting.GOLD)));
+        return state.with(MEMORY, newMemory);
     }
 
     @Override

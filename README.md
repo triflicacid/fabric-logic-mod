@@ -178,6 +178,7 @@ This mod contain the following logic gates:
 - Advanced Wrench
   - Configures certain blocks
   - Crafted equivalently to the wrench, but using gold ingots
+  - When applied to some blocks, a chat message will outline the effect
 
 ## Wires and Adapters
 Wires are blocks which carry redstone signals. Key features:

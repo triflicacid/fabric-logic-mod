@@ -16,6 +16,11 @@ public class XorGateBlock extends LogicGateBlock {
     }
 
     @Override
+    public String getType() {
+        return "xor";
+    }
+
+    @Override
     public boolean isNotVariant() {
         return false;
     }

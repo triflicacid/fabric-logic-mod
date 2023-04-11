@@ -16,6 +16,11 @@ public class NorGateBlock extends LogicGateBlock {
     }
 
     @Override
+    public String getType() {
+        return "nor";
+    }
+
+    @Override
     public boolean isNotVariant() {
         return true;
     }

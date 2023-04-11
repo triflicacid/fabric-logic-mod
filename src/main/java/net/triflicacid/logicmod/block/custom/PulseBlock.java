@@ -6,7 +6,10 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -53,10 +56,11 @@ public class PulseBlock extends SignalIOBlock implements AdvancedWrenchable, Blo
     }
 
     @Override
-    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         BlockEntity entity = world.getBlockEntity(pos);
         if (entity instanceof PulseBlockEntity entity2) {
             entity2.incrementDuration(Screen.hasShiftDown() ? -1 : 1);
+            player.sendMessage(Text.literal("Set duration to ").append(Text.literal(String.valueOf(entity2.getDuration())).formatted(Formatting.GOLD)));
         }
         return null;
     }

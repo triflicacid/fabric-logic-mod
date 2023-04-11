@@ -1,7 +1,9 @@
 package net.triflicacid.logicmod.block.custom.logicgate;
 
 import net.minecraft.block.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -34,6 +36,8 @@ public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWr
     }
 
     public abstract boolean logicalFunction(boolean[] inputs);
+
+    public abstract String getType();
 
     @Override
     public final int getSignalStrength(BlockState state, World world, BlockPos pos) {
@@ -92,8 +96,11 @@ public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWr
     public abstract LogicGateBlock getInverse();
 
     @Override
-    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         LogicGateBlock inverse = this.getInverse();
-        return inverse == null ? null : inverse.getDefaultState().with(FACING, state.get(FACING));
+        if (inverse == null)
+            return null;
+        player.sendMessage(Text.literal("Set gate type to ").append(Text.literal(inverse.getType()).formatted(Formatting.GOLD)));
+        return inverse.getDefaultState().with(FACING, state.get(FACING));
     }
 }

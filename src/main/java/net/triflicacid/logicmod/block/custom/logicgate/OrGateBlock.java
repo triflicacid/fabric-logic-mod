@@ -16,6 +16,11 @@ public class OrGateBlock extends LogicGateBlock {
     }
 
     @Override
+    public String getType() {
+        return "or";
+    }
+
+    @Override
     public boolean isNotVariant() {
         return false;
     }

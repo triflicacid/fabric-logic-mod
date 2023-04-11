@@ -16,6 +16,11 @@ public class NotGateBlock extends LogicGateBlock {
     }
 
     @Override
+    public String getType() {
+        return "not";
+    }
+
+    @Override
     public boolean isNotVariant() {
         return true;
     }

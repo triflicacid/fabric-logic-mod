@@ -6,9 +6,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -87,7 +90,9 @@ public abstract class AbstractClockBlock extends SignalIOBlock implements BlockE
     }
 
     @Override
-    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        Text stateText = state.get(LOCKED) ? Text.literal("false").formatted(Formatting.RED) : Text.literal("true").formatted(Formatting.GREEN);
+        player.sendMessage(Text.literal("Set " + LOCKED.getName() + " to ").append(stateText));
         return state.cycle(LOCKED);
     }
 }
