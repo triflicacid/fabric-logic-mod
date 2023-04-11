@@ -141,7 +141,7 @@ This mod contain the following logic gates:
 
 - Memory Cell
   - Stores a redstone signal in memory, which it outputs
-- Accepts a control input from the side, and a write line from the left.
+  - Accepts a control input from the side, and a write line from the left.
     - 0: `nothing`. Don't output anything (signal 0).
     - 1: `read`. Output the stored signal.
     - 2: `write`. Sets internal memory to signal it is receiving from its left.
@@ -150,6 +150,10 @@ This mod contain the following logic gates:
 
 - Output
   - Given a signal, displays its signal strength
+
+- Pulse Emitter
+  - Upon receiving a signal from behind, generates a pulse of a given duration.
+  - Pulse duration may be incremented by right-clicking with an advanced wrench (shift to decrement).
 
 - Random Signal Generator
   - If powered from behind, it will generate and output a new number. This will happen every 2 ticks whiles powered.

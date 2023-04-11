@@ -13,9 +13,6 @@ import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.custom.*;
 import net.triflicacid.logicmod.block.custom.logicgate.*;
 import net.triflicacid.logicmod.block.custom.wire.*;
-import net.triflicacid.logicmod.item.ModItemGroup;
-
-import java.util.Random;
 
 public class ModBlocks {
     public static final LogicGateBlock AND_GATE = (LogicGateBlock) registerBlock(AndGateBlock.NAME, new AndGateBlock());
@@ -29,6 +26,7 @@ public class ModBlocks {
 
     public static final Block INPUT = registerBlock(InputBlock.NAME, new InputBlock());
     public static final Block OUTPUT = registerBlock(OutputBlock.NAME, new OutputBlock());
+    public static final Block PULSE = registerBlock(PulseBlock.NAME, new PulseBlock());
     public static final Block CLOCK = registerBlock(ClockBlock.NAME, new ClockBlock());
     public static final Block CONDITIONAL = registerBlock(ConditionalBlock.NAME, new ConditionalBlock());
     public static final Block EQUALITY = registerBlock(EqualityBlock.NAME, new EqualityBlock());

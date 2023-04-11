@@ -16,7 +16,7 @@ public abstract class SignalRecieverBlock extends SignalEmitterBlock {
     }
 
     /** Get power being received in a given direction */
-    protected int getPower(World world, BlockPos pos, BlockState state, Direction direction) {
+    public static final int getPower(World world, BlockPos pos, BlockState state, Direction direction) {
         BlockPos dstPos = pos.offset(direction);
         BlockState dstState = world.getBlockState(dstPos);
         return dstState.getStrongRedstonePower(world, dstPos, direction);

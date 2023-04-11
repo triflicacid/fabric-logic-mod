@@ -44,6 +44,9 @@
   "item.logic-mod.random": "Random Signal Generator",
   "block.logic-mod.random": "Random Signal Generator",
 
+  "item.logic-mod.pulse": "Pulse Emitter",
+  "block.logic-mod.pulse": "Pulse Emitter",
+
   "item.logic-mod.blue_wire": "Blue Wire",
   "block.logic-mod.blue_wire": "Blue Wire",
   "block.logic-mod.blue_wire_adapter": "Blue Wire Adapter",
