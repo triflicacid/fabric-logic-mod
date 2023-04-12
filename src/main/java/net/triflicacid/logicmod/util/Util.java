@@ -1,6 +1,14 @@
 package net.triflicacid.logicmod.util;
 
+import net.minecraft.block.Block;
+import net.minecraft.registry.Registries;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Util {
     public static boolean logicalBuffer(boolean[] inputs) {
@@ -80,15 +88,52 @@ public class Util {
         return true;
     }
 
-    /** Mutate array1 to contain so that array1[i] = max(array1[i], array2[i]) */
-    public static void arrayMaxValues(int[] array1, int[] array2) {
-        int lim = Math.min(array1.length, array2.length);
-        for (int i = 0; i < lim; i++)
-            array1[i] = Math.max(array1[i], array2[i]);
+    /** Capitalise a string */
+    public static String capitalise(String s) {
+        return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
     }
 
-    /** Create power IntProperty */
-    public static IntProperty powerProperty(String name) {
-        return IntProperty.of(name, 0, 15);
+    /** Get block's name */
+    public static String getBlockName(Block block) {
+        return Registries.BLOCK.getId(block).toString();
+    }
+
+    /** Convert number to text */
+    public static MutableText numberToText(int i) {
+        return Text.literal(String.valueOf(i)).formatted(Formatting.GOLD);
+    }
+
+    public static MutableText numberToText(float f) {
+        return Text.literal(String.valueOf(f)).formatted(Formatting.GOLD);
+    }
+
+    /** Convert boolean to text */
+    public static MutableText booleanToText(boolean b) {
+        return Text.literal(String.valueOf(b)).formatted(b ? Formatting.GREEN : Formatting.RED);
+    }
+
+    /** Convert boolean to text */
+    public static MutableText booleanToText(boolean b, String ifTrue, String ifFalse) {
+        return Text.literal(b ? ifTrue : ifFalse).formatted(b ? Formatting.GREEN : Formatting.RED);
+    }
+
+    /** Convert special string to text */
+    public static MutableText specialToText(String s) {
+        return Text.literal(s).formatted(Formatting.GOLD);
+    }
+
+    /** Comment to text */
+    public static MutableText commentToText(String s) {
+        return Text.literal(s).formatted(Formatting.GRAY, Formatting.ITALIC);
+    }
+
+    /** Block to text */
+    public static MutableText blockToText(Block block) {
+        return specialToText(getBlockName(block));
+    }
+
+    /** Join a List */
+    public static String joinList(List list, String joiner) {
+        return (String) list.stream().map(Object::toString).collect(Collectors.joining(joiner));
     }
 }

@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.tick.TickPriority;
 import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
+import net.triflicacid.logicmod.interfaces.Analysable;
 import net.triflicacid.logicmod.interfaces.Wrenchable;
 import net.triflicacid.logicmod.util.DirectionState;
 import net.triflicacid.logicmod.util.WireColor;
@@ -20,7 +21,9 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.*;
 
-public abstract class WireAdapterBlock extends AbstractWireBlock implements Wrenchable, AdvancedWrenchable {
+import static net.triflicacid.logicmod.util.Util.*;
+
+public abstract class WireAdapterBlock extends AbstractWireBlock implements Wrenchable, AdvancedWrenchable, Analysable {
     public static final EnumProperty<DirectionState> DOWN = EnumProperty.of("down", DirectionState.class);
     public static final EnumProperty<DirectionState> UP = EnumProperty.of("up", DirectionState.class);
     public static final EnumProperty<DirectionState> NORTH = EnumProperty.of("north", DirectionState.class);
@@ -180,5 +183,27 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
 
     protected static final String getName(WireColor color) {
         return color + "_wire_adapter";
+    }
+
+    @Override
+    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        List<Direction> inputs = new ArrayList<>();
+        List<Direction> outputs = new ArrayList<>();
+
+        for (Direction direction : Direction.values()) {
+            EnumProperty<DirectionState> property = getDirectionState(direction);
+            switch (state.get(property)) {
+                case INPUT:
+                    inputs.add(direction);
+                    break;
+                case OUTPUT:
+                    outputs.add(direction);
+                    break;
+            }
+        }
+
+        player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+        player.sendMessage(Text.literal("Inputs: ").append(inputs.isEmpty() ? commentToText("none") :  specialToText(joinList(inputs, ", "))));
+        player.sendMessage(Text.literal("Outputs: ").append(outputs.isEmpty() ? commentToText("none") :  specialToText(joinList(outputs, ", "))));
     }
 }

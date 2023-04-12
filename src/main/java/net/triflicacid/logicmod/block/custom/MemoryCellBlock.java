@@ -14,6 +14,10 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
+import net.triflicacid.logicmod.interfaces.Analysable;
+
+import static net.triflicacid.logicmod.util.Util.numberToText;
+import static net.triflicacid.logicmod.util.Util.specialToText;
 
 public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable {
     public static final String NAME = "memory_cell";
@@ -54,26 +58,6 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
         return 0;
     }
 
-//    @Override
-//    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-//        int power = state.get(POWER);
-//        int expectedPower = getSignalStrength(state, world, pos);
-//
-//        if (power != expectedPower) {
-//            state = state.with(POWER, expectedPower).with(ACTIVE, expectedPower > 0);
-//            switch (getControlPower(world, pos, state)) {
-//                case WRITE:
-//                    state = state.with(MEMORY, getInputPower(world, pos, state));
-//                    break;
-//                case CLEAR:
-//                    state = state.with(MEMORY, 0);
-//                    break;
-//            }
-//            world.setBlockState(pos, state);
-//        }
-//    }
-
-
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         BlockState newState = null;
@@ -113,8 +97,30 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
         int newMemory = state.get(MEMORY) + (Screen.hasShiftDown() ? (-1) : 1);
         if (newMemory < 0) newMemory = 15;
         else if (newMemory > 15) newMemory = 0;
-        player.sendMessage(Text.literal("Set " + MEMORY.getName() + " to ").append(Text.literal(String.valueOf(newMemory)).formatted(Formatting.GOLD)));
+        player.sendMessage(Text.literal("Set " + MEMORY.getName() + " to ").append(numberToText(newMemory)));
         return state.with(MEMORY, newMemory);
+    }
+
+    @Override
+    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        int control = getControlPower(world, pos, state);
+        String controlStr;
+        switch (control) {
+            case READ:
+                controlStr = "read";
+                break;
+            case WRITE:
+                controlStr = "write";
+                break;
+            case CLEAR:
+                controlStr = "clear";
+                break;
+            default:
+                controlStr = "none";
+        }
+
+        player.sendMessage(Text.literal("Memory: ").append(numberToText(state.get(MEMORY))));
+        player.sendMessage(Text.literal("Control Line: ").append(specialToText(controlStr)).append(" (").append(numberToText(state.get(MEMORY))).append(")"));
     }
 
     @Override

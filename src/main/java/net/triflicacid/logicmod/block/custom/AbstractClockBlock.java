@@ -20,7 +20,7 @@ import net.triflicacid.logicmod.blockentity.custom.ClockBlockEntity;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractClockBlock extends SignalIOBlock implements BlockEntityProvider, AdvancedWrenchable {
+public abstract class AbstractClockBlock extends SignalIOBlock implements BlockEntityProvider {
     public static final BooleanProperty LOCKED = BooleanProperty.of("locked");
 
     public AbstractClockBlock() {
@@ -87,12 +87,5 @@ public abstract class AbstractClockBlock extends SignalIOBlock implements BlockE
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(LOCKED);
         super.appendProperties(builder);
-    }
-
-    @Override
-    public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        Text stateText = state.get(LOCKED) ? Text.literal("false").formatted(Formatting.RED) : Text.literal("true").formatted(Formatting.GREEN);
-        player.sendMessage(Text.literal("Set " + LOCKED.getName() + " to ").append(stateText));
-        return state.cycle(LOCKED);
     }
 }

@@ -1,15 +1,21 @@
 package net.triflicacid.logicmod.block.custom.wire;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.DustParticleEffect;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.triflicacid.logicmod.interfaces.Analysable;
 import net.triflicacid.logicmod.util.WireColor;
 
-public abstract class WireBlock extends AbstractWireBlock {
+import static net.triflicacid.logicmod.util.Util.numberToText;
+import static net.triflicacid.logicmod.util.Util.specialToText;
+
+public abstract class WireBlock extends AbstractWireBlock implements Analysable {
     public WireBlock(WireColor color) {
         super(color);
     }
@@ -43,7 +49,12 @@ public abstract class WireBlock extends AbstractWireBlock {
         }
     }
 
-    protected static final String getName(WireColor color) {
+    public static final String getName(WireColor color) {
         return color + "_wire";
+    }
+
+    @Override
+    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
     }
 }

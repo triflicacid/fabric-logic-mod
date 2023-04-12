@@ -13,6 +13,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
+import static net.triflicacid.logicmod.util.Util.booleanToText;
+import static net.triflicacid.logicmod.util.Util.numberToText;
+
 public class InputBlock extends SignalIOBlock implements AdvancedWrenchable {
     public static final String NAME = "input";
     public static final IntProperty POTENTIAL_POWER = IntProperty.of("potential_power", 0, 15);
@@ -31,8 +34,14 @@ public class InputBlock extends SignalIOBlock implements AdvancedWrenchable {
         int newPower = state.get(POTENTIAL_POWER) + (Screen.hasShiftDown() ? (-1) : 1);
         if (newPower < 0) newPower = 15;
         else if (newPower > 15) newPower = 0;
-        player.sendMessage(Text.literal("Set " + POTENTIAL_POWER.getName() + " to ").append(Text.literal(String.valueOf(newPower)).formatted(Formatting.GOLD)));
+        player.sendMessage(Text.literal("Set " + POTENTIAL_POWER.getName() + " to ").append(numberToText(newPower)));
         return state.with(POTENTIAL_POWER, newPower);
+    }
+
+    @Override
+    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POTENTIAL_POWER))));
+        player.sendMessage(Text.literal("Disabled: ").append(booleanToText(getPower(world, pos, state, state.get(FACING)) > 0)));
     }
 
     @Override

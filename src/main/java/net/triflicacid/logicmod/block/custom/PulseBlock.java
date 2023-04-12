@@ -18,6 +18,8 @@ import net.triflicacid.logicmod.blockentity.custom.PulseBlockEntity;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import org.jetbrains.annotations.Nullable;
 
+import static net.triflicacid.logicmod.util.Util.numberToText;
+
 public class PulseBlock extends SignalIOBlock implements AdvancedWrenchable, BlockEntityProvider {
     public static final String NAME = "pulse";
 
@@ -60,9 +62,18 @@ public class PulseBlock extends SignalIOBlock implements AdvancedWrenchable, Blo
         BlockEntity entity = world.getBlockEntity(pos);
         if (entity instanceof PulseBlockEntity entity2) {
             entity2.incrementDuration(Screen.hasShiftDown() ? -1 : 1);
-            player.sendMessage(Text.literal("Set duration to ").append(Text.literal(String.valueOf(entity2.getDuration())).formatted(Formatting.GOLD)));
+            player.sendMessage(Text.literal("Set duration to ").append(numberToText(entity2.getDuration())));
         }
         return null;
+    }
+
+    @Override
+    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        BlockEntity entity = world.getBlockEntity(pos);
+        if (entity instanceof PulseBlockEntity entity2) {
+            entity2.incrementDuration(Screen.hasShiftDown() ? -1 : 1);
+            player.sendMessage(Text.literal("Duration: ").append(numberToText(entity2.getDuration())));
+        }
     }
 
     @Override

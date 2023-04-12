@@ -13,13 +13,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static net.triflicacid.logicmod.util.Util.capitalise;
+
 public class BusBlockEntity extends BlockEntity {
-    protected static final List<WireColor> COLORS = Arrays.stream(WireColor.values()).filter(c -> c != WireColor.WHITE).collect(Collectors.toList());
+    public static final List<WireColor> COLORS = Arrays.stream(WireColor.values()).filter(c -> c != WireColor.WHITE).collect(Collectors.toList());
     protected Map<WireColor, Integer> powerMap = new HashMap<>();
 
     protected static String getKeyName(WireColor color) {
         String str = color.toString();
-        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase() + "Power";
+        return capitalise(str) + "Power";
     }
 
     public BusBlockEntity(BlockPos pos, BlockState state) {

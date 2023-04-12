@@ -1,5 +1,6 @@
 package net.triflicacid.logicmod.item.custom;
 
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.client.gui.screen.Screen;
@@ -18,16 +19,18 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static net.triflicacid.logicmod.util.Util.commentToText;
+
 public class WrenchItem extends Item {
     public static final String NAME = "wrench";
 
-    public WrenchItem(Settings settings) {
-        super(settings);
+    public WrenchItem() {
+        super(new FabricItemSettings());
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Able to rotate some blocks").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
+        tooltip.add(commentToText("Able to rotate some blocks"));
         super.appendTooltip(stack, world, tooltip, context);
     }
 

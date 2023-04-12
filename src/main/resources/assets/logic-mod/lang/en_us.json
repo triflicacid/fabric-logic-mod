@@ -3,6 +3,7 @@
 
   "item.logic-mod.wrench": "Wrench",
   "item.logic-mod.advanced_wrench": "Advanced Wrench",
+  "item.logic-mod.analyser": "Analyser",
 
   "item.logic-mod.buffer_gate": "Buffer Gate",
   "block.logic-mod.buffer_gate": "Buffer Gate",

@@ -4,17 +4,20 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.*;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.triflicacid.logicmod.interfaces.Analysable;
 import net.triflicacid.logicmod.interfaces.Wrenchable;
 import net.triflicacid.logicmod.util.DirectionState;
 import net.triflicacid.logicmod.util.WireColor;
@@ -23,7 +26,9 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.Map;
 import java.util.function.Function;
 
-public abstract class SignalEmitterBlock extends Block {
+import static net.triflicacid.logicmod.util.Util.numberToText;
+
+public abstract class SignalEmitterBlock extends Block implements Analysable {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active"); // !ONLY USED FOR TEXTURES, SHOULD NOT BE USED FOR FUNCTIONALITY!
     public static final IntProperty POWER = Properties.POWER;
@@ -87,5 +92,10 @@ public abstract class SignalEmitterBlock extends Block {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(new Property[]{ FACING, ACTIVE, POWER });
         super.appendProperties(builder);
+    }
+
+    @Override
+    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
     }
 }

@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.server.world.ServerWorld;
@@ -17,11 +18,15 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
+import net.triflicacid.logicmod.interfaces.Analysable;
 import net.triflicacid.logicmod.util.WireColor;
 
 import java.util.*;
 
-public class BusBlock extends Block implements BlockEntityProvider {
+import static net.triflicacid.logicmod.util.Util.capitalise;
+import static net.triflicacid.logicmod.util.Util.numberToText;
+
+public class BusBlock extends Block implements BlockEntityProvider, Analysable {
     public static final String NAME = "bus";
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
 
@@ -174,6 +179,16 @@ public class BusBlock extends Block implements BlockEntityProvider {
                 double dy = axis == Direction.Axis.Y ? 0.5 + d * (double)direction.getOffsetY() : (double)random.nextFloat();
                 double dz = axis == Direction.Axis.Z ? 0.5 + d * (double)direction.getOffsetZ() : (double)random.nextFloat();
                 world.addParticle(DustParticleEffect.DEFAULT, (double)pos.getX() + dx, (double)pos.getY() + dy, (double)pos.getZ() + dz, 0.0, 0.0, 0.0);
+            }
+        }
+    }
+
+    @Override
+    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        BlockEntity entity = world.getBlockEntity(pos);
+        if (entity instanceof BusBlockEntity busEntity) {
+            for (WireColor color : BusBlockEntity.COLORS) {
+                player.sendMessage(Text.literal("").append(Text.literal(capitalise(color.toString())).formatted(color.getFormatting())).append(Text.literal(" power: ")).append(numberToText(busEntity.getPower(color))));
             }
         }
     }

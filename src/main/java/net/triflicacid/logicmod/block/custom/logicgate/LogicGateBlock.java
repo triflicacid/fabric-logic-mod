@@ -3,18 +3,18 @@ package net.triflicacid.logicmod.block.custom.logicgate;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.block.custom.SignalIOBlock;
-import net.triflicacid.logicmod.block.custom.wire.BusBlock;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
+import net.triflicacid.logicmod.interfaces.Analysable;
 
 import java.util.*;
 
-public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWrenchable {
+import static net.triflicacid.logicmod.util.Util.specialToText;
+
+public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWrenchable, Analysable {
     public static final int TICK_DELAY = 2;
     private final int minInputs;
     private final int maxInputs;
@@ -100,7 +100,12 @@ public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWr
         LogicGateBlock inverse = this.getInverse();
         if (inverse == null)
             return null;
-        player.sendMessage(Text.literal("Set gate type to ").append(Text.literal(inverse.getType()).formatted(Formatting.GOLD)));
+        player.sendMessage(Text.literal("Set gate type to ").append(specialToText(inverse.getType())));
         return inverse.getDefaultState().with(FACING, state.get(FACING));
+    }
+
+    @Override
+    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        player.sendMessage(Text.literal("Gate type: ").append(specialToText(getType())));
     }
 }

@@ -163,13 +163,27 @@ This mod contain the following logic gates:
 
 ## Tools
 
+- Analyser
+  - Analyses blocks when right-clicked on them
+  - Crafting recipe:
+
+  |   |   | I |
+  |---|---|---|
+  | G | R | I |
+  | I | I | I |
+
+  where
+  - `I` is an iron ingot
+  - `G` is a glass block
+  - `R` is a piece of redstone dust
+
 - Wrench
   - Unless otherwise specified, applying the wrench rotates the block clockwise around the Y axis (horizontally)
   - Holding shift will rotate anti-clockwise
   - Crafting recipe:
 
   | # |   | # |
-    |---|---|---|
+  |---|---|---|
   |   | # |   |
   |   | # |   |
 
