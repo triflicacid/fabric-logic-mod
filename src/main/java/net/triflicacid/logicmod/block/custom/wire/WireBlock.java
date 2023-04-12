@@ -15,21 +15,6 @@ public abstract class WireBlock extends AbstractWireBlock {
     }
 
     @Override
-    public boolean emitsRedstonePower(BlockState state) {
-        return true;
-    }
-
-    @Override
-    public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return 0;
-    }
-
-    @Override
-    public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return state.get(POWER);
-    }
-
-    @Override
     public boolean hasRandomTicks(BlockState state) {
         return state.get(POWER) > 0;
     }

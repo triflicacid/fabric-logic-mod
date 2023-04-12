@@ -54,21 +54,57 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
         return 0;
     }
 
+//    @Override
+//    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+//        int power = state.get(POWER);
+//        int expectedPower = getSignalStrength(state, world, pos);
+//
+//        if (power != expectedPower) {
+//            state = state.with(POWER, expectedPower).with(ACTIVE, expectedPower > 0);
+//            switch (getControlPower(world, pos, state)) {
+//                case WRITE:
+//                    state = state.with(MEMORY, getInputPower(world, pos, state));
+//                    break;
+//                case CLEAR:
+//                    state = state.with(MEMORY, 0);
+//                    break;
+//            }
+//            world.setBlockState(pos, state);
+//        }
+//    }
+
+
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int power = state.get(POWER);
-        int expectedPower = getSignalStrength(state, world, pos);
-
-        if (power != expectedPower) {
-            state = state.with(POWER, expectedPower).with(ACTIVE, expectedPower > 0);
-            switch (getControlPower(world, pos, state)) {
-                case WRITE:
-                    state = state.with(MEMORY, getInputPower(world, pos, state));
-                    break;
-                case CLEAR:
-                    state = state.with(MEMORY, 0);
+        BlockState newState = null;
+        switch (getControlPower(world, pos, state)) {
+            case READ:
+                if (state.get(POWER) != state.get(MEMORY)) {
+                    int memory = state.get(MEMORY);
+                    newState = state.with(POWER, memory).with(ACTIVE, memory > 0);
+                }
+                break;
+            case WRITE: {
+                int receiving = getInputPower(world, pos, state);
+                if (receiving != state.get(MEMORY)) {
+                    newState = state.with(MEMORY, receiving);
+                }
+                break;
             }
-            world.setBlockState(pos, state);
+            case CLEAR:
+                if (state.get(MEMORY) != 0) {
+                    newState = state.with(MEMORY, 0);
+                }
+                break;
+            default:
+                if (state.get(POWER) != 0) {
+                    newState = state.with(POWER, 0).with(ACTIVE, false);
+                }
+                break;
+        }
+
+        if (newState != null) {
+            world.setBlockState(pos, newState);
         }
     }
 
