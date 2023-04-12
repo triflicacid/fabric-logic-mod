@@ -12,8 +12,7 @@ import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.Analysable;
 import net.triflicacid.logicmod.util.WireColor;
 
-import static net.triflicacid.logicmod.util.Util.numberToText;
-import static net.triflicacid.logicmod.util.Util.specialToText;
+import static net.triflicacid.logicmod.util.Util.*;
 
 public abstract class WireBlock extends AbstractWireBlock implements Analysable {
     public WireBlock(WireColor color) {
@@ -55,6 +54,7 @@ public abstract class WireBlock extends AbstractWireBlock implements Analysable 
 
     @Override
     public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        player.sendMessage(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
         player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
     }
 }

@@ -16,12 +16,12 @@ import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.Analysable;
+import net.triflicacid.logicmod.util.Analyse;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static net.triflicacid.logicmod.util.Util.blockToText;
-import static net.triflicacid.logicmod.util.Util.commentToText;
+import static net.triflicacid.logicmod.util.Util.*;
 
 public class AnalyserItem extends Item {
     public static final String NAME = "analyser";
@@ -54,7 +54,13 @@ public class AnalyserItem extends Item {
             if (block instanceof Analysable analysable) {
                 analysable.onAnalyse(world, pos, state, context.getSide(), player, context.getHorizontalPlayerFacing());
             } else {
+                Text[] message = Analyse.analyseBlock(world, pos, state, block);
+                if (message == null) {
 //                player.sendMessage(commentToText("No further information"));
+                } else {
+                    for (Text line : message)
+                        player.sendMessage(line);
+                }
             }
         }
 

@@ -2,8 +2,8 @@ package net.triflicacid.logicmod.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.registry.Registries;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -119,7 +119,7 @@ public class Util {
 
     /** Convert special string to text */
     public static MutableText specialToText(String s) {
-        return Text.literal(s).formatted(Formatting.GOLD);
+        return Text.literal(s).formatted(Formatting.AQUA);
     }
 
     /** Comment to text */
@@ -136,4 +136,28 @@ public class Util {
     public static String joinList(List list, String joiner) {
         return (String) list.stream().map(Object::toString).collect(Collectors.joining(joiner));
     }
+
+    /** Hex code to text color: syntax "XXXXXX" */
+    public static Style hexToColor(String hexCode) {
+        return Style.EMPTY.withColor(Integer.parseInt(hexCode, 16));
+    }
+
+    /** NoteBlock note to text */
+    public static MutableText noteToText(int note) {
+        if (note >= 0 && note < 25) {
+            String symbol = noteSymbols[note < 13 ? note : note - 12];
+            Style color = hexToColor(noteHexCodes[note]);
+            return Text.literal("").append(Text.literal(symbol).fillStyle(color));
+        } else {
+            return commentToText("unknown");
+        }
+    }
+
+    /** Get noteblock pitch from note */
+    public static float getNotePitch(int note) {
+        return (float)Math.pow(2.0, (double)(note - 12) / 12.0);
+    }
+
+    private static final String[] noteSymbols = { "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#" };
+    private static final String[] noteHexCodes = { "77D700", "95C000", "B2A500", "CC8600", "E26500", "F34100", "FC1E00", "FE000F", "F70033", "E8005A", "CF0083", "AE00A9", "8600CC", "5B00E7", "2D00F9", "020AFE", "0037F6", "0068E0", "009ABC", "00C68D", "00E958", "00FC21", "1FFC00", "59E800", "94C100" };
 }

@@ -24,7 +24,7 @@ import java.util.*;
 
 public abstract class AbstractWireBlock extends Block {
     public static final IntProperty POWER = Properties.POWER;
-    private final WireColor color;
+    protected final WireColor color;
 
     public AbstractWireBlock(WireColor color) {
         super(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly());

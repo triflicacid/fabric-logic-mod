@@ -202,6 +202,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
             }
         }
 
+        player.sendMessage(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
         player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
         player.sendMessage(Text.literal("Inputs: ").append(inputs.isEmpty() ? commentToText("none") :  specialToText(joinList(inputs, ", "))));
         player.sendMessage(Text.literal("Outputs: ").append(outputs.isEmpty() ? commentToText("none") :  specialToText(joinList(outputs, ", "))));
