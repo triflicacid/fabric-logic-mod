@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "RBR",
+    " R "
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:repeater"
+    },
+    "B": {
+      "item": "minecraft:stone"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "logic-mod:memory_cell"
+  }
+}

@@ -37,10 +37,10 @@ public class ModItems {
     public static final Item OUTPUT = registerAliased(ModBlocks.OUTPUT, OutputBlock.NAME);
     public static final Item PULSE = registerAliased(ModBlocks.PULSE, PulseBlock.NAME);
     public static final Item CLOCK = registerAliased(ModBlocks.CLOCK, ClockBlock.NAME);
+    public static final Item RANDOM = registerAliased(ModBlocks.RANDOM, RandomBlock.NAME);
     public static final Item CONDITIONAL = registerAliased(ModBlocks.CONDITIONAL, ConditionalBlock.NAME);
     public static final Item EQUALITY = registerAliased(ModBlocks.EQUALITY, EqualityBlock.NAME);
     public static final Item MEMORY_CELL = registerAliased(ModBlocks.MEMORY_CELL, MemoryCellBlock.NAME);
-    public static final Item RANDOM = registerAliased(ModBlocks.RANDOM, RandomBlock.NAME);
 
     /** Wires and adapters */
     public static final Item BLUE_WIRE = registerAliased(ModBlocks.BLUE_WIRE, BlueWireBlock.NAME);

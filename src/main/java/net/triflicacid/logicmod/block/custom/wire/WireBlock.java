@@ -3,6 +3,7 @@ package net.triflicacid.logicmod.block.custom.wire;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.DustParticleEffect;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -16,7 +17,7 @@ import static net.triflicacid.logicmod.util.Util.*;
 
 public abstract class WireBlock extends AbstractWireBlock implements Analysable {
     public WireBlock(WireColor color) {
-        super(color);
+        super(BlockSoundGroup.WOOL, color);
     }
 
     @Override

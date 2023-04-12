@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "RIR",
+    " B "
+  ],
+  "key": {
+    "I": {
+      "item": "logic-mod:input"
+    },
+    "B": {
+      "tag": "minecraft:buttons"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "logic-mod:pulse"
+  }
+}

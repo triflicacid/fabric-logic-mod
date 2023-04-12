@@ -3,6 +3,7 @@ package net.triflicacid.logicmod.block.custom.wire;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.text.Text;
@@ -32,7 +33,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
     public static final EnumProperty<DirectionState> EAST = EnumProperty.of("east", DirectionState.class);
 
     public WireAdapterBlock(WireColor color) {
-        super(color);
+        super(BlockSoundGroup.STONE, color);
     }
 
     /** Get power being received in a given direction */

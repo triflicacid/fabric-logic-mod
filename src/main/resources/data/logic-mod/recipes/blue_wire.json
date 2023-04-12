@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CDC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "D": [
+      {
+        "item": "minecraft:blue_dye"
+      },
+      {
+        "item": "minecraft:lapis_lazuli"
+      }
+    ]
+  },
+  "result": {
+    "item": "logic-mod:blue_wire",
+    "count": 8
+  }
+}

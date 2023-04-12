@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " W ",
+    "WBW",
+    " W "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:stone"
+    },
+    "W": {
+      "item": "logic-mod:bus"
+    }
+  },
+  "result": {
+    "item": "logic-mod:bus_adapter"
+  }
+}

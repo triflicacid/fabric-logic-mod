@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "logic-mod:red_wire"
+    },
+    {
+      "item": "logic-mod:green_wire"
+    },
+    {
+      "item": "logic-mod:blue_wire"
+    }
+  ],
+  "result": {
+    "item": "logic-mod:bus",
+    "count": 3
+  }
+}
