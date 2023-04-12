@@ -45,20 +45,26 @@ public class WrenchItem extends Item {
             World world = context.getWorld();
             BlockPos pos = context.getBlockPos();
             BlockState state = world.getBlockState(pos);
+            BlockState newState = null;
 
             if (state.getBlock() instanceof Wrenchable wrenchableBlock) {
-                BlockState newState = wrenchableBlock.applyWrench(world, pos, state, context.getSide(), context.getHorizontalPlayerFacing());
+                newState = wrenchableBlock.applyWrench(world, pos, state, context.getSide(), context.getHorizontalPlayerFacing());
                 if (newState != null) {
-                    world.setBlockState(pos, newState);
                     world.scheduleBlockTick(pos, state.getBlock(), 1, TickPriority.NORMAL);
                 }
             } else if (state.contains(HorizontalFacingBlock.FACING)) {
                 Direction newDirection = state.get(HorizontalFacingBlock.FACING);
                 newDirection = Screen.hasShiftDown() ? newDirection.rotateYCounterclockwise() : newDirection.rotateYClockwise();
-                world.setBlockState(pos, state.with(HorizontalFacingBlock.FACING, newDirection));
+                newState = state.with(HorizontalFacingBlock.FACING, newDirection);
+            }
+
+            if (newState == null) {
+                return ActionResult.FAIL;
+            } else {
+                world.setBlockState(pos, newState);
             }
         }
 
-        return super.useOnBlock(context);
+        return ActionResult.SUCCESS;
     }
 }

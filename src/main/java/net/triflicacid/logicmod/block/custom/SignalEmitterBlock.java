@@ -96,6 +96,8 @@ public abstract class SignalEmitterBlock extends Block implements Analysable {
 
     @Override
     public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+        if (!world.isClient) {
+            player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+        }
     }
 }

@@ -164,9 +164,10 @@ The advanced wrench toggles each get between its NOT variant
 - Clock
   - Pulses on and off a predetermined amount of ticks (default 20)
     - Stored as NBT data in `OnTickCount` and `OffTickCount` respectively
-    - Currently, there is no way to change these other than the `/data` command
-  - May be locked by powering from behind
-  - The advanced wrench locks/unlocks the clock (pauses/resumes pulsing)
+  - May be locked by powering from behind (pauses pulsing)
+  - The advanced wrench increments/decrements the tick duration
+    - If facing in the same/opposite direction as the black indicator, alter the *on* duration
+    - Otherwise, alter the *off* duration
   - Crafting recipe: shapeless crafting of a
     - Minecraft clock
     - Input block

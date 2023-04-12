@@ -16,8 +16,7 @@ import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.interfaces.Analysable;
 
-import static net.triflicacid.logicmod.util.Util.numberToText;
-import static net.triflicacid.logicmod.util.Util.specialToText;
+import static net.triflicacid.logicmod.util.Util.*;
 
 public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable {
     public static final String NAME = "memory_cell";
@@ -94,15 +93,19 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
 
     @Override
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        int newMemory = state.get(MEMORY) + (Screen.hasShiftDown() ? (-1) : 1);
-        if (newMemory < 0) newMemory = 15;
-        else if (newMemory > 15) newMemory = 0;
-        player.sendMessage(Text.literal("Set " + MEMORY.getName() + " to ").append(numberToText(newMemory)));
+        if (world.isClient)
+            return null;
+
+        int newMemory = wrapInt(state.get(MEMORY) + (Screen.hasShiftDown() ? (-1) : 1), 0, 15);
+        player.sendMessage(Text.literal("Set ").append(specialToText(MEMORY.getName())).append(" to ").append(numberToText(newMemory)));
         return state.with(MEMORY, newMemory);
     }
 
     @Override
     public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        if (world.isClient)
+            return;
+
         int control = getControlPower(world, pos, state);
         String controlStr;
         switch (control) {

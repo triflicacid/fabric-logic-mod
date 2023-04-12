@@ -39,6 +39,9 @@ public class ConditionalBlock extends SignalIOBlock {
 
     @Override
     public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        if (world.isClient)
+            return;
+
         boolean isOn = getPower(world, pos, state, state.get(FACING)) > 0;
         player.sendMessage(Text.literal("State: ").append(booleanToText(isOn, "on", "off")));
         player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));

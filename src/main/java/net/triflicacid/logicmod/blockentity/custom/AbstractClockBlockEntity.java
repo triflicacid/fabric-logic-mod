@@ -24,7 +24,7 @@ public abstract class AbstractClockBlockEntity extends BlockEntity {
     }
 
     public void setOnTickCount(int count) {
-        if (count < 0)
+        if (count < 1)
             return;
 
         onTickCount = count;
@@ -35,7 +35,7 @@ public abstract class AbstractClockBlockEntity extends BlockEntity {
     }
 
     public void setOffTickCount(int count) {
-        if (count < 0)
+        if (count < 1)
             return;
 
         offTickCount = count;

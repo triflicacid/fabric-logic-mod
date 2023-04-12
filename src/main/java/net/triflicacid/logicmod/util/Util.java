@@ -160,4 +160,11 @@ public class Util {
 
     private static final String[] noteSymbols = { "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#" };
     private static final String[] noteHexCodes = { "77D700", "95C000", "B2A500", "CC8600", "E26500", "F34100", "FC1E00", "FE000F", "F70033", "E8005A", "CF0083", "AE00A9", "8600CC", "5B00E7", "2D00F9", "020AFE", "0037F6", "0068E0", "009ABC", "00C68D", "00E958", "00FC21", "1FFC00", "59E800", "94C100" };
+
+    /** Wrap a property: if less than min, set max and vica versa */
+    public static int wrapInt(int value, int min, int max) {
+        if (value < min) return max;
+        if (value > max) return min;
+        return value;
+    }
 }

@@ -2,6 +2,7 @@ package net.triflicacid.logicmod.block.custom.wire;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -15,6 +16,10 @@ import java.util.Set;
 
 public class BusAdapterBlock extends BusBlock {
     public static final String NAME = "bus_adapter";
+
+    public BusAdapterBlock() {
+        super(BlockSoundGroup.STONE);
+    }
 
     @Override
     protected Map<WireColor, Integer> getPowerOfNeighbor(World world, BlockPos srcPos, BlockState srcState, BlockPos dstPos, BlockState dstState, Block dstBlock, Direction direction, Set<BlockPos> exploredPositions, Set<BlockPos> knownBlocks) {

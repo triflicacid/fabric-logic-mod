@@ -57,6 +57,7 @@ public class AnalyserItem extends Item {
                 Text[] message = Analyse.analyseBlock(world, pos, state, block);
                 if (message == null) {
 //                player.sendMessage(commentToText("No further information"));
+                    return ActionResult.FAIL;
                 } else {
                     for (Text line : message)
                         player.sendMessage(line);
@@ -64,6 +65,6 @@ public class AnalyserItem extends Item {
             }
         }
 
-        return super.useOnBlock(context);
+        return ActionResult.SUCCESS;
     }
 }

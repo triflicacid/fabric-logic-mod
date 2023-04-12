@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.custom.*;
@@ -47,7 +48,7 @@ public class ModBlocks {
     public static final Block YELLOW_WIRE = registerBlock(YellowWireBlock.NAME, new YellowWireBlock());
     public static final Block YELLOW_WIRE_ADAPTER = registerBlock(YellowWireAdapterBlock.NAME, new YellowWireAdapterBlock());
 
-    public static final Block BUS = registerBlock(BusBlock.NAME, new BusBlock());
+    public static final Block BUS = registerBlock(BusBlock.NAME, new BusBlock(BlockSoundGroup.WOOL));
     public static final Block BUS_ADAPTER = registerBlock(BusAdapterBlock.NAME, new BusAdapterBlock());
 
 

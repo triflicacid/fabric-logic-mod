@@ -17,7 +17,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
-import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.interfaces.Analysable;
 import net.triflicacid.logicmod.util.WireColor;
 
@@ -30,8 +29,8 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
     public static final String NAME = "bus";
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
 
-    public BusBlock() {
-        super(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL).breakInstantly());
+    public BusBlock(BlockSoundGroup sound) {
+        super(FabricBlockSettings.of(Material.WOOL).sounds(sound).breakInstantly());
     }
 
     /** Get received power */
@@ -185,10 +184,12 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
 
     @Override
     public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        BlockEntity entity = world.getBlockEntity(pos);
-        if (entity instanceof BusBlockEntity busEntity) {
-            for (WireColor color : BusBlockEntity.COLORS) {
-                player.sendMessage(Text.literal("").append(Text.literal(capitalise(color.toString())).formatted(color.getFormatting())).append(Text.literal(" power: ")).append(numberToText(busEntity.getPower(color))));
+        if (!world.isClient) {
+            BlockEntity entity = world.getBlockEntity(pos);
+            if (entity instanceof BusBlockEntity busEntity) {
+                for (WireColor color : BusBlockEntity.COLORS) {
+                    player.sendMessage(Text.literal("").append(Text.literal(capitalise(color.toString())).formatted(color.getFormatting())).append(Text.literal(" power: ")).append(numberToText(busEntity.getPower(color))));
+                }
             }
         }
     }

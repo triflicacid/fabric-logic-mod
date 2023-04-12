@@ -55,7 +55,9 @@ public abstract class WireBlock extends AbstractWireBlock implements Analysable 
 
     @Override
     public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        player.sendMessage(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
-        player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+        if (!world.isClient) {
+            player.sendMessage(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
+            player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+        }
     }
 }

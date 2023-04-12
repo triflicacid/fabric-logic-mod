@@ -96,6 +96,9 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
 
     @Override
     public BlockState applyWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        if (world.isClient)
+            return null;
+
         Direction.Axis axis = side.getAxis();
         EnumProperty<DirectionState>[] directions = null;
 
@@ -157,8 +160,37 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
 
     @Override
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        if (world.isClient)
+            return null;
+
         world.scheduleBlockTick(pos, this, 1, TickPriority.NORMAL);
         return state.cycle(getDirectionState(side));
+    }
+
+    @Override
+    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+        if (world.isClient)
+            return;
+
+        List<Direction> inputs = new ArrayList<>();
+        List<Direction> outputs = new ArrayList<>();
+
+        for (Direction direction : Direction.values()) {
+            EnumProperty<DirectionState> property = getDirectionState(direction);
+            switch (state.get(property)) {
+                case INPUT:
+                    inputs.add(direction);
+                    break;
+                case OUTPUT:
+                    outputs.add(direction);
+                    break;
+            }
+        }
+
+        player.sendMessage(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
+        player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+        player.sendMessage(Text.literal("Inputs: ").append(inputs.isEmpty() ? commentToText("none") :  specialToText(joinList(inputs, ", "))));
+        player.sendMessage(Text.literal("Outputs: ").append(outputs.isEmpty() ? commentToText("none") :  specialToText(joinList(outputs, ", "))));
     }
 
     @Override
@@ -184,28 +216,5 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
 
     protected static final String getName(WireColor color) {
         return color + "_wire_adapter";
-    }
-
-    @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        List<Direction> inputs = new ArrayList<>();
-        List<Direction> outputs = new ArrayList<>();
-
-        for (Direction direction : Direction.values()) {
-            EnumProperty<DirectionState> property = getDirectionState(direction);
-            switch (state.get(property)) {
-                case INPUT:
-                    inputs.add(direction);
-                    break;
-                case OUTPUT:
-                    outputs.add(direction);
-                    break;
-            }
-        }
-
-        player.sendMessage(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
-        player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
-        player.sendMessage(Text.literal("Inputs: ").append(inputs.isEmpty() ? commentToText("none") :  specialToText(joinList(inputs, ", "))));
-        player.sendMessage(Text.literal("Outputs: ").append(outputs.isEmpty() ? commentToText("none") :  specialToText(joinList(outputs, ", "))));
     }
 }

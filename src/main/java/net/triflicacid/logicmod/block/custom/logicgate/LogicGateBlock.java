@@ -97,15 +97,22 @@ public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWr
 
     @Override
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        LogicGateBlock inverse = this.getInverse();
-        if (inverse == null)
+        if (!world.isClient) {
+            LogicGateBlock inverse = this.getInverse();
+            if (inverse == null) {
+                return null;
+            } else {
+                return inverse.getDefaultState().with(FACING, state.get(FACING));
+            }
+        } else {
             return null;
-        player.sendMessage(Text.literal("Set gate type to ").append(specialToText(inverse.getType())));
-        return inverse.getDefaultState().with(FACING, state.get(FACING));
+        }
     }
 
     @Override
     public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        player.sendMessage(Text.literal("Gate type: ").append(specialToText(getType())));
+        if (!world.isClient) {
+            player.sendMessage(Text.literal("Gate type: ").append(specialToText(getType())));
+        }
     }
 }

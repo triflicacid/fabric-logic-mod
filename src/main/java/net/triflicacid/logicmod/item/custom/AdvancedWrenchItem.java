@@ -1,7 +1,9 @@
 package net.triflicacid.logicmod.item.custom;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.NoteBlock;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
@@ -21,6 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 import static net.triflicacid.logicmod.util.Util.commentToText;
+import static net.triflicacid.logicmod.util.Util.wrapInt;
 
 public class AdvancedWrenchItem extends Item {
     public static final String NAME = "advanced_wrench";
@@ -46,16 +49,24 @@ public class AdvancedWrenchItem extends Item {
             World world = context.getWorld();
             BlockPos pos = context.getBlockPos();
             BlockState state = world.getBlockState(pos);
+            Block block = state.getBlock();
+            BlockState newState = null;
 
-            if (state.getBlock() instanceof AdvancedWrenchable wrenchableBlock) {
-                BlockState newState = wrenchableBlock.applyAdvancedWrench(world, pos, state, context.getSide(), context.getPlayer(), context.getHorizontalPlayerFacing());
-                if (newState != null) {
-                    world.setBlockState(pos, newState);
-                    world.scheduleBlockTick(pos, state.getBlock(), 1, TickPriority.NORMAL);
-                }
+            if (block instanceof AdvancedWrenchable wrenchableBlock) {
+                newState = wrenchableBlock.applyAdvancedWrench(world, pos, state, context.getSide(), context.getPlayer(), context.getHorizontalPlayerFacing());
+            } else if (block instanceof NoteBlock) {
+                int newNote = wrapInt(state.get(NoteBlock.NOTE) + (Screen.hasShiftDown() ? -1 : 1), 0, 24);
+                newState = state.with(NoteBlock.NOTE, newNote);
+            }
+
+            if (newState == null) {
+                return ActionResult.FAIL;
+            } else {
+                world.setBlockState(pos, newState);
+                world.scheduleBlockTick(pos, state.getBlock(), 1, TickPriority.NORMAL);
             }
         }
 
-        return super.useOnBlock(context);
+        return ActionResult.SUCCESS;
     }
 }
