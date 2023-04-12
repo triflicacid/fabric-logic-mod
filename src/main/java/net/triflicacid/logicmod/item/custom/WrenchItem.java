@@ -25,12 +25,12 @@ public class WrenchItem extends Item {
     public static final String NAME = "wrench";
 
     public WrenchItem() {
-        super(new FabricItemSettings());
+        super(new FabricItemSettings().maxCount(1));
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(commentToText("Able to rotate some blocks"));
+        tooltip.add(commentToText("Use to rotate blocks"));
         super.appendTooltip(stack, world, tooltip, context);
     }
 

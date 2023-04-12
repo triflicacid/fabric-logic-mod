@@ -163,6 +163,8 @@ This mod contain the following logic gates:
 
 ## Tools
 
+**Note** these cannot stack
+
 - Analyser
   - Analyses blocks when right-clicked on them
   - Crafting recipe:

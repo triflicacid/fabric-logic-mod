@@ -26,12 +26,12 @@ public class AdvancedWrenchItem extends Item {
     public static final String NAME = "advanced_wrench";
 
     public AdvancedWrenchItem() {
-        super(new FabricItemSettings());
+        super(new FabricItemSettings().maxCount(1));
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(commentToText("Configure some logical components"));
+        tooltip.add(commentToText("Use to configure logical components"));
         super.appendTooltip(stack, world, tooltip, context);
     }
 

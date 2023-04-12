@@ -27,7 +27,9 @@ public class RandomBlock extends SignalIOBlock implements AdvancedWrenchable {
     }
 
     protected final int getRandom(BlockState state) {
-        return (int) (Math.random() * (state.get(BINARY) ? 2 : 16));
+        if (state.get(BINARY))
+            return Math.random() < 0.5 ? 0 : 15;
+        return (int) (Math.random() * 16);
     }
 
     @Override

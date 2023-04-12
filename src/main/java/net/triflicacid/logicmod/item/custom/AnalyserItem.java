@@ -27,7 +27,7 @@ public class AnalyserItem extends Item {
     public static final String NAME = "analyser";
 
     public AnalyserItem() {
-        super(new FabricItemSettings());
+        super(new FabricItemSettings().maxCount(1));
     }
 
     @Override
