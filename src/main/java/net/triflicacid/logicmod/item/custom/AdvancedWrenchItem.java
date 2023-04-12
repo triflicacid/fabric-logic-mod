@@ -45,7 +45,7 @@ public class AdvancedWrenchItem extends Item {
             BlockState state = world.getBlockState(pos);
 
             if (state.getBlock() instanceof AdvancedWrenchable wrenchableBlock) {
-                BlockState newState = wrenchableBlock.applyAdvancedWrench(world, pos, state, context.getSide(), context.getPlayer(), context.getPlayerFacing());
+                BlockState newState = wrenchableBlock.applyAdvancedWrench(world, pos, state, context.getSide(), context.getPlayer(), context.getHorizontalPlayerFacing());
                 if (newState != null) {
                     world.setBlockState(pos, newState);
                     world.scheduleBlockTick(pos, state.getBlock(), 1, TickPriority.NORMAL);
