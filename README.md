@@ -2,9 +2,19 @@
 
 This mod adds basic logic utilities to Minecraft
 
-**IMPORTANT** some asset files are not included by default. To generate them, follow the following steps:
-- Navigate to `src/main/resources/assets/logic-mod/`
-- Run `python generate-wire-assets.py blue green red yellow purple orange`
+# Setup
+
+1. Pull code from repository
+2. Download gradle
+3. Run `./gradlew genSources`
+4. Some asset files are not included by default. To generate them, follow the following steps:
+   - Navigate to `src/main/resources/assets/logic-mod/`
+   - Run `python generate-wire-assets.py blue green red yellow purple orange`
+
+To launch minecraft with the mod, run `./gradlew runClient`
+- Pre-made minecraft world(s) are available, and stores in `run/saves/`
+
+To build the mod, run `./gradlew build`. The mod jar file can be found in `build/libs/`.
 
 # Features
 

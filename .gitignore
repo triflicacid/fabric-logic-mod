@@ -30,7 +30,17 @@ bin/
 
 # fabric
 
-run/
+run/*
+!run/saves/
+run/saves/*/advancements/
+run/saves/*/data/
+run/saves/*/datapacks/
+run/saves/*/DIM1/
+run/saves/*/DIM-1/
+run/saves/*/entities/
+run/saves/*/playerdata/
+run/saves/*/poi/
+run/saves/*/stats/
 
 # java
 
