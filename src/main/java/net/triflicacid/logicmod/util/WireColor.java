@@ -10,7 +10,6 @@ public enum WireColor implements StringIdentifiable {
     ORANGE("orange"),
     PURPLE("purple"),
     RED("red"),
-    WHITE("white"),
     YELLOW("yellow");
 
     private final String name;
@@ -41,8 +40,6 @@ public enum WireColor implements StringIdentifiable {
                 return Formatting.LIGHT_PURPLE;
             case RED:
                 return Formatting.RED;
-            case WHITE:
-                return Formatting.WHITE;
             case YELLOW:
                 return Formatting.YELLOW;
         }

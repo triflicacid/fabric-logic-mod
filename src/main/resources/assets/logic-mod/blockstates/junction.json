@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "logic-mod:block/junction"
+    },
+    "active=true": {
+      "model": "logic-mod:block/junction_active"
+    }
+  }
+}

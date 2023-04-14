@@ -12,13 +12,13 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.triflicacid.logicmod.block.custom.adapter.BusAdapterBlock;
+import net.triflicacid.logicmod.block.custom.adapter.JunctionBlock;
 import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
-import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.util.WireColor;
 
 import java.util.*;
@@ -49,7 +49,7 @@ public abstract class AbstractWireBlock extends Block {
     }
 
     /** Explore to get received power, but do not loop back */
-    protected final int getReceivedPower(World world, BlockPos pos, BlockState state, Set<BlockPos> exploredPositions, Set<BlockPos> knownBlocks) {
+    public final int getReceivedPower(World world, BlockPos pos, BlockState state, Set<BlockPos> exploredPositions, Set<BlockPos> knownBlocks) {
         exploredPositions.add(pos);
         int power = 0;
 
@@ -82,6 +82,8 @@ public abstract class AbstractWireBlock extends Block {
             Map<WireColor, Integer> powerMap = knownBlocks.contains(dstPos) ? ((BusBlockEntity) world.getBlockEntity(dstPos)).getPowerMap() : busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
             if (powerMap.containsKey(getWireColor()))
                 power = powerMap.get(getWireColor());
+        } else if (dstBlock instanceof JunctionBlock jBlock) {
+            power = knownBlocks.contains(dstPos) ? JunctionBlock.getPower(dstState, getWireColor()) : jBlock.getReceivedPower(world, dstPos, dstState, getWireColor(), exploredPositions, knownBlocks);
         }
 
         return power;
@@ -130,6 +132,9 @@ public abstract class AbstractWireBlock extends Block {
                 }
             } else if (block instanceof BusBlock) {
                 BusBlock.update(world, pos, explored);
+                explored.add(pos);
+            } else if (block instanceof JunctionBlock) {
+                JunctionBlock.update(world, pos, state, explored);
                 explored.add(pos);
             }
         }

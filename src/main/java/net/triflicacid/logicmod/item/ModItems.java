@@ -12,6 +12,7 @@ import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.block.custom.*;
+import net.triflicacid.logicmod.block.custom.adapter.*;
 import net.triflicacid.logicmod.block.custom.logicgate.*;
 import net.triflicacid.logicmod.block.custom.wire.*;
 import net.triflicacid.logicmod.item.custom.AdvancedWrenchItem;

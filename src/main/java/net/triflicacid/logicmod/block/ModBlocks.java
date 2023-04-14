@@ -12,8 +12,10 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.custom.*;
+import net.triflicacid.logicmod.block.custom.adapter.*;
 import net.triflicacid.logicmod.block.custom.logicgate.*;
 import net.triflicacid.logicmod.block.custom.wire.*;
+import net.triflicacid.logicmod.item.ModItemGroup;
 
 public class ModBlocks {
     public static final LogicGateBlock AND_GATE = (LogicGateBlock) registerBlock(AndGateBlock.NAME, new AndGateBlock());
@@ -48,6 +50,7 @@ public class ModBlocks {
     public static final Block YELLOW_WIRE = registerBlock(YellowWireBlock.NAME, new YellowWireBlock());
     public static final Block YELLOW_WIRE_ADAPTER = registerBlock(YellowWireAdapterBlock.NAME, new YellowWireAdapterBlock());
 
+    public static final Block JUNCTION = registerBlock(JunctionBlock.NAME, new JunctionBlock(), ModItemGroup.LOGIC);
     public static final Block BUS = registerBlock(BusBlock.NAME, new BusBlock(BlockSoundGroup.WOOL));
     public static final Block BUS_ADAPTER = registerBlock(BusAdapterBlock.NAME, new BusAdapterBlock());
 

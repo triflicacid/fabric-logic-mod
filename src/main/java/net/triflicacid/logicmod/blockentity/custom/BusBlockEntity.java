@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import static net.triflicacid.logicmod.util.Util.capitalise;
 
 public class BusBlockEntity extends BlockEntity {
-    public static final List<WireColor> COLORS = Arrays.stream(WireColor.values()).filter(c -> c != WireColor.WHITE).collect(Collectors.toList());
+    public static final List<WireColor> COLORS = Arrays.asList(WireColor.values());
     protected Map<WireColor, Integer> powerMap = new HashMap<>();
 
     protected static String getKeyName(WireColor color) {

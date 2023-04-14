@@ -176,8 +176,8 @@ The advanced wrench toggles each get between its NOT variant
     - Stored as NBT data in `OnTickCount` and `OffTickCount` respectively
   - May be locked by powering from behind (pauses pulsing)
   - The advanced wrench increments/decrements the tick duration
-    - If facing in the same/opposite direction as the black indicator, alter the *on* duration
-    - Otherwise, alter the *off* duration
+    - The `on` duration is changed by default; hold the `Alt` key to alter the `off` duration
+    - The duration is incremented by default; hold the `Shift` key to decrement the duration
   - Crafting recipe: shapeless crafting of a
     - Minecraft clock
     - Input block
@@ -377,12 +377,26 @@ There are six wire/adapter variants, along with the dyue color to craft the wire
 - Red (red dye)
 - Yellow (yellow dye)
 
-The bus component resembles a white wire, but has an internal cable for each wire color. The bus adapter is different to the normal wire adapters: it has no side modes. It cannot accept nor output a redstone signal. If a colored wire is placed adjacent to the bus adapter, that color's signal is fed into the bus.
-Basically, a bus acts as all the colored wires condensed into one, and the adapters allow for individual colored wires to input/output that color's signal.
+The junction component is similar to a wire, except it stores two colored signals
+- It stores two colors, for which it stores the respective signal strength
+- Power updates from a colored wire will only propagate that color's signal through the junction
+  - Therefore, a junction can act as a crossing between two colored wires
+- The junction's colors can be cycled using the advanced wrench
+  - By default, `color 1` is cycled
+  - Hold the `Alt` key to cycle `color 2`
+  - *Note* Holding the `Shift` key does not cycle backwards
+- *Important* this component is in development. A new model, inventory placement, and a crafting recipe are yet to be added.
 
-The bus cable and adapter are white to symbolise all the colors combined.
-- 3 buses can be crafted shapelessly by combining
+The bus component resembles a white wire, but is **not** a wire
+- It contains a cable for every wire color
+- Its behaviour is similar to the colored wires
+- It cannot feed into colored wire adapters; for this, you must use a bus adapter
+- Crafting: 3 buses can be crafted shapelessly by combining
   - A red wire
   - A blue wire
   - A green wire
+
+The bus adapter is different to the other adapters
+- It doesn't have any side modes: it cannot accept nor output a redstone signal
+- Instead, it allows colored wires to transfer their signal into the bus, or outputs the signal from the bus into the colored wire
 - Bus adapters are crafted like normal adapters, but using buses

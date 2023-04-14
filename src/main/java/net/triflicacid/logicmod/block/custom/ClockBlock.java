@@ -34,17 +34,15 @@ public class ClockBlock extends AbstractClockBlock implements AdvancedWrenchable
         if (world.isClient)
             return null;
 
-//        player.sendMessage(Text.literal("Set " + LOCKED.getName() + " to ").append(booleanToText(!state.get(LOCKED))));
-//        return state.cycle(LOCKED);
         BlockEntity entity = world.getBlockEntity(pos);
         if (entity instanceof ClockBlockEntity clockEntity) {
             int delta = Screen.hasShiftDown() ? -1 : 1;
-            if (playerFacing == state.get(FACING) || playerFacing == state.get(FACING).getOpposite()) {
-                clockEntity.setOnTickCount(clockEntity.getOnTickCount() + delta);
-                player.sendMessage(Text.literal("Set ").append(specialToText("on duration")).append(" to ").append(numberToText(clockEntity.getOnTickCount())));
-            } else {
+            if (Screen.hasAltDown()) {
                 clockEntity.setOffTickCount(clockEntity.getOffTickCount() + delta);
                 player.sendMessage(Text.literal("Set ").append(specialToText("off duration")).append(" to ").append(numberToText(clockEntity.getOffTickCount())));
+            } else {
+                clockEntity.setOnTickCount(clockEntity.getOnTickCount() + delta);
+                player.sendMessage(Text.literal("Set ").append(specialToText("on duration")).append(" to ").append(numberToText(clockEntity.getOnTickCount())));
             }
         }
 
