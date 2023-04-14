@@ -13,7 +13,12 @@ directions = ("up", "down", "north", "south", "west", "east")
 
 def main(color: str):
     # Wire Blockstate
-    data = { "variants": { "": { "model": f"logic-mod:block/wire/{color}/wire" } } }
+    variants = {}
+    for b in (True, False):
+        variants[f"active=" + str(b).lower()] = {
+            "model": f"logic-mod:block/wire/{color}/wire" + ("_active" if b else "")
+        }
+    data = { "variants": variants }
     fwrite(f"blockstates/{color}_wire.json", data)
 
     # Wire Model
@@ -25,29 +30,40 @@ def main(color: str):
     }
     fwrite(f"models/block/wire/{color}/wire.json", data)
 
+    data = {
+        "parent": "block/cube_all",
+        "textures": {
+            "all": f"logic-mod:block/wire/{color}/side_active"
+        }
+    }
+    fwrite(f"models/block/wire/{color}/wire_active.json", data)
+
     # Wire Adapter Blockstates
     variants = {}
 
     for product in itertools.product(states, repeat=len(directions)):
-        variant = ','.join([directions[i] + "=" + product[i] for i in range(len(product))])
-        name = '_'.join(product)
-        variants[variant] = { "model": f"logic-mod:block/wire/{color}/variant/{name}" }
+        for b in (False, True):
+            bs = str(b).lower()
+            variant = f"active={bs}," + ','.join([directions[i] + "=" + product[i] for i in range(len(product))])
+            name = f"{bs}_" + '_'.join(product)
+            variants[variant] = { "model": f"logic-mod:block/wire/{color}/adapter/{name}" }
 
-        # Model
-        path = F"logic-mod:block/wire/{color}/adapter_"
-        data = {
-            "parent": "block/orientable",
-            "textures": {
-                "up": path + product[0],
-                "down": path + product[1],
-                "north": path + product[2],
-                "south": path + product[3],
-                "west": path + product[4],
-                "east": path + product[5],
-                "particle": F"logic-mod:block/wire/{color}/side"
+            # Model
+            path = f"logic-mod:block/wire/{color}/adapter_"
+            post = "_active" if b else ""
+            data = {
+                "parent": "block/orientable",
+                "textures": {
+                    "up": path + product[0] + post,
+                    "down": path + product[1] + post,
+                    "north": path + product[2] + post,
+                    "south": path + product[3] + post,
+                    "west": path + product[4] + post,
+                    "east": path + product[5] + post,
+                    "particle": f"logic-mod:block/wire/{color}/side{post}"
+                }
             }
-        }
-        fwrite(f"models/block/wire/{color}/variant/{name}.json", data)
+            fwrite(f"models/block/wire/{color}/adapter/{name}.json", data)
 
     data = { "variants": variants }
     fwrite(f"blockstates/{color}_wire_adapter.json", data)

@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
@@ -24,11 +25,12 @@ import java.util.*;
 
 public abstract class AbstractWireBlock extends Block {
     public static final IntProperty POWER = Properties.POWER;
+    public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
     protected final WireColor color;
 
     public AbstractWireBlock(BlockSoundGroup sound, WireColor color) {
         super(FabricBlockSettings.of(Material.WOOL).sounds(sound).breakInstantly());
-        this.setDefaultState(this.stateManager.getDefaultState().with(POWER, 0));
+        this.setDefaultState(this.stateManager.getDefaultState().with(POWER, 0).with(ACTIVE, false));
         this.color = color;
     }
 
@@ -109,7 +111,7 @@ public abstract class AbstractWireBlock extends Block {
                 explored.add(pos);
 
                 if (power != receiving) {
-                    state = state.with(POWER, receiving);
+                    state = state.with(POWER, receiving).with(ACTIVE, receiving > 0);
                     world.setBlockState(pos, state, 2);
 
                     for (Direction direction : Direction.values()) {
@@ -153,7 +155,7 @@ public abstract class AbstractWireBlock extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(POWER);
+        builder.add(POWER, ACTIVE);
         super.appendProperties(builder);
     }
 }

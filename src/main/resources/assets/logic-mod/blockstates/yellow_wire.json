@@ -1,6 +1,9 @@
 {
   "variants": {
-    "": {
+    "active=true": {
+      "model": "logic-mod:block/wire/yellow/wire_active"
+    },
+    "active=false": {
       "model": "logic-mod:block/wire/yellow/wire"
     }
   }

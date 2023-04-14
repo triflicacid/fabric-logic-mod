@@ -339,6 +339,7 @@ Wires are blocks which carry redstone signals. Key features:
 - Signal does not decay.
 - Signal is transferred to any adjacent wire blocks *of the same color*. This means that different colored wires may be adjacent without interfering.
 - To get a signal in/out of a wire, use an *adapter* of the same color.
+- When a wire is on, it will change to a brighter color and emit redstone particles.
 - Wire crafting recipe (crafts 8 wires):
 
   | C | C | C |
