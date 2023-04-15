@@ -408,3 +408,25 @@ The bus adapter is different to the other adapters
 - It doesn't have any side modes: it cannot accept nor output a redstone signal
 - Instead, it allows colored wires to transfer their signal into the bus, or outputs the signal from the bus into the colored wire
 - Bus adapters are crafted like normal adapters, but using buses
+
+# License
+
+This code is licensed under the GPL v3.0 license. For the full license, see `/LICENSE`
+
+```
+A Minecraft mod which adds basic logical components into the game.
+Copyright (C) 2023 TriflicAcid
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+```
