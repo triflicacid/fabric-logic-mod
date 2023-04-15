@@ -24,7 +24,10 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
 
     public static final int READ = 1;
     public static final int WRITE = 2;
-    public static final int CLEAR = 3;
+    public static final int INVERSE = 3;
+    public static final int AND = 4;
+    public static final int OR = 5;
+    public static final int CLEAR = 15;
 
     public MemoryCellBlock() {
         super(0);
@@ -40,16 +43,7 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
 
     @Override
     public int getSignalStrength(BlockState state, World world, BlockPos pos) {
-        switch (getControlPower(world, pos, state)) {
-            case READ:
-                return state.get(MEMORY);
-            case WRITE:
-                return getInputPower(world, pos, state);
-            case CLEAR:
-                return 0;
-            default:
-                return 0;
-        }
+        return 0; // Not used
     }
 
     @Override
@@ -61,12 +55,13 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         BlockState newState = null;
         switch (getControlPower(world, pos, state)) {
-            case READ:
-                if (state.get(POWER) != state.get(MEMORY)) {
-                    int memory = state.get(MEMORY);
+            case READ: {
+                int memory = state.get(MEMORY);
+                if (state.get(POWER) != memory) {
                     newState = state.with(POWER, memory).with(ACTIVE, memory > 0);
                 }
                 break;
+            }
             case WRITE: {
                 int receiving = getInputPower(world, pos, state);
                 if (receiving != state.get(MEMORY)) {
@@ -74,6 +69,19 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
                 }
                 break;
             }
+            case INVERSE:
+                newState = state.with(MEMORY, state.get(MEMORY) == 0 ? 15 : 0);
+                break;
+            case AND: {
+                int mem = state.get(MEMORY);
+                newState = state.with(MEMORY, getInputPower(world, pos, state) > 0 && mem > 0 ? mem : 0);
+                break;
+            }
+            case OR:
+                if (state.get(MEMORY) == 0) {
+                    newState = state.with(MEMORY, getInputPower(world, pos, state));
+                }
+                break;
             case CLEAR:
                 if (state.get(MEMORY) != 0) {
                     newState = state.with(MEMORY, 0);
@@ -114,6 +122,15 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
                 break;
             case WRITE:
                 controlStr = "write";
+                break;
+            case INVERSE:
+                controlStr = "inverse";
+                break;
+            case AND:
+                controlStr = "and";
+                break;
+            case OR:
+                controlStr = "or";
                 break;
             case CLEAR:
                 controlStr = "clear";

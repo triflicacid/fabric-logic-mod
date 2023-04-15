@@ -235,11 +235,13 @@ The advanced wrench toggles each get between its NOT variant
 
 - Memory Cell
   - Stores a redstone signal in memory, which it outputs
-  - Accepts a control input from the side, and a write line from the left.
-    - 0: `nothing`. Don't output anything (signal 0).
+  - Accepts a control input from the side, and a write line from behind. If signal is not listed below, nothing happens (outputs 0)
     - 1: `read`. Output the stored signal.
-    - 2: `write`. Sets internal memory to signal it is receiving from its left.
-    - 3: `clear`. Clears the internal memory (sets it to 0).
+    - 2: `write`. Sets internal memory to signal it is receiving from behind.
+    - 3: `inverse`. Inverts stored memory - if 0, set to 15. Else set to 0.
+    - 4: `and`. If receiving input from behind, preserve memory. Else, clear it.
+    - 5: `or`. If memory is 0, write to memory the signal from behind.
+    - 15: `clear`. Clears the internal memory (sets it to 0).
   - Use the advanced wrench to manually increment the stored redstone signal (shift to decrement).
   - Crafting recipe:
 
