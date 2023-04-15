@@ -50,19 +50,27 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
 
         if (dstBlock instanceof AbstractWireBlock wireBlock) {
             if (wireBlock.getWireColor() == getWireColor()) {
+                exploredPositions.add(dstPos);
                 power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : wireBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
             } else if (wireBlock instanceof WireAdapterBlock adapterBlock) {
                 if (this.isInput(srcState, direction) && adapterBlock.isOutput(dstState, direction.getOpposite())) {
+                    exploredPositions.add(dstPos);
                     power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : dstState.getStrongRedstonePower(world, dstPos, direction);
                 }
             }
         } else if (dstBlock instanceof BusAdapterBlock busAdapterBlock) {
+            exploredPositions.add(dstPos);
             Map<WireColor, Integer> powerMap = knownBlocks.contains(dstPos) ? ((BusBlockEntity) world.getBlockEntity(dstPos)).getPowerMap() : busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
             if (powerMap.containsKey(getWireColor()))
                 power = powerMap.get(getWireColor());
         } else if (dstBlock instanceof JunctionBlock jBlock) {
-            power = knownBlocks.contains(dstPos) ? JunctionBlock.getPower(dstState, getWireColor()) : jBlock.getReceivedPower(world, dstPos, dstState, getWireColor(), exploredPositions, knownBlocks);
+            exploredPositions.add(dstPos);
+            Map<WireColor, Integer> map = jBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+            if (map.containsKey(getWireColor())) {
+                power = map.get(getWireColor());
+            }
         } else if (isInput(srcState, direction)) {
+            exploredPositions.add(dstPos);
             power = getPower(world, srcPos, srcState, direction);
         }
 

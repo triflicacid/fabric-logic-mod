@@ -28,10 +28,15 @@ public class BusAdapterBlock extends BusBlock {
         Map<WireColor, Integer> power = new HashMap<>();
 
         if (dstBlock instanceof BusBlock dstBusBlock) {
+            exploredPositions.add(dstPos);
             power = knownBlocks.contains(dstPos) ? ((BusBlockEntity) world.getBlockEntity(dstPos)).getPowerMap() : dstBusBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
         } else if (dstBlock instanceof AbstractWireBlock dstWireBlock) {
+            exploredPositions.add(dstPos);
             int value = knownBlocks.contains(dstPos) ? dstState.get(AbstractWireBlock.POWER) : dstWireBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
             power.put(dstWireBlock.getWireColor(), value);
+        } else if (dstBlock instanceof JunctionBlock jBlock) {
+            exploredPositions.add(dstPos);
+            power = jBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
         }
 
         return power;

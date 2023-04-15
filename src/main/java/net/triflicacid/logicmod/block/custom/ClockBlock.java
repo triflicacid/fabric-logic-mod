@@ -27,8 +27,6 @@ public class ClockBlock extends AbstractClockBlock implements AdvancedWrenchable
         return checkType(world, type, ModBlockEntity.CLOCK);
     }
 
-    // TODO clicking on clock will open a basic GUI where one can set OnTickCount and OffTickCount
-
     @Override
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         if (world.isClient)
@@ -57,9 +55,9 @@ public class ClockBlock extends AbstractClockBlock implements AdvancedWrenchable
         BlockEntity entity = world.getBlockEntity(pos);
         if (entity instanceof ClockBlockEntity clockEntity) {
             player.sendMessage(Text.literal("On Duration: ")
-                    .append(Text.literal(String.valueOf(clockEntity.getOnTickCount())).formatted(Formatting.GOLD)));
+                    .append(numberToText(clockEntity.getOnTickCount())));
             player.sendMessage(Text.literal("Off Duration: ")
-                    .append(Text.literal(String.valueOf(clockEntity.getOffTickCount())).formatted(Formatting.GOLD)));
+                    .append(numberToText(clockEntity.getOffTickCount())));
         }
     }
 }

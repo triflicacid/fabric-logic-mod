@@ -12,12 +12,14 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.block.custom.adapter.BusAdapterBlock;
 import net.triflicacid.logicmod.block.custom.adapter.JunctionBlock;
+import net.triflicacid.logicmod.block.custom.adapter.WireAdapterBlock;
 import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
 import net.triflicacid.logicmod.util.WireColor;
 
@@ -58,9 +60,7 @@ public abstract class AbstractWireBlock extends Block {
             if (exploredPositions.contains(dstPos))
                 continue;
 
-            exploredPositions.add(dstPos);
             BlockState dstState = world.getBlockState(dstPos);
-
             int power2 = getPowerOfNeighbor(world, pos, state, dstPos, dstState, dstState.getBlock(), direction, exploredPositions, knownBlocks);
             if (power2 > power) {
                 power = power2;
@@ -76,14 +76,20 @@ public abstract class AbstractWireBlock extends Block {
 
         if (dstBlock instanceof AbstractWireBlock wireBlock) {
             if (wireBlock.getWireColor() == getWireColor()) {
+                exploredPositions.add(dstPos);
                 power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : wireBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
             }
         } else if (dstBlock instanceof BusAdapterBlock busAdapterBlock) {
+            exploredPositions.add(dstPos);
             Map<WireColor, Integer> powerMap = knownBlocks.contains(dstPos) ? ((BusBlockEntity) world.getBlockEntity(dstPos)).getPowerMap() : busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
             if (powerMap.containsKey(getWireColor()))
                 power = powerMap.get(getWireColor());
         } else if (dstBlock instanceof JunctionBlock jBlock) {
-            power = knownBlocks.contains(dstPos) ? JunctionBlock.getPower(dstState, getWireColor()) : jBlock.getReceivedPower(world, dstPos, dstState, getWireColor(), exploredPositions, knownBlocks);
+            exploredPositions.add(dstPos);
+            Map<WireColor, Integer> map = jBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+            if (map.containsKey(getWireColor())) {
+                power = map.get(getWireColor());
+            }
         }
 
         return power;
@@ -95,12 +101,12 @@ public abstract class AbstractWireBlock extends Block {
 
     /** Update oneself and all connected AbstractWireBlocks */
     public static final void update(World world, BlockPos origin, Set<BlockPos> explored) {
-        Deque<BlockPos> positions = new ArrayDeque<>();
-
-        positions.add(origin);
+        Deque<Pair<BlockPos,BlockPos>> positions = new ArrayDeque<>(); // (prev, pos)
+        positions.add(new Pair<>(null, origin));
 
         while (positions.size() > 0) {
-            BlockPos pos = positions.remove();
+            Pair pair = positions.remove();
+            BlockPos pos = (BlockPos) pair.getRight();
             if (explored.contains(pos)) {
                 continue;
             }
@@ -117,17 +123,7 @@ public abstract class AbstractWireBlock extends Block {
                     world.setBlockState(pos, state, 2);
 
                     for (Direction direction : Direction.values()) {
-                        BlockPos pos2 = pos.offset(direction);
-                        BlockState state2 = world.getBlockState(pos2);
-                        Block block2 = state2.getBlock();
-
-                        if (block2 instanceof AbstractWireBlock wireBlock2) {
-                            if (wireBlock2.getWireColor() == wireBlock.getWireColor()) {
-                                positions.add(pos.offset(direction));
-                            }
-                        } else {
-                            block2.neighborUpdate(state2, world, pos2, block, pos, true);
-                        }
+                        positions.add(new Pair<>(pos, pos.offset(direction)));
                     }
                 }
             } else if (block instanceof BusBlock) {
@@ -136,6 +132,11 @@ public abstract class AbstractWireBlock extends Block {
             } else if (block instanceof JunctionBlock) {
                 JunctionBlock.update(world, pos, state, explored);
                 explored.add(pos);
+            } else {
+                // Update neighbors -- if adapter, may update a redstone component
+                BlockPos prev = (BlockPos) pair.getLeft();
+                BlockState prevState = world.getBlockState(prev);
+                block.neighborUpdate(state, world, pos, prevState.getBlock(), prev, true);
             }
         }
     }

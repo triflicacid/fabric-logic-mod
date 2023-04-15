@@ -8,6 +8,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Util {
@@ -86,6 +87,20 @@ public class Util {
             if (values[i - 1] != values[i])
                 return false;
         return true;
+    }
+
+    /** Merge second power map into the second */
+    public static void mergePowerMaps(Map<WireColor,Integer> map1, Map<WireColor,Integer> map2) {
+        int value;
+        for (WireColor color : map2.keySet()) {
+            if (map1.containsKey(color)) {
+                if (map1.get(color) < (value = map2.get(color))) {
+                    map1.put(color, value);
+                }
+            } else {
+                map1.put(color, map2.get(color));
+            }
+        }
     }
 
     /** Capitalise a string */

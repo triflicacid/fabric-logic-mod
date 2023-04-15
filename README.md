@@ -377,15 +377,23 @@ There are six wire/adapter variants, along with the dyue color to craft the wire
 - Red (red dye)
 - Yellow (yellow dye)
 
-The junction component is similar to a wire, except it stores two colored signals
-- It stores two colors, for which it stores the respective signal strength
-- Power updates from a colored wire will only propagate that color's signal through the junction
-  - Therefore, a junction can act as a crossing between two colored wires
-- The junction's colors can be cycled using the advanced wrench
-  - By default, `color 1` is cycled
-  - Hold the `Alt` key to cycle `color 2`
-  - *Note* Holding the `Shift` key does not cycle backwards
-- *Important* this component is in development. A new model, inventory placement, and a crafting recipe are yet to be added.
+The junction component is similar to a wire
+- The junction propagates received power through the block
+  - Power updates from a colored wire will only propagate that color's signal through the junction
+  - Allows colored wires to cross over one another e.g.
+
+  |   | B |   |
+  |---|---|---|
+  | G | J | G |
+  |   | B |   |
+
+  ^ Shows blue (B) and green (G) wires crossing using a junction (J)
+- Power is not propagated for more than one block
+- Crafting: a junction can be crafted shapelessly by combining
+  - A red wire
+  - A blue wire
+  - A green wire
+  - A stone block
 
 The bus component resembles a white wire, but is **not** a wire
 - It contains a cable for every wire color

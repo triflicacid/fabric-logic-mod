@@ -23,8 +23,7 @@ import net.triflicacid.logicmod.util.WireColor;
 
 import java.util.*;
 
-import static net.triflicacid.logicmod.util.Util.capitalise;
-import static net.triflicacid.logicmod.util.Util.numberToText;
+import static net.triflicacid.logicmod.util.Util.*;
 
 public class BusBlock extends Block implements BlockEntityProvider, Analysable {
     public static final String NAME = "bus";
@@ -54,18 +53,9 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
             if (exploredPositions.contains(dstPos))
                 continue;
 
-            exploredPositions.add(dstPos);
             BlockState dstState = world.getBlockState(dstPos);
-
             Map<WireColor, Integer> power2 = getPowerOfNeighbor(world, pos, state, dstPos, dstState, dstState.getBlock(), direction, exploredPositions, knownBlocks);
-            for (WireColor color : power2.keySet()) {
-                if (power.containsKey(color)) {
-                    if (power2.get(color) > power.get(color))
-                        power.put(color, power2.get(color));
-                } else {
-                    power.put(color, power2.get(color));
-                }
-            }
+            mergePowerMaps(power, power2);
         }
 
         return power;
@@ -75,6 +65,7 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
         Map<WireColor, Integer> power = null;
 
         if (dstBlock instanceof BusBlock dstBusBlock) {
+            exploredPositions.add(dstPos);
             power = knownBlocks.contains(dstPos) ? ((BusBlockEntity) world.getBlockEntity(dstPos)).getPowerMap() : dstBusBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
         }
 
@@ -107,20 +98,11 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
                 if (!entity.arePowerMapsEqual(receiving)) {
                     for (WireColor color : receiving.keySet())
                         entity.setPower(color, receiving.get(color));
-
                     state = state.with(ACTIVE, entity.containsPower());
                     world.setBlockState(pos, state, 2);
 
                     for (Direction direction : Direction.values()) {
-                        BlockPos pos2 = pos.offset(direction);
-                        BlockState state2 = world.getBlockState(pos2);
-                        Block block2 = state2.getBlock();
-
-                        if (block2 instanceof BusBlock) {
-                            positions.add(pos.offset(direction));
-                        } else {
-                            block2.neighborUpdate(state2, world, pos2, block, pos, true);
-                        }
+                        positions.add(pos.offset(direction));
                     }
                 }
             } else if (block instanceof AbstractWireBlock) {
