@@ -1,10 +1,20 @@
 {
-  "variants": {
-    "active=true": {
-      "model": "logic-mod:block/wire/purple/wire_active"
+  "multipart": [
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/purple/wire"
+      },
+      "when": {
+        "power": "0"
+      }
     },
-    "active=false": {
-      "model": "logic-mod:block/wire/purple/wire"
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/purple/wire_active"
+      },
+      "when": {
+        "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
+      }
     }
-  }
+  ]
 }

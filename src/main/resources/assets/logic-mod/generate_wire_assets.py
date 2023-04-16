@@ -1,91 +1,75 @@
-import itertools
 import json
 import os
 import sys
 
 def fwrite(filename: str, data: any):
     os.makedirs(os.path.dirname(filename), exist_ok=True)
-    with open(filename, "w") as f:
+    with open(filename + ".json", "w") as f:
         json.dump(data, f, indent=2)
 
-states = ("none", "input", "output")
-directions = ("up", "down", "north", "south", "west", "east")
+modes = ("none", "input", "output")
 
-def main(color: str):
-    # Wire Blockstate
-    variants = {}
-    for b in (True, False):
-        variants[f"active=" + str(b).lower()] = {
-            "model": f"logic-mod:block/wire/{color}/wire" + ("_active" if b else "")
-        }
-    data = { "variants": variants }
-    fwrite(f"blockstates/{color}_wire.json", data)
+power_inactive = "0"
+power_active = "|".join(map(str, range(1, 16)))
 
-    # Wire Model
-    data = {
-        "parent": "block/cube_all",
-        "textures": {
-            "all": f"logic-mod:block/wire/{color}/side"
-        }
-    }
-    fwrite(f"models/block/wire/{color}/wire.json", data)
+def main(color):
+    # Adapter blockstate
+    multipart = []
+    for (dir, axis, rot) in [("north", None, 0), ("east", "y", 90), ("south", "y", 180), ("west", "y", 270), ("up", "x", 270), ("down", "x", 90)]:
+        for mode in modes:
+            for active in (False, True):
+                data = {
+                    "apply": {
+                        "model": f"logic-mod:block/wire/{color}/adapter_{mode}" + ("_active" if active else "")
+                    },
+                    "when": {
+                        dir: mode,
+                        "power": power_active if active else power_inactive
+                    }
+                }
+                if axis is not None:
+                    data["apply"][axis] = rot
+                multipart.append(data)
 
-    data = {
-        "parent": "block/cube_all",
-        "textures": {
-            "all": f"logic-mod:block/wire/{color}/side_active"
-        }
-    }
-    fwrite(f"models/block/wire/{color}/wire_active.json", data)
+    data = { "multipart": multipart }
+    fwrite(f"blockstates/{color}_wire_adapter", data)
 
-    # Wire Adapter Blockstates
-    variants = {}
-
-    for product in itertools.product(states, repeat=len(directions)):
-        for b in (False, True):
-            bs = str(b).lower()
-            variant = f"active={bs}," + ','.join([directions[i] + "=" + product[i] for i in range(len(product))])
-            name = f"{bs}_" + '_'.join(product)
-            variants[variant] = { "model": f"logic-mod:block/wire/{color}/adapter/{name}" }
-
-            # Model
-            path = f"logic-mod:block/wire/{color}/adapter_"
-            post = "_active" if b else ""
+    # Adapter models
+    for mode in modes:
+        for active in (False, True):
             data = {
-                "parent": "block/orientable",
+                "parent": "block/template_single_face",
                 "textures": {
-                    "up": path + product[0] + post,
-                    "down": path + product[1] + post,
-                    "north": path + product[2] + post,
-                    "south": path + product[3] + post,
-                    "west": path + product[4] + post,
-                    "east": path + product[5] + post,
-                    "particle": f"logic-mod:block/wire/{color}/side{post}"
+                    "texture": f"logic-mod:block/wire/{color}/adapter_{mode}" + ("_active" if active else "")
                 }
             }
-            fwrite(f"models/block/wire/{color}/adapter/{name}.json", data)
+            fwrite(f"models/block/wire/{color}/adapter_{mode}" + ("_active" if active else ""), data)
 
-    data = { "variants": variants }
-    fwrite(f"blockstates/{color}_wire_adapter.json", data)
+    # Wire blockstate
+    multipart = []
+    for active in (False, True):
+        post = "_active" if active else ""
+        multipart.append({
+            "apply": {
+                "model": f"logic-mod:block/wire/{color}/wire{post}"
+            },
+            "when": {
+                "power": power_active if active else power_inactive
+            }
+        })
+    data = { "multipart": multipart }
+    fwrite(f"blockstates/{color}_wire", data)
 
-    # Wire item model
-    data = {
-      "parent": "item/generated",
-      "textures": {
-        "layer0": f"logic-mod:item/{color}_wire"
-      }
-    }
-    fwrite(f"models/item/{color}_wire.json", data)
-
-    # Wire adapter item model
-    name = '_'.join([states[0]] * len(directions))
-    data = {
-      "parent": "item/generated",
-      "textures": {
-        "layer0": f"logic-mod:item/{color}_wire_adapter"
-      }
-    }
-    fwrite(f"models/item/{color}_wire_adapter.json", data)
+    # Wire models
+    for active in (False, True):
+        post = "_active" if active else ""
+        data = {
+          "parent": "block/cube_all",
+          "textures": {
+            "all": f"logic-mod:block/wire/{color}/side{post}"
+          }
+        }
+        fwrite(f"models/block/wire/{color}/wire{post}", data)
 
 if __name__ == "__main__":
     colors = sys.argv[1:]
@@ -98,3 +82,5 @@ if __name__ == "__main__":
         main(color)
 
     print("Done.")
+    
+        

@@ -1,0 +1,6 @@
+{
+  "parent": "block/template_single_face",
+  "textures": {
+    "texture": "logic-mod:block/wire/green/adapter_none_active"
+  }
+}

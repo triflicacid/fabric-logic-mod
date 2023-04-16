@@ -5,6 +5,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
@@ -32,6 +33,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
     public static final EnumProperty<DirectionState> SOUTH = EnumProperty.of("south", DirectionState.class);
     public static final EnumProperty<DirectionState> WEST = EnumProperty.of("west", DirectionState.class);
     public static final EnumProperty<DirectionState> EAST = EnumProperty.of("east", DirectionState.class);
+
 
     public WireAdapterBlock(WireColor color) {
         super(BlockSoundGroup.STONE, color);
@@ -97,12 +99,12 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
 
     public boolean isInput(BlockState state, Direction direction) {
         EnumProperty<DirectionState> directionState = getDirectionState(direction);
-        return directionState == null || !state.isOf(this) ? false : state.get(directionState) == DirectionState.INPUT;
+        return directionState != null && state.isOf(this) && state.get(directionState) == DirectionState.INPUT;
     }
 
     public boolean isOutput(BlockState state, Direction direction) {
         EnumProperty<DirectionState> directionState = getDirectionState(direction);
-        return directionState == null || !state.isOf(this) ? false : state.get(directionState) == DirectionState.OUTPUT;
+        return directionState != null && state.isOf(this) && state.get(directionState) == DirectionState.OUTPUT;
     }
 
     @Override

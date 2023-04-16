@@ -34,7 +34,14 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
     }
 
     private int getControlPower(World world, BlockPos pos, BlockState state) {
-        return getPower(world, pos, state, state.get(FACING).rotateYClockwise());
+        Direction direction = state.get(FACING).rotateYClockwise();
+        BlockPos dstPos = pos.offset(direction);
+        BlockState dstState = world.getBlockState(dstPos);
+        if (dstState.isOf(this)) {
+            return getControlPower(world, dstPos, dstState);
+        } else {
+            return dstState.getStrongRedstonePower(world, dstPos, direction);
+        }
     }
 
     private int getInputPower(World world, BlockPos pos, BlockState state) {
@@ -96,6 +103,17 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
 
         if (newState != null) {
             world.setBlockState(pos, newState);
+
+            // Update output (infront)
+            BlockPos dstPos = pos.offset(state.get(FACING).getOpposite());
+            world.updateNeighbor(dstPos, this, pos);
+
+            // Update adjacent memory?
+            dstPos = pos.offset(state.get(FACING).rotateYCounterclockwise());
+            BlockState dstState = world.getBlockState(dstPos);
+            if (dstState.isOf(this)) {
+                scheduledTick(dstState, world, dstPos, random);
+            }
         }
     }
 
