@@ -11,12 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.tick.TickPriority;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import org.jetbrains.annotations.Nullable;
 
@@ -63,7 +61,7 @@ public class AdvancedWrenchItem extends Item {
                 return ActionResult.FAIL;
             } else {
                 world.setBlockState(pos, newState);
-                world.scheduleBlockTick(pos, state.getBlock(), 1, TickPriority.NORMAL);
+                world.scheduleBlockTick(pos, newState.getBlock(), 1);
             }
         }
 

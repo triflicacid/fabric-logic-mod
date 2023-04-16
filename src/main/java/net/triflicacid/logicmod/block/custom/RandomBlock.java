@@ -1,28 +1,29 @@
 package net.triflicacid.logicmod.block.custom;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Material;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.tick.TickPriority;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
-public class RandomBlock extends SignalIOBlock implements AdvancedWrenchable {
+public class RandomBlock extends AbstractPowerBlock implements AdvancedWrenchable {
     public static final String NAME = "random";
     public static final BooleanProperty BINARY = BooleanProperty.of("binary");
+    public static final BooleanProperty LAST_STATE = BooleanProperty.of("last_state"); // Was the line behind us active or inactive?
 
     public RandomBlock() {
-        super(0);
-        this.setDefaultState(this.stateManager.getDefaultState().with(BINARY, false));
+        super(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).breakInstantly(), true);
+        this.setDefaultState(this.getDefaultState().with(BINARY, false).with(LAST_STATE, false));
     }
 
     protected final int getRandom(BlockState state) {
@@ -32,28 +33,23 @@ public class RandomBlock extends SignalIOBlock implements AdvancedWrenchable {
     }
 
     @Override
-    public int getSignalStrength(BlockState state, World world, BlockPos pos) {
-        return state.get(POWER);
-    }
+    public void update(World world, BlockState state, BlockPos pos) {
+        boolean active = getPower(world, pos, state, state.get(FACING)) > 0;
 
-    @Override
-    protected int getUpdateDelayInternal(BlockState state) {
-        return 0;
-    }
+        if (active != state.get(LAST_STATE)) {
+            state = state.with(LAST_STATE, active);
 
-    @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (getPower(world, pos, state, state.get(FACING)) > 0) {
-            int value = getRandom(state);
-            state = state.with(POWER, value).with(ACTIVE, value > 0);
+            if (active) { // Only update on rising edge
+                state = state.with(POWER, getRandom(state));
+            }
+
             world.setBlockState(pos, state);
-            world.scheduleBlockTick(pos, this, 2, TickPriority.NORMAL);
         }
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(BINARY);
+        builder.add(LAST_STATE, BINARY);
         super.appendProperties(builder);
     }
 

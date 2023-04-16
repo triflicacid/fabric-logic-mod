@@ -1,12 +1,14 @@
 package net.triflicacid.logicmod.block.custom.logicgate;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.triflicacid.logicmod.block.custom.SignalIOBlock;
+import net.triflicacid.logicmod.block.custom.AbstractBooleanBlock;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.interfaces.Analysable;
 
@@ -14,7 +16,7 @@ import java.util.*;
 
 import static net.triflicacid.logicmod.util.Util.specialToText;
 
-public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWrenchable, Analysable {
+public abstract class LogicGateBlock extends AbstractBooleanBlock implements AdvancedWrenchable, Analysable {
     public static final int TICK_DELAY = 2;
     private final int minInputs;
     private final int maxInputs;
@@ -24,13 +26,16 @@ public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWr
     }
 
     public LogicGateBlock(int minInputs, int maxInputs, boolean initiallyActive) {
-        super(initiallyActive ? 15 : 0);
-        if (minInputs < 1 || minInputs > 3)
+        super(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).breakInstantly(), true, initiallyActive);
+        if (minInputs < 1 || minInputs > 3) {
             throw new IllegalStateException("Invalid number of minInputs to logic gate: " + minInputs);
-        if (maxInputs < 1 || maxInputs > 3)
+        }
+        if (maxInputs < 1 || maxInputs > 3) {
             throw new IllegalStateException("Invalid number of maxInputs to logic gate: " + maxInputs);
-        if (maxInputs < minInputs)
+        }
+        if (maxInputs < minInputs) {
             throw new IllegalStateException("Invalid relation of maxInputs to minInputs to logic gate: " + minInputs + " and " + maxInputs);
+        }
         this.minInputs = minInputs;
         this.maxInputs = maxInputs;
     }
@@ -38,11 +43,6 @@ public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWr
     public abstract boolean logicalFunction(boolean[] inputs);
 
     public abstract String getType();
-
-    @Override
-    public final int getSignalStrength(BlockState state, World world, BlockPos pos) {
-        return logicalFunction(this.areInputsReceivingPower(world, pos, state)) ? 15 : 0;
-    }
 
     /** Return array indicating if each direction returned by getInputDirections is receiving power */
     public boolean[] areInputsReceivingPower(World world, BlockPos pos, BlockState state) {
@@ -86,9 +86,13 @@ public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWr
         return receiving;
     }
 
-    @Override
-    protected int getUpdateDelayInternal(BlockState state) {
-        return TICK_DELAY;
+    public void update(World world, BlockState state, BlockPos pos) {
+        boolean isActive = state.get(ACTIVE);
+        boolean shouldBeActive = logicalFunction(areInputsReceivingPower(world, pos, state));
+
+        if (isActive != shouldBeActive) {
+            world.setBlockState(pos, state.with(ACTIVE, shouldBeActive));
+        }
     }
 
     public abstract boolean isNotVariant();
@@ -112,6 +116,7 @@ public abstract class LogicGateBlock extends SignalIOBlock implements AdvancedWr
     @Override
     public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         if (!world.isClient) {
+            super.onAnalyse(world, pos, state, side, player, playerFacing);
             player.sendMessage(Text.literal("Gate type: ").append(specialToText(getType())));
         }
     }

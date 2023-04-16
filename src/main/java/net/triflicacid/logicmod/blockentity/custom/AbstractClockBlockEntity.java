@@ -81,7 +81,7 @@ public abstract class AbstractClockBlockEntity extends BlockEntity {
             blockEntity.registerTick();
 
             if (state.get(AbstractClockBlock.ACTIVE) != blockEntity.isActive()) {
-                ((AbstractClockBlock) state.getBlock()).update(state, (ServerWorld) world, pos);
+                ((AbstractClockBlock) state.getBlock()).update(state, (ServerWorld) world, pos, blockEntity.isActive());
             }
         }
     }

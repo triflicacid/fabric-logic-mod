@@ -1,18 +1,17 @@
 package net.triflicacid.logicmod.block.custom.adapter;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.tick.TickPriority;
 import net.triflicacid.logicmod.block.custom.wire.AbstractWireBlock;
 import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
@@ -22,7 +21,10 @@ import net.triflicacid.logicmod.util.DirectionState;
 import net.triflicacid.logicmod.util.WireColor;
 import org.apache.commons.lang3.ArrayUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
@@ -79,22 +81,15 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
         return power;
     }
 
-    public static final EnumProperty<DirectionState> getDirectionState(Direction direction) {
-        switch (direction) {
-            case UP:
-                return UP;
-            case DOWN:
-                return DOWN;
-            case NORTH:
-                return NORTH;
-            case SOUTH:
-                return SOUTH;
-            case WEST:
-                return WEST;
-            case EAST:
-                return EAST;
-        }
-        throw new IllegalStateException("Could not resolve direction to directionState: " + direction);
+    public static EnumProperty<DirectionState> getDirectionState(Direction direction) {
+        return switch (direction) {
+            case UP -> UP;
+            case DOWN -> DOWN;
+            case NORTH -> NORTH;
+            case SOUTH -> SOUTH;
+            case WEST -> WEST;
+            case EAST -> EAST;
+        };
     }
 
     public boolean isInput(BlockState state, Direction direction) {
@@ -117,34 +112,19 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
 
         if (axis == Direction.Axis.X || axis == Direction.Axis.Z) {
             switch (playerFacing) {
-                case NORTH:
-                    directions = new EnumProperty[] { NORTH, EAST, SOUTH, WEST };
-                    break;
-                case SOUTH:
-                    directions = new EnumProperty[] { SOUTH, WEST, NORTH, EAST };
-                    break;
-                case WEST:
-                    directions = new EnumProperty[] { WEST, NORTH, EAST, SOUTH };
-                    break;
-                case EAST:
-                    directions = new EnumProperty[] { EAST, SOUTH, WEST, NORTH };
-                    break;
+                case NORTH -> directions = new EnumProperty[]{NORTH, EAST, SOUTH, WEST};
+                case SOUTH -> directions = new EnumProperty[]{SOUTH, WEST, NORTH, EAST};
+                case WEST -> directions = new EnumProperty[]{WEST, NORTH, EAST, SOUTH};
+                case EAST -> directions = new EnumProperty[]{EAST, SOUTH, WEST, NORTH};
             }
         } else if (axis == Direction.Axis.Y) {
-            switch (playerFacing) {
-                case NORTH:
-                    directions = new EnumProperty[] { NORTH, UP, SOUTH, DOWN };
-                    break;
-                case SOUTH:
-                    directions = new EnumProperty[] { SOUTH, UP, NORTH, DOWN };
-                    break;
-                case WEST:
-                    directions = new EnumProperty[] { WEST, UP, EAST, DOWN };
-                    break;
-                case EAST:
-                    directions = new EnumProperty[] { EAST, UP, WEST, DOWN };
-                    break;
-            }
+            directions = switch (playerFacing) {
+                case NORTH -> new EnumProperty[]{NORTH, UP, SOUTH, DOWN};
+                case SOUTH -> new EnumProperty[]{SOUTH, UP, NORTH, DOWN};
+                case WEST -> new EnumProperty[]{WEST, UP, EAST, DOWN};
+                case EAST -> new EnumProperty[]{EAST, UP, WEST, DOWN};
+                default -> directions;
+            };
         }
 
         if (directions == null)
@@ -176,7 +156,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
         if (world.isClient)
             return null;
 
-        world.scheduleBlockTick(pos, this, 1, TickPriority.NORMAL);
+//        world.scheduleBlockTick(pos, this, 1);
         return state.cycle(getDirectionState(side));
     }
 
@@ -191,12 +171,8 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
         for (Direction direction : Direction.values()) {
             EnumProperty<DirectionState> property = getDirectionState(direction);
             switch (state.get(property)) {
-                case INPUT:
-                    inputs.add(direction);
-                    break;
-                case OUTPUT:
-                    outputs.add(direction);
-                    break;
+                case INPUT -> inputs.add(direction);
+                case OUTPUT -> outputs.add(direction);
             }
         }
 
@@ -222,12 +198,37 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
     }
 
     @Override
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        this.updateTarget(world, pos, state);
+    }
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (!world.isClient && !moved && !state.isOf(newState.getBlock())) {
+            super.onStateReplaced(state, world, pos, newState, moved);
+            this.updateTarget(world, pos, state);
+        }
+    }
+
+    protected void updateTarget(World world, BlockPos pos, BlockState state) {
+        if (!world.isClient) {
+            for (Direction direction : Direction.values()) {
+                if (isOutput(state, direction)) {
+                    BlockPos blockPos = pos.offset(direction);
+                    world.updateNeighbor(blockPos, this, pos);
+                    world.updateNeighborsExcept(blockPos, this, direction.getOpposite());
+                }
+            }
+        }
+    }
+
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(UP, DOWN, NORTH, SOUTH, WEST, EAST);
         super.appendProperties(builder);
     }
 
-    protected static final String getName(WireColor color) {
+    protected static String getName(WireColor color) {
         return color + "_wire_adapter";
     }
 }

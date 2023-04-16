@@ -1,35 +1,84 @@
 {
-  "variants": {
-    "facing=east,active=false": {
-      "model": "logic-mod:block/random",
-      "y": 90
+  "multipart": [
+    {
+      "apply": {
+        "model": "logic-mod:block/random",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "power": "0"
+      }
     },
-    "facing=north,active=false": {
-      "model": "logic-mod:block/random"
+    {
+      "apply": {
+        "model": "logic-mod:block/random_active",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
+      }
     },
-    "facing=south,active=false": {
-      "model": "logic-mod:block/random",
-      "y": 180
+    {
+      "apply": {
+        "model": "logic-mod:block/random",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "power": "0"
+      }
     },
-    "facing=west,active=false": {
-      "model": "logic-mod:block/random",
-      "y": 270
+    {
+      "apply": {
+        "model": "logic-mod:block/random_active",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
+      }
     },
-
-    "facing=east,active=true": {
-      "model": "logic-mod:block/random_active",
-      "y": 90
+    {
+      "apply": {
+        "model": "logic-mod:block/random",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "power": "0"
+      }
     },
-    "facing=north,active=true": {
-      "model": "logic-mod:block/random_active"
+    {
+      "apply": {
+        "model": "logic-mod:block/random_active",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
+      }
     },
-    "facing=south,active=true": {
-      "model": "logic-mod:block/random_active",
-      "y": 180
+    {
+      "apply": {
+        "model": "logic-mod:block/random",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "power": "0"
+      }
     },
-    "facing=west,active=true": {
-      "model": "logic-mod:block/random_active",
-      "y": 270
+    {
+      "apply": {
+        "model": "logic-mod:block/random_active",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
+      }
     }
-  }
+  ]
 }

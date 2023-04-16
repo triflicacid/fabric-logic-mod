@@ -1,12 +1,14 @@
 package net.triflicacid.logicmod.block.custom.wire;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
@@ -72,11 +74,11 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
         return power == null ? new HashMap<>() : power;
     }
 
-    public static final void update(World world, BlockPos origin) {
+    public static void update(World world, BlockPos origin) {
         update(world, origin, new HashSet<>());
     }
 
-    public static final void update(World world, BlockPos origin, Set<BlockPos> explored) {
+    public static void update(World world, BlockPos origin, Set<BlockPos> explored) {
         Deque<BlockPos> positions = new ArrayDeque<>();
 
         positions.add(origin);
@@ -146,25 +148,9 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (state.get(ACTIVE)) {
-            spawnParticles(world, pos);
+            spawnRedstoneParticles(world, pos);
         }
         super.randomDisplayTick(state, world, pos, random);
-    }
-
-    private static void spawnParticles(World world, BlockPos pos) {
-        double d = 0.5625;
-        Random random = world.random;
-
-        for(Direction direction : Direction.values()) {
-            BlockPos blockPos = pos.offset(direction);
-            if (!world.getBlockState(blockPos).isOpaqueFullCube(world, blockPos)) {
-                Direction.Axis axis = direction.getAxis();
-                double dx = axis == Direction.Axis.X ? 0.5 + d * (double)direction.getOffsetX() : (double)random.nextFloat();
-                double dy = axis == Direction.Axis.Y ? 0.5 + d * (double)direction.getOffsetY() : (double)random.nextFloat();
-                double dz = axis == Direction.Axis.Z ? 0.5 + d * (double)direction.getOffsetZ() : (double)random.nextFloat();
-                world.addParticle(DustParticleEffect.DEFAULT, (double)pos.getX() + dx, (double)pos.getY() + dy, (double)pos.getZ() + dz, 0.0, 0.0, 0.0);
-            }
-        }
     }
 
     @Override

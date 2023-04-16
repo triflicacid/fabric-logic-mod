@@ -3,11 +3,10 @@ package net.triflicacid.logicmod.blockentity.custom;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.triflicacid.logicmod.block.custom.AbstractPowerBlock;
 import net.triflicacid.logicmod.block.custom.PulseBlock;
-import net.triflicacid.logicmod.block.custom.SignalRecieverBlock;
 import net.triflicacid.logicmod.blockentity.ModBlockEntity;
 
 public class PulseBlockEntity extends BlockEntity {
@@ -24,7 +23,7 @@ public class PulseBlockEntity extends BlockEntity {
         return duration;
     }
 
-    public void incrementDuration(int delta) { setDuration(duration + delta); };
+    public void incrementDuration(int delta) { setDuration(duration + delta); }
 
     public void setDuration(int count) {
         if (count < 1)
@@ -68,7 +67,7 @@ public class PulseBlockEntity extends BlockEntity {
 
     public static void tick(World world, BlockPos pos, BlockState state, PulseBlockEntity blockEntity) {
         if (!world.isClient()) {
-            int behind = SignalRecieverBlock.getPower(world, pos, state, state.get(PulseBlock.FACING));
+            int behind = AbstractPowerBlock.getPower(world, pos, state, state.get(PulseBlock.FACING));
             if (behind != blockEntity.lastBehind || blockEntity.active) {
                 blockEntity.lastBehind = behind;
                 if (blockEntity.active) {
@@ -77,8 +76,9 @@ public class PulseBlockEntity extends BlockEntity {
                     blockEntity.setActive(true);
                 }
 
-                if (state.get(PulseBlock.ACTIVE) != blockEntity.isActive()) {
-                    ((PulseBlock) state.getBlock()).update(state, (ServerWorld) world, pos);
+                boolean shouldBeActive = blockEntity.isActive();
+                if (state.get(PulseBlock.ACTIVE) != shouldBeActive) {
+                    ((PulseBlock) state.getBlock()).update(world, state, pos, shouldBeActive);
                 }
             }
         }

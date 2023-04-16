@@ -15,15 +15,14 @@ import static net.triflicacid.logicmod.util.Util.*;
 
 public class Analyse {
     @Nullable
-    public static final Text[] analyseBlock(World world, BlockPos pos, BlockState state, Block block) {
+    public static Text[] analyseBlock(World world, BlockPos pos, BlockState state, Block block) {
         if (block instanceof ButtonBlock buttonBlock) {
             int duration = -1;
             try {
                 Field field = ButtonBlock.class.getDeclaredField("pressTicks");
                 field.setAccessible(true);
                 duration = (Integer) field.get(buttonBlock);
-            } catch (NoSuchFieldException e) {}
-            catch (IllegalAccessException e) {}
+            } catch (NoSuchFieldException | IllegalAccessException e) {}
 
             return new Text[] { Text.literal("State: ").append(booleanToText(state.get(ButtonBlock.POWERED), "on", "off")),
                     Text.literal("Pulse Duration: ").append(duration == -1 ? commentToText("unknown") : numberToText(duration)) };
@@ -87,9 +86,7 @@ public class Analyse {
                 Method method = AbstractPressurePlateBlock.class.getDeclaredMethod("getTickRate");
                 method.setAccessible(true);
                 duration = (Integer) method.invoke(plateBlock);
-            } catch (NoSuchMethodException e) {}
-            catch (IllegalAccessException e) {}
-            catch (InvocationTargetException e) {}
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {}
 
             return new Text[] { Text.literal("State: ").append(booleanToText(state.get(ButtonBlock.POWERED), "on", "off")),
                     Text.literal("Pulse Duration: ").append(duration == -1 ? commentToText("unknown") : numberToText(duration)) };

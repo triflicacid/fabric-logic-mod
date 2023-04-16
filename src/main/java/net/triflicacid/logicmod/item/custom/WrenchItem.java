@@ -62,6 +62,7 @@ public class WrenchItem extends Item {
                 return ActionResult.FAIL;
             } else {
                 world.setBlockState(pos, newState);
+                world.scheduleBlockTick(pos, newState.getBlock(), 1);
             }
         }
 

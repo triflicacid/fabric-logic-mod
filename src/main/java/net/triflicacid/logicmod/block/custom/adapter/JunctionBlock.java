@@ -85,12 +85,12 @@ public class JunctionBlock extends Block implements Analysable {
         return power;
     }
 
-    public static final void update(World world, BlockPos origin, BlockState state) {
+    public static void update(World world, BlockPos origin, BlockState state) {
         update(world, origin, state, new HashSet<>());
     }
 
     /** Update oneself and all connected AbstractWireBlocks */
-    public static final void update(World world, BlockPos origin, BlockState originState, Set<BlockPos> explored) {
+    public static void update(World world, BlockPos origin, BlockState originState, Set<BlockPos> explored) {
         if (explored.contains(origin))
             return;
         explored.add(origin);
@@ -174,24 +174,8 @@ public class JunctionBlock extends Block implements Analysable {
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (hasRandomTicks(state)) {
-            spawnParticles(world, pos);
+            spawnRedstoneParticles(world, pos);
         }
         super.randomDisplayTick(state, world, pos, random);
-    }
-
-    private static void spawnParticles(World world, BlockPos pos) {
-        double d = 0.5625;
-        Random random = world.random;
-
-        for(Direction direction : Direction.values()) {
-            BlockPos blockPos = pos.offset(direction);
-            if (!world.getBlockState(blockPos).isOpaqueFullCube(world, blockPos)) {
-                Direction.Axis axis = direction.getAxis();
-                double dx = axis == Direction.Axis.X ? 0.5 + d * (double)direction.getOffsetX() : (double)random.nextFloat();
-                double dy = axis == Direction.Axis.Y ? 0.5 + d * (double)direction.getOffsetY() : (double)random.nextFloat();
-                double dz = axis == Direction.Axis.Z ? 0.5 + d * (double)direction.getOffsetZ() : (double)random.nextFloat();
-                world.addParticle(DustParticleEffect.DEFAULT, (double)pos.getX() + dx, (double)pos.getY() + dy, (double)pos.getZ() + dz, 0.0, 0.0, 0.0);
-            }
-        }
     }
 }

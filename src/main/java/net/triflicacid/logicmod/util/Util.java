@@ -1,11 +1,16 @@
 package net.triflicacid.logicmod.util;
 
 import net.minecraft.block.Block;
+import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Map;
@@ -122,14 +127,24 @@ public class Util {
         return Text.literal(String.valueOf(f)).formatted(Formatting.GOLD);
     }
 
+    /** Convert a truthy value to text */
+    public static MutableText truthyToText(String s) {
+        return Text.literal(s).formatted(Formatting.GREEN);
+    }
+
+    /** Convert a falsy value to text */
+    public static MutableText falsyToText(String s) {
+        return Text.literal(s).formatted(Formatting.RED);
+    }
+
     /** Convert boolean to text */
     public static MutableText booleanToText(boolean b) {
-        return Text.literal(String.valueOf(b)).formatted(b ? Formatting.GREEN : Formatting.RED);
+        return b ? truthyToText("true") : falsyToText("false");
     }
 
     /** Convert boolean to text */
     public static MutableText booleanToText(boolean b, String ifTrue, String ifFalse) {
-        return Text.literal(b ? ifTrue : ifFalse).formatted(b ? Formatting.GREEN : Formatting.RED);
+        return b ? truthyToText(ifTrue) : falsyToText(ifFalse);
     }
 
     /** Convert special string to text */
@@ -148,8 +163,8 @@ public class Util {
     }
 
     /** Join a List */
-    public static String joinList(List list, String joiner) {
-        return (String) list.stream().map(Object::toString).collect(Collectors.joining(joiner));
+    public static <T> String joinList(List<T> list, String joiner) {
+        return list.stream().map(Object::toString).collect(Collectors.joining(joiner));
     }
 
     /** Hex code to text color: syntax "XXXXXX" */
@@ -181,5 +196,22 @@ public class Util {
         if (value < min) return max;
         if (value > max) return min;
         return value;
+    }
+
+    /** Spawn redstone particles */
+    public static void spawnRedstoneParticles(World world, BlockPos pos) {
+        double d = 0.5625;
+        Random random = world.random;
+
+        for(Direction direction : Direction.values()) {
+            BlockPos blockPos = pos.offset(direction);
+            if (!world.getBlockState(blockPos).isOpaqueFullCube(world, blockPos)) {
+                Direction.Axis axis = direction.getAxis();
+                double dx = axis == Direction.Axis.X ? 0.5 + d * (double)direction.getOffsetX() : (double)random.nextFloat();
+                double dy = axis == Direction.Axis.Y ? 0.5 + d * (double)direction.getOffsetY() : (double)random.nextFloat();
+                double dz = axis == Direction.Axis.Z ? 0.5 + d * (double)direction.getOffsetZ() : (double)random.nextFloat();
+                world.addParticle(DustParticleEffect.DEFAULT, (double)pos.getX() + dx, (double)pos.getY() + dy, (double)pos.getZ() + dz, 0.0, 0.0, 0.0);
+            }
+        }
     }
 }

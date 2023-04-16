@@ -7,11 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.triflicacid.logicmod.blockentity.ModBlockEntity;
 import net.triflicacid.logicmod.util.WireColor;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
 import static net.triflicacid.logicmod.util.Util.capitalise;
 
@@ -46,7 +42,7 @@ public class BusBlockEntity extends BlockEntity {
 
     public boolean arePowerMapsEqual(Map<WireColor, Integer> map) {
         for (WireColor color : COLORS) {
-            if (powerMap.get(color) != map.get(color))
+            if (!Objects.equals(powerMap.get(color), map.get(color)))
                 return false;
         }
         return true;

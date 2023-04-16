@@ -1,6 +1,5 @@
 package net.triflicacid.logicmod.util;
 
-import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.StringIdentifiable;
 
@@ -29,20 +28,13 @@ public enum WireColor implements StringIdentifiable {
     }
 
     public Formatting getFormatting() {
-        switch (this) {
-            case BLUE:
-                return Formatting.BLUE;
-            case GREEN:
-                return Formatting.GREEN;
-            case ORANGE:
-                return Formatting.GOLD;
-            case PURPLE:
-                return Formatting.LIGHT_PURPLE;
-            case RED:
-                return Formatting.RED;
-            case YELLOW:
-                return Formatting.YELLOW;
-        }
-        return Formatting.WHITE;
+        return switch (this) {
+            case BLUE -> Formatting.BLUE;
+            case GREEN -> Formatting.GREEN;
+            case ORANGE -> Formatting.GOLD;
+            case PURPLE -> Formatting.LIGHT_PURPLE;
+            case RED -> Formatting.RED;
+            case YELLOW -> Formatting.YELLOW;
+        };
     }
 }

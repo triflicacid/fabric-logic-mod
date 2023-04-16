@@ -1,31 +1,32 @@
 {
   "variants": {
+    "facing=north,active=false": {
+      "model": "logic-mod:block/clock",
+      "y": 0
+    },
+    "facing=north,active=true": {
+      "model": "logic-mod:block/clock_active",
+      "y": 0
+    },
     "facing=east,active=false": {
       "model": "logic-mod:block/clock",
       "y": 90
     },
-    "facing=north,active=false": {
-      "model": "logic-mod:block/clock"
+    "facing=east,active=true": {
+      "model": "logic-mod:block/clock_active",
+      "y": 90
     },
     "facing=south,active=false": {
       "model": "logic-mod:block/clock",
       "y": 180
     },
-    "facing=west,active=false": {
-      "model": "logic-mod:block/clock",
-      "y": 270
-    },
-
-    "facing=east,active=true": {
-      "model": "logic-mod:block/clock_active",
-      "y": 90
-    },
-    "facing=north,active=true": {
-      "model": "logic-mod:block/clock_active"
-    },
     "facing=south,active=true": {
       "model": "logic-mod:block/clock_active",
       "y": 180
+    },
+    "facing=west,active=false": {
+      "model": "logic-mod:block/clock",
+      "y": 270
     },
     "facing=west,active=true": {
       "model": "logic-mod:block/clock_active",

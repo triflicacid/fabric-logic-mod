@@ -1,29 +1,29 @@
 package net.triflicacid.logicmod.block.custom;
 
-import net.minecraft.block.Block;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
+import net.minecraft.block.Material;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
-public class OutputBlock extends SignalIOBlock {
+public class OutputBlock extends AbstractPowerBlock {
     public static final String NAME = "output";
 
     public OutputBlock() {
-        super(0);
+        super(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).breakInstantly(), false);
     }
 
     @Override
-    public int getSignalStrength(BlockState state, World world, BlockPos pos) {
-        return getPower(world, pos, state, state.get(FACING));
+    public boolean emitsRedstonePower(BlockState state) {
+        return true; // To make redstone cables veer towards it
     }
 
     @Override
-    protected int getUpdateDelayInternal(BlockState state) {
-        return 0;
+    public void update(World world, BlockState state, BlockPos pos) {
+        int power = getPower(world, pos, state, state.get(FACING));
+        if (state.get(POWER) != power) {
+            world.setBlockState(pos, state.with(POWER, power));
+        }
     }
 }

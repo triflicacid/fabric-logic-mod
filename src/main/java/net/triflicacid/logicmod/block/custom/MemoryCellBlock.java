@@ -1,26 +1,26 @@
 package net.triflicacid.logicmod.block.custom;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Material;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
-import net.triflicacid.logicmod.interfaces.Analysable;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
-public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable {
+public class MemoryCellBlock extends AbstractPowerBlock implements AdvancedWrenchable {
     public static final String NAME = "memory_cell";
-    public static final IntProperty MEMORY = IntProperty.of("memory", 0, 15);
+    public static final BooleanProperty READING = BooleanProperty.of("reading");
 
     public static final int READ = 1;
     public static final int WRITE = 2;
@@ -30,10 +30,15 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
     public static final int CLEAR = 15;
 
     public MemoryCellBlock() {
-        super(0);
+        super(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).breakInstantly(), true);
     }
 
-    private int getControlPower(World world, BlockPos pos, BlockState state) {
+    @Override
+    public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+        return emitsRedstone && state.get(READING) && state.get(FACING) == direction ? state.get(POWER) : 0;
+    }
+
+    protected int getControlPower(World world, BlockPos pos, BlockState state) {
         Direction direction = state.get(FACING).rotateYClockwise();
         BlockPos dstPos = pos.offset(direction);
         BlockState dstState = world.getBlockState(dstPos);
@@ -44,67 +49,65 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
         }
     }
 
-    private int getInputPower(World world, BlockPos pos, BlockState state) {
+    protected int getInputPower(World world, BlockPos pos, BlockState state) {
         return getPower(world, pos, state, state.get(FACING));
     }
 
     @Override
-    public int getSignalStrength(BlockState state, World world, BlockPos pos) {
-        return 0; // Not used
-    }
+    public void update(World world, BlockState state, BlockPos pos) {
+        int control = getControlPower(world, pos, state);
+        boolean update = false;
 
-    @Override
-    protected int getUpdateDelayInternal(BlockState state) {
-        return 0;
-    }
+        // Are we reading?
+        boolean reading = control == READ;
+        if (reading != state.get(READING)) {
+            state = state.with(READING, reading);
+            update = true;
+        }
 
-    @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        BlockState newState = null;
-        switch (getControlPower(world, pos, state)) {
-            case READ: {
-                int memory = state.get(MEMORY);
-                if (state.get(POWER) != memory) {
-                    newState = state.with(POWER, memory).with(ACTIVE, memory > 0);
-                }
+        // Other operations
+        switch (control) {
+            case READ:
                 break;
-            }
             case WRITE: {
                 int receiving = getInputPower(world, pos, state);
-                if (receiving != state.get(MEMORY)) {
-                    newState = state.with(MEMORY, receiving);
+                if (receiving != state.get(POWER)) {
+                    state = state.with(POWER, receiving);
+                    update = true;
                 }
                 break;
             }
             case INVERSE:
-                newState = state.with(MEMORY, state.get(MEMORY) == 0 ? 15 : 0);
+                state = state.with(POWER, state.get(POWER) == 0 ? 15 : 0);
+                update = true;
                 break;
             case AND: {
-                int mem = state.get(MEMORY);
-                newState = state.with(MEMORY, getInputPower(world, pos, state) > 0 && mem > 0 ? mem : 0);
+                int oldPower = state.get(POWER);
+                int newPower = getInputPower(world, pos, state) > 0 && oldPower > 0 ? oldPower : 0;
+                if (newPower != oldPower) {
+                    state = state.with(POWER, newPower);
+                    update = true;
+                }
                 break;
             }
             case OR:
-                if (state.get(MEMORY) == 0) {
-                    newState = state.with(MEMORY, getInputPower(world, pos, state));
+                if (state.get(POWER) == 0) {
+                    state = state.with(POWER, getInputPower(world, pos, state));
+                    update = true;
                 }
                 break;
             case CLEAR:
-                if (state.get(MEMORY) != 0) {
-                    newState = state.with(MEMORY, 0);
-                }
-                break;
-            default:
                 if (state.get(POWER) != 0) {
-                    newState = state.with(POWER, 0).with(ACTIVE, false);
+                    state = state.with(POWER, 0);
+                    update = true;
                 }
                 break;
         }
 
-        if (newState != null) {
-            world.setBlockState(pos, newState, 2);
+        if (update) {
+            world.setBlockState(pos, state, 2);
 
-            // Update output (infront)
+            // Update output (in-front)
             BlockPos dstPos = pos.offset(state.get(FACING).getOpposite());
             world.updateNeighbor(dstPos, this, pos);
 
@@ -112,7 +115,7 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
             dstPos = pos.offset(state.get(FACING).rotateYCounterclockwise());
             BlockState dstState = world.getBlockState(dstPos);
             if (dstState.isOf(this)) {
-                scheduledTick(dstState, world, dstPos, random);
+                update(world, dstState, dstPos);
             }
         }
     }
@@ -122,9 +125,9 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
         if (world.isClient)
             return null;
 
-        int newMemory = wrapInt(state.get(MEMORY) + (Screen.hasShiftDown() ? (-1) : 1), 0, 15);
-        player.sendMessage(Text.literal("Set ").append(specialToText(MEMORY.getName())).append(" to ").append(numberToText(newMemory)));
-        return state.with(MEMORY, newMemory);
+        int newPower = wrapInt(state.get(POWER) + (Screen.hasShiftDown() ? (-1) : 1), 0, 15);
+        player.sendMessage(Text.literal("Set ").append(specialToText(POWER.getName())).append(" to ").append(numberToText(newPower)));
+        return state.with(POWER, newPower);
     }
 
     @Override
@@ -133,37 +136,23 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
             return;
 
         int control = getControlPower(world, pos, state);
-        String controlStr;
-        switch (control) {
-            case READ:
-                controlStr = "read";
-                break;
-            case WRITE:
-                controlStr = "write";
-                break;
-            case INVERSE:
-                controlStr = "inverse";
-                break;
-            case AND:
-                controlStr = "and";
-                break;
-            case OR:
-                controlStr = "or";
-                break;
-            case CLEAR:
-                controlStr = "clear";
-                break;
-            default:
-                controlStr = "none";
-        }
+        String controlStr = switch (control) {
+            case READ -> "read";
+            case WRITE -> "write";
+            case INVERSE -> "inverse";
+            case AND -> "and";
+            case OR -> "or";
+            case CLEAR -> "clear";
+            default -> "none";
+        };
 
-        player.sendMessage(Text.literal("Memory: ").append(numberToText(state.get(MEMORY))));
-        player.sendMessage(Text.literal("Control Line: ").append(specialToText(controlStr)).append(" (").append(numberToText(state.get(MEMORY))).append(")"));
+        player.sendMessage(Text.literal("Memory: ").append(numberToText(state.get(POWER))));
+        player.sendMessage(Text.literal("Control Line: ").append(specialToText(controlStr)).append(" (").append(numberToText(control)).append(")"));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(MEMORY);
+        builder.add(READING);
         super.appendProperties(builder);
     }
 }

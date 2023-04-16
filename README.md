@@ -283,9 +283,9 @@ The advanced wrench toggles each get between its NOT variant
     - `S` is a stone block
 
 - Random Signal Generator
-  - If powered from behind, it will generate and output a new number. This will happen every 2 ticks whiles powered.
+  - Outputs number in memory
+  - If powered from behind, it will generate a new random number.
   - If in binary mode, generates either a 0 or a 1, else generates a number in the range 0-15.
-    - Give a 1-tick pulse to change number once!
   - Toggle in/out of binary mode using an advanced wrench.
   - Crafting recipe:
 

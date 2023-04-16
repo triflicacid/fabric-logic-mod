@@ -1,15 +1,16 @@
 package net.triflicacid.logicmod.block.custom;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -21,41 +22,28 @@ import org.jetbrains.annotations.Nullable;
 import static net.triflicacid.logicmod.util.Util.numberToText;
 import static net.triflicacid.logicmod.util.Util.specialToText;
 
-public class PulseBlock extends SignalIOBlock implements AdvancedWrenchable, BlockEntityProvider {
+public class PulseBlock extends AbstractBooleanBlock implements AdvancedWrenchable, BlockEntityProvider {
     public static final String NAME = "pulse";
 
     public PulseBlock() {
-        super(0);
-        this.setDefaultState(this.stateManager.getDefaultState().with(ACTIVE, false));
+        super(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).breakInstantly(), true);
     }
 
     @Override
-    public int getSignalStrength(BlockState state, World world, BlockPos pos) {
-        return state.get(ACTIVE) ? 15 : 0;
-    }
-
-    @Override
-    protected int getUpdateDelayInternal(BlockState state) {
-        return 0;
-    }
-
-    public void update(BlockState state, ServerWorld world, BlockPos pos) {
-        BlockEntity entity = world.getBlockEntity(pos);
-        if (entity instanceof PulseBlockEntity pulseEntity) {
-            boolean isActive = state.get(ACTIVE);
-            boolean shouldBeActive = pulseEntity.isActive();
-            if (isActive != shouldBeActive) {
-                state = state.with(ACTIVE, shouldBeActive).with(POWER, shouldBeActive ? 15 : 0);
-                world.setBlockState(pos, state);
+    public void update(World world, BlockState state, BlockPos pos) {
+        if (!world.isClient) {
+            BlockEntity entity = world.getBlockEntity(pos);
+            if (entity instanceof PulseBlockEntity pulseEntity) {
+                boolean shouldBeActive = pulseEntity.isActive();
+                update(world, state, pos, shouldBeActive);
             }
         }
     }
 
-
-    public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
-        super.onSyncedBlockEvent(state, world, pos, type, data);
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        return blockEntity != null && blockEntity.onSyncedBlockEvent(type, data);
+    public void update(World world, BlockState state, BlockPos pos, boolean shouldBeActive) {
+        if (!world.isClient && shouldBeActive != state.get(ACTIVE)) {
+            world.setBlockState(pos, state.with(ACTIVE, shouldBeActive));
+        }
     }
 
     @Override

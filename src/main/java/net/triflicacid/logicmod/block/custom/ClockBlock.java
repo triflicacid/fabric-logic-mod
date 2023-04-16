@@ -7,7 +7,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -17,7 +16,8 @@ import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.interfaces.Analysable;
 import org.jetbrains.annotations.Nullable;
 
-import static net.triflicacid.logicmod.util.Util.*;
+import static net.triflicacid.logicmod.util.Util.numberToText;
+import static net.triflicacid.logicmod.util.Util.specialToText;
 
 public class ClockBlock extends AbstractClockBlock implements AdvancedWrenchable, Analysable {
     public static final String NAME = "clock";

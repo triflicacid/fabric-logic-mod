@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Pair;
@@ -19,7 +18,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.block.custom.adapter.BusAdapterBlock;
 import net.triflicacid.logicmod.block.custom.adapter.JunctionBlock;
-import net.triflicacid.logicmod.block.custom.adapter.WireAdapterBlock;
 import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
 import net.triflicacid.logicmod.util.WireColor;
 
@@ -94,18 +92,18 @@ public abstract class AbstractWireBlock extends Block {
         return power;
     }
 
-    public static final void update(World world, BlockPos origin) {
+    public static void update(World world, BlockPos origin) {
         update(world, origin, new HashSet<>());
     }
 
     /** Update oneself and all connected AbstractWireBlocks */
-    public static final void update(World world, BlockPos origin, Set<BlockPos> explored) {
+    public static void update(World world, BlockPos origin, Set<BlockPos> explored) {
         Deque<Pair<BlockPos,BlockPos>> positions = new ArrayDeque<>(); // (prev, pos)
         positions.add(new Pair<>(null, origin));
 
         while (positions.size() > 0) {
-            Pair pair = positions.remove();
-            BlockPos pos = (BlockPos) pair.getRight();
+            Pair<BlockPos, BlockPos> pair = positions.remove();
+            BlockPos pos = pair.getRight();
             if (explored.contains(pos)) {
                 continue;
             }
@@ -133,7 +131,7 @@ public abstract class AbstractWireBlock extends Block {
                 explored.add(pos);
             } else {
                 // Update neighbors -- if adapter, may update a redstone component
-                BlockPos prev = (BlockPos) pair.getLeft();
+                BlockPos prev = pair.getLeft();
                 BlockState prevState = world.getBlockState(prev);
                 block.neighborUpdate(state, world, pos, prevState.getBlock(), prev, true);
             }
