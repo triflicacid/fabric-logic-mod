@@ -102,7 +102,7 @@ public class MemoryCellBlock extends SignalIOBlock implements AdvancedWrenchable
         }
 
         if (newState != null) {
-            world.setBlockState(pos, newState);
+            world.setBlockState(pos, newState, 2);
 
             // Update output (infront)
             BlockPos dstPos = pos.offset(state.get(FACING).getOpposite());

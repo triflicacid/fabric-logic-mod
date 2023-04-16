@@ -58,7 +58,6 @@ public abstract class WireBlock extends AbstractWireBlock implements Analysable 
         if (!world.isClient) {
             player.sendMessage(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
             player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
-            player.sendMessage(Text.literal("Rec. Power: ").append(numberToText(getReceivedPower(world, state, pos))));
         }
     }
 }

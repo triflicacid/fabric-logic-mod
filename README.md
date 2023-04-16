@@ -232,7 +232,9 @@ The advanced wrench toggles each get between its NOT variant
 
 - Memory Cell
   - Stores a redstone signal in memory, which it outputs
-  - Accepts a control input from the side, and a write line from behind. If signal is not listed below, nothing happens (outputs 0)
+  - Accepts a control input from the left side, and a write line from behind.
+    - If there is another memory cell on the left, that cell propagates through its control signal. Therefore, cells can be stacked horizontally and function as a multi-bit array.
+  - Control signals to operation mapping: (if signal is not listed, nothing happens and 0 is outputted)
     - 1: `read`. Output the stored signal.
     - 2: `write`. Sets internal memory to signal it is receiving from behind.
     - 3: `inverse`. Inverts stored memory - if 0, set to 15. Else set to 0.
