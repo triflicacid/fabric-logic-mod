@@ -12,11 +12,15 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.blockentity.custom.AbstractClockBlockEntity;
 import net.triflicacid.logicmod.blockentity.custom.ClockBlockEntity;
 import org.jetbrains.annotations.Nullable;
+
+import static net.triflicacid.logicmod.util.Util.messageAll;
 
 public abstract class AbstractClockBlock extends AbstractBooleanBlock implements BlockEntityProvider {
     public static final BooleanProperty LOCKED = BooleanProperty.of("locked");
@@ -27,18 +31,11 @@ public abstract class AbstractClockBlock extends AbstractBooleanBlock implements
     }
 
     @Override
-    public void update(World world, BlockState state, BlockPos pos) {
-        boolean behind = getPower(world, pos, state, state.get(FACING)) > 0;
-        if (behind != state.get(LOCKED)) {
-            world.setBlockState(pos, state.with(LOCKED, behind));
-        }
-    }
-
-    public void update(BlockState state, ServerWorld world, BlockPos pos) {
-        if (!state.get(LOCKED)) {
-            BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof ClockBlockEntity clockEntity) {
-                update(state, world, pos, clockEntity.isActive());
+    public void update(World world, BlockState state, BlockPos pos, Direction from) {
+        if (!world.isClient && (from == null || from == state.get(FACING))) {
+            boolean behind = getPower(world, pos, state, state.get(FACING)) > 0;
+            if (behind != state.get(LOCKED)) {
+                world.setBlockState(pos, state.with(LOCKED, behind));
             }
         }
     }

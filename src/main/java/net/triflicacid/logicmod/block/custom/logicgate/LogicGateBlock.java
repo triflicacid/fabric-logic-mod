@@ -14,6 +14,7 @@ import net.triflicacid.logicmod.interfaces.Analysable;
 
 import java.util.*;
 
+import static net.triflicacid.logicmod.util.Util.messageAll;
 import static net.triflicacid.logicmod.util.Util.specialToText;
 
 public abstract class LogicGateBlock extends AbstractBooleanBlock implements AdvancedWrenchable, Analysable {
@@ -86,7 +87,7 @@ public abstract class LogicGateBlock extends AbstractBooleanBlock implements Adv
         return receiving;
     }
 
-    public void update(World world, BlockState state, BlockPos pos) {
+    public void update(World world, BlockState state, BlockPos pos, Direction from) {
         boolean isActive = state.get(ACTIVE);
         boolean shouldBeActive = logicalFunction(areInputsReceivingPower(world, pos, state));
 

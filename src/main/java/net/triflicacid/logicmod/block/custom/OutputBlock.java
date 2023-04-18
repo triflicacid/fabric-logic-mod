@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 public class OutputBlock extends AbstractPowerBlock {
@@ -20,10 +21,12 @@ public class OutputBlock extends AbstractPowerBlock {
     }
 
     @Override
-    public void update(World world, BlockState state, BlockPos pos) {
-        int power = getPower(world, pos, state, state.get(FACING));
-        if (state.get(POWER) != power) {
-            world.setBlockState(pos, state.with(POWER, power));
+    public void update(World world, BlockState state, BlockPos pos, Direction from) {
+        if (!world.isClient && (from == null || from == state.get(FACING))) {
+            int power = getPower(world, pos, state, state.get(FACING));
+            if (state.get(POWER) != power) {
+                world.setBlockState(pos, state.with(POWER, power));
+            }
         }
     }
 }

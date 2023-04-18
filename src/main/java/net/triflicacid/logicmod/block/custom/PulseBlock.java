@@ -30,8 +30,8 @@ public class PulseBlock extends AbstractBooleanBlock implements AdvancedWrenchab
     }
 
     @Override
-    public void update(World world, BlockState state, BlockPos pos) {
-        if (!world.isClient) {
+    public void update(World world, BlockState state, BlockPos pos, Direction from) {
+        if (!world.isClient && (from == null || from == state.get(FACING))) {
             BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof PulseBlockEntity pulseEntity) {
                 boolean shouldBeActive = pulseEntity.isActive();
@@ -40,6 +40,7 @@ public class PulseBlock extends AbstractBooleanBlock implements AdvancedWrenchab
         }
     }
 
+    /** Called from BlockEntity */
     public void update(World world, BlockState state, BlockPos pos, boolean shouldBeActive) {
         if (!world.isClient && shouldBeActive != state.get(ACTIVE)) {
             world.setBlockState(pos, state.with(ACTIVE, shouldBeActive));

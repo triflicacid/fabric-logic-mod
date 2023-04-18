@@ -32,11 +32,13 @@ public class InputBlock extends AbstractPowerBlock implements AdvancedWrenchable
     }
 
     @Override
-    public void update(World world, BlockState state, BlockPos pos) {
-        boolean active = getPower(world, pos, state, state.get(FACING)) == 0;
+    public void update(World world, BlockState state, BlockPos pos, Direction from) {
+        if (!world.isClient && (from == null || from == state.get(FACING))) {
+            boolean active = getPower(world, pos, state, state.get(FACING)) == 0;
 
-        if (active != state.get(ACTIVE)) {
-            world.setBlockState(pos, state.with(ACTIVE, active));
+            if (active != state.get(ACTIVE)) {
+                world.setBlockState(pos, state.with(ACTIVE, active));
+            }
         }
     }
 

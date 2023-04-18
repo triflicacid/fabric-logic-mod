@@ -25,7 +25,10 @@ public class EqualityBlock extends AbstractPowerBlock {
     }
 
     @Override
-    public void update(World world, BlockState state, BlockPos pos) {
+    public void update(World world, BlockState state, BlockPos pos, Direction from) {
+        if (world.isClient)
+            return;
+
         int[] inputs = getInputs(state, world, pos);
         int power = Util.allEqual(inputs) ? inputs[0] : 0;
 

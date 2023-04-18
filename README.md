@@ -234,12 +234,15 @@ The advanced wrench toggles each get between its NOT variant
   - Stores a redstone signal in memory, which it outputs
   - Accepts a control input from the left side, and a write line from behind.
     - If there is another memory cell on the left, that cell propagates through its control signal. Therefore, cells can be stacked horizontally and function as a multi-bit array.
-  - Control signals to operation mapping: (if signal is not listed, nothing happens and 0 is outputted)
+  - There are two types of control signals: one-time (marked O) and non-sensitive. One-time operations are require a 0 or non-sensitive signal pulse before they may be activated again. 
     - 1: `read`. Output the stored signal.
     - 2: `write`. Sets internal memory to signal it is receiving from behind.
-    - 3: `inverse`. Inverts stored memory - if 0, set to 15. Else set to 0.
-    - 4: `and`. If receiving input from behind, preserve memory. Else, clear it.
-    - 5: `or`. If memory is 0, write to memory the signal from behind.
+    - 3: `inverse` (O). Inverts stored memory - if 0, set to 15. Else set to 0.
+    - 4: `and` (O). If receiving input from behind, preserve memory. Else, clear it.
+    - 5: `or` (O). If memory is 0, write to memory the signal from behind.
+    - 10: `add` (O). Add the input to the cell. If there's an overflow, propagate to the right-hand memory cell (if appropriate).
+    - 11: `right_shift` (O). Shifts the memory cell array along one to the right.
+    - 12: `left_shift` (O). Shifts the memory cell array along one to the left.
     - 15: `clear`. Clears the internal memory (sets it to 0).
   - Use the advanced wrench to manually increment the stored redstone signal (shift to decrement).
   - Crafting recipe:

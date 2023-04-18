@@ -34,9 +34,11 @@ public class ConditionalBlock extends AbstractPowerBlock {
     }
 
     @Override
-    public void update(World world, BlockState state, BlockPos pos) {
-        int power = getSignalStrength(world, state, pos);
+    public void update(World world, BlockState state, BlockPos pos, Direction from) {
+        if (world.isClient)
+            return;
 
+        int power = getSignalStrength(world, state, pos);
         if (power != state.get(POWER)) {
             world.setBlockState(pos, state.with(POWER, power));
         }

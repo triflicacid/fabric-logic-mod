@@ -33,17 +33,19 @@ public class RandomBlock extends AbstractPowerBlock implements AdvancedWrenchabl
     }
 
     @Override
-    public void update(World world, BlockState state, BlockPos pos) {
-        boolean active = getPower(world, pos, state, state.get(FACING)) > 0;
+    public void update(World world, BlockState state, BlockPos pos, Direction from) {
+        if (!world.isClient && (from == null || from == state.get(FACING))) { // Only permit updates from input
+            boolean active = getPower(world, pos, state, state.get(FACING)) > 0;
 
-        if (active != state.get(LAST_STATE)) {
-            state = state.with(LAST_STATE, active);
+            if (active != state.get(LAST_STATE)) {
+                state = state.with(LAST_STATE, active);
 
-            if (active) { // Only update on rising edge
-                state = state.with(POWER, getRandom(state));
+                if (active) { // Only update on rising edge
+                    state = state.with(POWER, getRandom(state));
+                }
+
+                world.setBlockState(pos, state);
             }
-
-            world.setBlockState(pos, state);
         }
     }
 

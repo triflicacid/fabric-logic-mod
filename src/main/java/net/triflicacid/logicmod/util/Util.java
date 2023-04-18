@@ -1,12 +1,14 @@
 package net.triflicacid.logicmod.util;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -106,6 +108,14 @@ public class Util {
                 map1.put(color, map2.get(color));
             }
         }
+    }
+
+    /** Return (sum, carry) of b1 + b2 + b3 */
+    public static Pair<Boolean, Boolean> addBits(boolean b1, boolean b2, boolean b3) {
+        return new Pair<>(
+            b1 ^ b2 ^ b3,
+            ((b1 ^ b2) & b3) | (b1 & b2)
+        );
     }
 
     /** Capitalise a string */
@@ -213,5 +223,16 @@ public class Util {
                 world.addParticle(DustParticleEffect.DEFAULT, (double)pos.getX() + dx, (double)pos.getY() + dy, (double)pos.getZ() + dz, 0.0, 0.0, 0.0);
             }
         }
+    }
+
+    /** Message every player */
+    public static void messageAll(List<? extends PlayerEntity> players, String message) {
+        messageAll(players, Text.of(message));
+    }
+
+    /** Message every player */
+    public static void messageAll(List<? extends PlayerEntity> players, Text message) {
+        for (var player : players)
+            player.sendMessage(message);
     }
 }

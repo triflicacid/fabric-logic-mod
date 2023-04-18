@@ -11,6 +11,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -29,7 +30,7 @@ public abstract class AbstractWireBlock extends Block {
 
     public AbstractWireBlock(BlockSoundGroup sound, WireColor color) {
         super(FabricBlockSettings.of(Material.WOOL).sounds(sound).breakInstantly());
-        this.setDefaultState(this.stateManager.getDefaultState().with(POWER, 0));
+        this.setDefaultState(this.stateManager.getDefaultState());
         this.color = color;
     }
 
@@ -117,7 +118,7 @@ public abstract class AbstractWireBlock extends Block {
 
                 if (power != receiving) {
                     state = state.with(POWER, receiving);
-                    world.setBlockState(pos, state, 2);
+                    world.setBlockState(pos, state, Block.NOTIFY_LISTENERS);
 
                     for (Direction direction : Direction.values()) {
                         positions.add(new Pair<>(pos, pos.offset(direction)));
@@ -131,9 +132,9 @@ public abstract class AbstractWireBlock extends Block {
                 explored.add(pos);
             } else {
                 // Update neighbors -- if adapter, may update a redstone component
-                BlockPos prev = pair.getLeft();
-                BlockState prevState = world.getBlockState(prev);
-                block.neighborUpdate(state, world, pos, prevState.getBlock(), prev, true);
+//                BlockPos prev = pair.getLeft();
+//                BlockState prevState = world.getBlockState(prev);
+//                block.neighborUpdate(state, world, pos, prevState.getBlock(), prev, true);
             }
         }
     }
