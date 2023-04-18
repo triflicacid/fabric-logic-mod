@@ -11,7 +11,6 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.Text;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -24,6 +23,12 @@ import net.triflicacid.logicmod.util.WireColor;
 
 import java.util.*;
 
+/**
+ * Functionality for a block which stores an internal signal strength.
+ * It has a color, and will propagate it's signal immediately to adjacent AbstractWireBlocks of the same color.
+ *
+ * Doesn't inherit from AbstractPowerBlock as update behaviour varies slightly.
+ */
 public abstract class AbstractWireBlock extends Block {
     public static final IntProperty POWER = Properties.POWER;
     protected final WireColor color;

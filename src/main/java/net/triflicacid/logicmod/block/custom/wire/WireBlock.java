@@ -14,6 +14,9 @@ import net.triflicacid.logicmod.util.WireColor;
 import static net.triflicacid.logicmod.util.Util.numberToText;
 import static net.triflicacid.logicmod.util.Util.spawnRedstoneParticles;
 
+/**
+ * The concrete implementation of AbstractWireBlock
+ */
 public abstract class WireBlock extends AbstractWireBlock implements Analysable {
     public WireBlock(WireColor color) {
         super(BlockSoundGroup.WOOL, color);
@@ -32,6 +35,7 @@ public abstract class WireBlock extends AbstractWireBlock implements Analysable 
         super.randomDisplayTick(state, world, pos, random);
     }
 
+    /** Get the name of a wire block of a given color */
     public static String getName(WireColor color) {
         return color + "_wire";
     }

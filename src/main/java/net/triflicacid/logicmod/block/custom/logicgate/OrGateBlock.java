@@ -3,6 +3,9 @@ package net.triflicacid.logicmod.block.custom.logicgate;
 import net.triflicacid.logicmod.util.Util;
 import net.triflicacid.logicmod.block.ModBlocks;
 
+/**
+ * A logical OR gate
+ */
 public class OrGateBlock extends LogicGateBlock {
     public static final String NAME = "or_gate";
 

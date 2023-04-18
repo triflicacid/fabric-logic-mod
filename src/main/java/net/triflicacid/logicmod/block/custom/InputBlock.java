@@ -18,8 +18,13 @@ import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
+/**
+ * Defines a component which emits a constant, strong, pre-programmed signal.
+ */
 public class InputBlock extends AbstractPowerBlock implements AdvancedWrenchable {
     public static final String NAME = "input";
+
+    /** If component is locked (receiving power from behind), don't output anything */
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
 
     public InputBlock() {
@@ -43,6 +48,7 @@ public class InputBlock extends AbstractPowerBlock implements AdvancedWrenchable
     }
 
     @Override
+    /** Increment/decrement the signal we're outputting */
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         if (world.isClient)
             return null;

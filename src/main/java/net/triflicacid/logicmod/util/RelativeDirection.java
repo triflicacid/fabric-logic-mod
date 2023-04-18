@@ -2,6 +2,9 @@ package net.triflicacid.logicmod.util;
 
 import net.minecraft.util.math.Direction;
 
+/**
+ * Represent a relative direction to the otherwise absolute cardinal directions
+ */
 public enum RelativeDirection {
     INFRONT("in-front"),
     LEFT("left"),

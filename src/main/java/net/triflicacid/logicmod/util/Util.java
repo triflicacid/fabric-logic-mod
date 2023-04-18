@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Class containing general utility functions
+ */
 public class Util {
     public static boolean logicalBuffer(boolean[] inputs) {
         if (inputs.length != 1)

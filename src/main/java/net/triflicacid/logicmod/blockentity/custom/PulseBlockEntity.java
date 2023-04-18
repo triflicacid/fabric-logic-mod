@@ -9,10 +9,19 @@ import net.triflicacid.logicmod.block.custom.AbstractPowerBlock;
 import net.triflicacid.logicmod.block.custom.PulseBlock;
 import net.triflicacid.logicmod.blockentity.ModBlockEntity;
 
+/**
+ * Blockentity for PulseBlock to keep track of our pulse length, and to make sure that pulses do not overlap.
+ */
 public class PulseBlockEntity extends BlockEntity {
+    /** Pulse duration in ticks */
     private int duration = 10;
-    private int ticks = 0; // How many ticks has passed since last toggle
+    /** How many ticks has passed since last toggle? */
+    private int ticks = 0;
+    /** Is the PulseBlock currently active? */
     private boolean active = false;
+    /** The last signal strength we received from behind.
+     * Used to make sure that the current pulse is finished before starting a new one.
+     */
     public int lastBehind = 0;
 
     public PulseBlockEntity(BlockPos pos, BlockState state) {

@@ -23,6 +23,12 @@ import java.util.List;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
+/**
+ * Used to receive information on a block.
+ *
+ * Reporting may be implemented by overriding the block's Analysable.onAnalyse method, or (secondly) by adding to the
+ * Analysable.analyse static method.
+ */
 public class AnalyserItem extends Item {
     public static final String NAME = "analyser";
 
@@ -51,9 +57,10 @@ public class AnalyserItem extends Item {
             PlayerEntity player = context.getPlayer();
 
             player.sendMessage(Text.literal("Block: ").append(blockToText(block)));
-            if (block instanceof Analysable analysable) {
+            if (block instanceof Analysable analysable) { // Overridden?
                 analysable.onAnalyse(world, pos, state, context.getSide(), player, context.getHorizontalPlayerFacing());
             } else {
+                // Otherwise, attempt static method (mainly for non-mod blocks)
                 Text[] message = Analyse.analyseBlock(world, pos, state, block);
                 if (message == null) {
 //                player.sendMessage(commentToText("No further information"));

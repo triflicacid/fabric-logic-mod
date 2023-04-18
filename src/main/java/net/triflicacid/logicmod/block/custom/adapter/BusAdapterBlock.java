@@ -3,7 +3,6 @@ package net.triflicacid.logicmod.block.custom.adapter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -16,6 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * An adapter for the BusBlock. Cannot interface with redstone, but can read/write signals to/from other adapters.
+ */
 public class BusAdapterBlock extends BusBlock {
     public static final String NAME = "bus_adapter";
 

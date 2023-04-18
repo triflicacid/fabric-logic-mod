@@ -3,6 +3,9 @@ package net.triflicacid.logicmod.block.custom.logicgate;
 import net.triflicacid.logicmod.util.Util;
 import net.triflicacid.logicmod.block.ModBlocks;
 
+/**
+ * A logical XOR gate
+ */
 public class XorGateBlock extends LogicGateBlock {
     public static final String NAME = "xor_gate";
 

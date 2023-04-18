@@ -17,10 +17,15 @@ import net.minecraft.world.World;
 import net.triflicacid.logicmod.util.RelativeDirection;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractDirectionalRedstoneBlock extends Block {
+/**
+ * Represent a block which is horizontally rotatable.
+ *
+ * Methods such as onPlaced and neighborUpdate are implemented to call the abstract `update` method appropriate
+ */
+public abstract class AbstractDirectionalBlock extends Block {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
-    public AbstractDirectionalRedstoneBlock(Settings settings) {
+    public AbstractDirectionalBlock(Settings settings) {
         super(settings);
     }
 
@@ -74,6 +79,7 @@ public abstract class AbstractDirectionalRedstoneBlock extends Block {
         }
     }
 
+    /** Update the target i.e. the direction we're facing */
     protected void updateTarget(World world, BlockPos pos, BlockState state) {
         if (!world.isClient) {
             Direction direction = state.get(FACING);

@@ -1,7 +1,8 @@
 package net.triflicacid.logicmod.block.custom.logicgate;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
@@ -12,11 +13,17 @@ import net.triflicacid.logicmod.block.custom.AbstractBooleanBlock;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.interfaces.Analysable;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
-import static net.triflicacid.logicmod.util.Util.messageAll;
 import static net.triflicacid.logicmod.util.Util.specialToText;
 
+/**
+ * Represent a logic gate which outputs a boolean depending on the application of a function to its inputs.
+ *
+ * Accepts anywhere between a given minimum/maximum number of inputs
+ */
 public abstract class LogicGateBlock extends AbstractBooleanBlock implements AdvancedWrenchable, Analysable {
     public static final int TICK_DELAY = 2;
     private final int minInputs;
@@ -43,6 +50,7 @@ public abstract class LogicGateBlock extends AbstractBooleanBlock implements Adv
 
     public abstract boolean logicalFunction(boolean[] inputs);
 
+    /** Return the string type of logic gate to be displayed to the player */
     public abstract String getType();
 
     /** Return array indicating if each direction returned by getInputDirections is receiving power */
@@ -96,11 +104,14 @@ public abstract class LogicGateBlock extends AbstractBooleanBlock implements Adv
         }
     }
 
+    /** Is this gate a not variant? E.g. "nor" is the not variant of "or" */
     public abstract boolean isNotVariant();
 
+    /** Return the inverse logic gate block */
     public abstract LogicGateBlock getInverse();
 
     @Override
+    /** Toggle between inverse logic gate type */
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         if (!world.isClient) {
             LogicGateBlock inverse = this.getInverse();

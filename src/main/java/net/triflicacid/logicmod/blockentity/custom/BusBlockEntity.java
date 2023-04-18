@@ -11,6 +11,11 @@ import java.util.*;
 
 import static net.triflicacid.logicmod.util.Util.capitalise;
 
+/**
+ * Blockentity used by BusBlock, stores a map of each wire color's signal strength.
+ *
+ * (Can't use blockstates, as the number of all possible states is huge and takes too long to calculate)
+ */
 public class BusBlockEntity extends BlockEntity {
     public static final List<WireColor> COLORS = Arrays.asList(WireColor.values());
     protected Map<WireColor, Integer> powerMap = new HashMap<>();

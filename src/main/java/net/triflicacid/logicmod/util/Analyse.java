@@ -13,8 +13,13 @@ import java.lang.reflect.Method;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
+/**
+ * Class which adds "analyse" functionality to vanilla blocks.
+ * If present, the 'onAnalyse' method is called, with this being used as a backup.
+ */
 public class Analyse {
     @Nullable
+    /** Analyse a given block, return the lines of the message to send to the requesting player */
     public static Text[] analyseBlock(World world, BlockPos pos, BlockState state, Block block) {
         if (block instanceof ButtonBlock buttonBlock) {
             int duration = -1;

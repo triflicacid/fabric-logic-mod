@@ -22,7 +22,11 @@ import org.jetbrains.annotations.Nullable;
 
 import static net.triflicacid.logicmod.util.Util.messageAll;
 
+/**
+ * Core mechanics for a redstone component which activates/deactivates every x/y ticks respectively.
+ */
 public abstract class AbstractClockBlock extends AbstractBooleanBlock implements BlockEntityProvider {
+    /** When locked, the clock won't "tick" -- freezes the clock */
     public static final BooleanProperty LOCKED = BooleanProperty.of("locked");
 
     public AbstractClockBlock() {
@@ -40,6 +44,7 @@ public abstract class AbstractClockBlock extends AbstractBooleanBlock implements
         }
     }
 
+    /** Update the clock's state directly */
     public void update(BlockState state, ServerWorld world, BlockPos pos, boolean shouldBeActive) {
         if (!state.get(LOCKED) && state.get(ACTIVE) != shouldBeActive) {
             world.setBlockState(pos, state.with(ACTIVE, shouldBeActive));

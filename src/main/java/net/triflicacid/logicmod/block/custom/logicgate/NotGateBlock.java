@@ -3,6 +3,9 @@ package net.triflicacid.logicmod.block.custom.logicgate;
 import net.triflicacid.logicmod.util.Util;
 import net.triflicacid.logicmod.block.ModBlocks;
 
+/**
+ * A logical NOT gate -- inverse the input (not variant of BUFFER)
+ */
 public class NotGateBlock extends LogicGateBlock {
     public static final String NAME = "not_gate";
 

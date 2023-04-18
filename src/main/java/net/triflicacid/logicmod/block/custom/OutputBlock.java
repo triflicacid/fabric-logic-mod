@@ -1,6 +1,7 @@
 package net.triflicacid.logicmod.block.custom;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
@@ -8,6 +9,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+/**
+ * he Output block displays the signal strength of the signal it's receiving.
+ */
 public class OutputBlock extends AbstractPowerBlock {
     public static final String NAME = "output";
 
@@ -16,8 +20,9 @@ public class OutputBlock extends AbstractPowerBlock {
     }
 
     @Override
+    /** This component DOES NOT emit redstone; this is so redstone wires will connect to it. */
     public boolean emitsRedstonePower(BlockState state) {
-        return true; // To make redstone cables veer towards it
+        return true;
     }
 
     @Override
@@ -25,7 +30,7 @@ public class OutputBlock extends AbstractPowerBlock {
         if (!world.isClient && (from == null || from == state.get(FACING))) {
             int power = getPower(world, pos, state, state.get(FACING));
             if (state.get(POWER) != power) {
-                world.setBlockState(pos, state.with(POWER, power));
+                world.setBlockState(pos, state.with(POWER, power), Block.NOTIFY_LISTENERS);
             }
         }
     }

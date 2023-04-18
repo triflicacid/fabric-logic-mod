@@ -17,6 +17,10 @@ import java.util.Set;
 import static net.triflicacid.logicmod.util.Util.booleanToText;
 import static net.triflicacid.logicmod.util.Util.numberToText;
 
+/**
+ * A block which emits a signal strength only if said signal is being received from all of its other faces.
+ * Note that if there's not a redstone-emitting block adjacent to a face, that face will not be considered.
+ */
 public class EqualityBlock extends AbstractPowerBlock {
     public static final String NAME = "equality";
 
@@ -37,6 +41,7 @@ public class EqualityBlock extends AbstractPowerBlock {
         }
     }
 
+    /** Get the signals being received from this block's faces */
     protected int[] getInputs(BlockState state, World world, BlockPos pos) {
         Set<Direction> directions = new HashSet<>();
         Direction facing = state.get(FACING);

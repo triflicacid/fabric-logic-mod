@@ -21,6 +21,11 @@ import java.util.List;
 
 import static net.triflicacid.logicmod.util.Util.commentToText;
 
+/**
+ * Used on a block to rotate it
+ *
+ * By default, cycles the HorizontalDirectionfacing property, but default behaviour may be overridden using the Wrenchable.applyWrench method.
+ */
 public class WrenchItem extends Item {
     public static final String NAME = "wrench";
 
@@ -47,12 +52,12 @@ public class WrenchItem extends Item {
             BlockState state = world.getBlockState(pos);
             BlockState newState = null;
 
-            if (state.getBlock() instanceof Wrenchable wrenchableBlock) {
+            if (state.getBlock() instanceof Wrenchable wrenchableBlock) { // Has behaviour been overridden?
                 newState = wrenchableBlock.applyWrench(world, pos, state, context.getSide(), context.getHorizontalPlayerFacing());
                 if (newState != null) {
                     world.scheduleBlockTick(pos, state.getBlock(), 1, TickPriority.NORMAL);
                 }
-            } else if (state.contains(HorizontalFacingBlock.FACING)) {
+            } else if (state.contains(HorizontalFacingBlock.FACING)) { // Attempt to cycle the HorizontalFacing property
                 Direction newDirection = state.get(HorizontalFacingBlock.FACING);
                 newDirection = Screen.hasShiftDown() ? newDirection.rotateYCounterclockwise() : newDirection.rotateYClockwise();
                 newState = state.with(HorizontalFacingBlock.FACING, newDirection);

@@ -28,6 +28,10 @@ import java.util.Set;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
+/**
+ * Extends upon basic wire functionality. Each face can be one of three states, where it can act as acceptinga redstone
+ * input into the wire, or emitting a redstone signal. Acts as a medium to interface redstone with wires.
+ */
 public abstract class WireAdapterBlock extends AbstractWireBlock implements Wrenchable, AdvancedWrenchable, Analysable {
     public static final EnumProperty<DirectionState> DOWN = EnumProperty.of("down", DirectionState.class);
     public static final EnumProperty<DirectionState> UP = EnumProperty.of("up", DirectionState.class);
@@ -81,6 +85,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
         return power;
     }
 
+    /** Given a direction, return the property which contains the state of that face */
     public static EnumProperty<DirectionState> getDirectionState(Direction direction) {
         return switch (direction) {
             case UP -> UP;
@@ -92,17 +97,20 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
         };
     }
 
+    /** Is the face in the given direction in "input" mode? */
     public boolean isInput(BlockState state, Direction direction) {
         EnumProperty<DirectionState> directionState = getDirectionState(direction);
         return directionState != null && state.isOf(this) && state.get(directionState) == DirectionState.INPUT;
     }
 
+    /** Is the face in the given direction in "output" mode? */
     public boolean isOutput(BlockState state, Direction direction) {
         EnumProperty<DirectionState> directionState = getDirectionState(direction);
         return directionState != null && state.isOf(this) && state.get(directionState) == DirectionState.OUTPUT;
     }
 
     @Override
+    /** A more advanced rotation. Rotates clockwise from the player's position, or rotates faces towards them. */
     public BlockState applyWrench(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
         if (world.isClient)
             return null;
@@ -137,6 +145,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
         return rotateProperties(state, directions);
     }
 
+    /** Rotate the modes of each face clockwise e.g. new_state[1] = old_state[0] */
     protected BlockState rotateProperties(BlockState state, EnumProperty<DirectionState>[] properties) {
         DirectionState[] states = new DirectionState[properties.length];
         for (int i = 0; i < states.length; i++) {
@@ -152,6 +161,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
     }
 
     @Override
+    /** Cycle the mode of the given face */
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         if (world.isClient)
             return null;
@@ -194,6 +204,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
 
     @Override
     public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+        // Only emit a signal if the requesting face is in output mode.
         return isOutput(state, direction.getOpposite()) ? state.get(POWER) : 0;
     }
 
@@ -210,6 +221,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
         }
     }
 
+    /** Update each surrounding block */
     protected void updateTarget(World world, BlockPos pos, BlockState state) {
         if (!world.isClient) {
             for (Direction direction : Direction.values()) {
@@ -228,6 +240,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
         super.appendProperties(builder);
     }
 
+    /** get the name of an adapter of said color */
     protected static String getName(WireColor color) {
         return color + "_wire_adapter";
     }

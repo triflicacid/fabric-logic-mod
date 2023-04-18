@@ -16,16 +16,22 @@ import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
+/**
+ * Outputs the stored signal strength. A new signal strength will be generated randomly when a signal is received
+ */
 public class RandomBlock extends AbstractPowerBlock implements AdvancedWrenchable {
     public static final String NAME = "random";
+    /** Random : either 0/15, or any number in 0-15. */
     public static final BooleanProperty BINARY = BooleanProperty.of("binary");
-    public static final BooleanProperty LAST_STATE = BooleanProperty.of("last_state"); // Was the line behind us active or inactive?
+    /** Was the line behind us active or inactive? */
+    public static final BooleanProperty LAST_STATE = BooleanProperty.of("last_state");
 
     public RandomBlock() {
         super(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).breakInstantly(), true);
         this.setDefaultState(this.getDefaultState().with(BINARY, false).with(LAST_STATE, false));
     }
 
+    /** Generate a new random signal, taking into account the value of BINARY */
     protected final int getRandom(BlockState state) {
         if (state.get(BINARY))
             return Math.random() < 0.5 ? 0 : 15;
@@ -56,6 +62,7 @@ public class RandomBlock extends AbstractPowerBlock implements AdvancedWrenchabl
     }
 
     @Override
+    /** Toggle between binary and non-binary random generators */
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         if (world.isClient)
             return null;

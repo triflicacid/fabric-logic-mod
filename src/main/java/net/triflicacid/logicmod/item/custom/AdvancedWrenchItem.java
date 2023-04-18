@@ -23,6 +23,10 @@ import java.util.List;
 import static net.triflicacid.logicmod.util.Util.commentToText;
 import static net.triflicacid.logicmod.util.Util.wrapInt;
 
+/**
+ * Used on a block, namely a logical block, to do a given action as defined by the overridden
+ * AdvancedWrenchable.applyAdvancedWrench.
+ */
 public class AdvancedWrenchItem extends Item {
     public static final String NAME = "advanced_wrench";
 
@@ -50,9 +54,9 @@ public class AdvancedWrenchItem extends Item {
             Block block = state.getBlock();
             BlockState newState = null;
 
-            if (block instanceof AdvancedWrenchable wrenchableBlock) {
+            if (block instanceof AdvancedWrenchable wrenchableBlock) { // Custom bahaviour?
                 newState = wrenchableBlock.applyAdvancedWrench(world, pos, state, context.getSide(), context.getPlayer(), context.getHorizontalPlayerFacing());
-            } else if (block instanceof NoteBlock) {
+            } else if (block instanceof NoteBlock) { // Special behaviour for the note block -- allow note to be cycled backwards
                 int newNote = wrapInt(state.get(NoteBlock.NOTE) + (Screen.hasShiftDown() ? -1 : 1), 0, 24);
                 newState = state.with(NoteBlock.NOTE, newNote);
             }

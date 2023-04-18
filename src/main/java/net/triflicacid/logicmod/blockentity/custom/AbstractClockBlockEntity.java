@@ -9,10 +9,17 @@ import net.minecraft.world.World;
 import net.triflicacid.logicmod.block.custom.AbstractClockBlock;
 import net.triflicacid.logicmod.blockentity.ModBlockEntity;
 
+/**
+ * The blockentity for AbstractClockBlock -- track the tick we are on, and update the clock's state when dictated by on/off tick count.
+ */
 public abstract class AbstractClockBlockEntity extends BlockEntity {
+    /** How many ticks are we active for? */
     private int onTickCount;
+    /** How many ticks are we inactive for? */
     private int offTickCount;
-    private int ticks = 0; // How many ticks has passed since last toggle
+    /** How many ticks has passed since last toggle */
+    private int ticks = 0;
+    /** Are we currently active or inactive? Used to set the ACTIVE property of the clock block */
     private boolean active = false;
 
     public AbstractClockBlockEntity(BlockPos pos, BlockState state) {
@@ -57,7 +64,9 @@ public abstract class AbstractClockBlockEntity extends BlockEntity {
         this.ticks = nbt.getInt("Ticks");
     }
 
-    /** Increase ticks */
+    /** Register a tick and increment, updating internal properties as necessary.
+     * Check to see if the associated ClockBlock's ACTIVE property needs updating
+     */
     public void registerTick() {
         ticks++;
         if (ticks > getCurrentTickCount()) {

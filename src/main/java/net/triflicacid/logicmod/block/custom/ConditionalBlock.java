@@ -12,6 +12,9 @@ import net.minecraft.world.World;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
+/**
+ * A redstone component which propagates the right or left signal depending on whether we're receiving power, respectively.
+ */
 public class ConditionalBlock extends AbstractPowerBlock {
     public static final String NAME = "conditional";
 
@@ -19,14 +22,17 @@ public class ConditionalBlock extends AbstractPowerBlock {
         super(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).breakInstantly(), true);
     }
 
+    /** Get signal from "on" direction */
     protected int getOnPower(World world, BlockState state, BlockPos pos) {
         return getPower(world, pos, state, state.get(FACING).rotateYClockwise());
     }
 
+    /** Get signal from "off" direction */
     protected int getOffPower(World world, BlockState state, BlockPos pos) {
         return getPower(world, pos, state, state.get(FACING).rotateYCounterclockwise());
     }
 
+    /** Get the signal strength that we should propagate, depending on whether we're receiving power */
     public int getSignalStrength(World world, BlockState state, BlockPos pos) {
         return getPower(world, pos, state, state.get(FACING)) > 0
                 ? getOnPower(world, state, pos)

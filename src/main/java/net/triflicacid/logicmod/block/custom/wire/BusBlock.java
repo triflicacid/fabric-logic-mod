@@ -27,6 +27,9 @@ import java.util.*;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
+/**
+ * Similar to a wire, but contains a field for every wire color type (using a blockentity).
+ */
 public class BusBlock extends Block implements BlockEntityProvider, Analysable {
     public static final String NAME = "bus";
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");

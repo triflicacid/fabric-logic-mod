@@ -3,6 +3,9 @@ package net.triflicacid.logicmod.util;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.StringIdentifiable;
 
+/**
+ * An enumeration containing all the wire colors
+ */
 public enum WireColor implements StringIdentifiable {
     BLUE("blue"),
     GREEN("green"),
@@ -27,6 +30,7 @@ public enum WireColor implements StringIdentifiable {
         return this.name;
     }
 
+    /** Get Minecraft text formatting option */
     public Formatting getFormatting() {
         return switch (this) {
             case BLUE -> Formatting.BLUE;

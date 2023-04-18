@@ -22,6 +22,9 @@ import org.jetbrains.annotations.Nullable;
 import static net.triflicacid.logicmod.util.Util.numberToText;
 import static net.triflicacid.logicmod.util.Util.specialToText;
 
+/**
+ * Emits a redstone pulse of a given duration on the rising-edge of an input signal.
+ */
 public class PulseBlock extends AbstractBooleanBlock implements AdvancedWrenchable, BlockEntityProvider {
     public static final String NAME = "pulse";
 
@@ -40,7 +43,7 @@ public class PulseBlock extends AbstractBooleanBlock implements AdvancedWrenchab
         }
     }
 
-    /** Called from BlockEntity */
+    /** Update ACTIVE state directly */
     public void update(World world, BlockState state, BlockPos pos, boolean shouldBeActive) {
         if (!world.isClient && shouldBeActive != state.get(ACTIVE)) {
             world.setBlockState(pos, state.with(ACTIVE, shouldBeActive));
@@ -48,6 +51,7 @@ public class PulseBlock extends AbstractBooleanBlock implements AdvancedWrenchab
     }
 
     @Override
+    /** Increment/decrement the pulse duration */
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         if (world.isClient)
             return null;

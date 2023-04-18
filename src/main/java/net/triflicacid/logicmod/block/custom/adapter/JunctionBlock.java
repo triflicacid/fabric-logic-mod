@@ -7,7 +7,6 @@ import net.minecraft.block.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
@@ -24,10 +23,17 @@ import net.triflicacid.logicmod.interfaces.Analysable;
 import net.triflicacid.logicmod.util.WireColor;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
+/**
+ * A block which allows different colored wires signal's to propagate through it without interfering.
+ * Used to allow wire crossings.
+ */
 public class JunctionBlock extends Block implements Analysable {
     public static final String NAME = "junction";
 

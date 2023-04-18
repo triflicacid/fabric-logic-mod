@@ -19,6 +19,9 @@ import org.jetbrains.annotations.Nullable;
 import static net.triflicacid.logicmod.util.Util.numberToText;
 import static net.triflicacid.logicmod.util.Util.specialToText;
 
+/**
+ * Extend core clock mechanics defined in the abstract class
+ */
 public class ClockBlock extends AbstractClockBlock implements AdvancedWrenchable, Analysable {
     public static final String NAME = "clock";
 
@@ -28,6 +31,7 @@ public class ClockBlock extends AbstractClockBlock implements AdvancedWrenchable
     }
 
     @Override
+    /** Increment/decrement the on or off tick duration (by using the ALT key) */
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         if (world.isClient)
             return null;

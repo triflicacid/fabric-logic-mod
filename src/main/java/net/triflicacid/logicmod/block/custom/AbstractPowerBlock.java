@@ -15,7 +15,10 @@ import net.triflicacid.logicmod.interfaces.Analysable;
 
 import static net.triflicacid.logicmod.util.Util.numberToText;
 
-public abstract class AbstractPowerBlock extends AbstractDirectionalRedstoneBlock implements Analysable {
+/**
+ * Represent a block which emits a *strong* redstone signal between 0 and 15 in the direction we're facing.
+ */
+public abstract class AbstractPowerBlock extends AbstractDirectionalBlock implements Analysable {
     public static final IntProperty POWER = Properties.POWER;
     protected final boolean emitsRedstone;
     protected int tickDelay = 0;
