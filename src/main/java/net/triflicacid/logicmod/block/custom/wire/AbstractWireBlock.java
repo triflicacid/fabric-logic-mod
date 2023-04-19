@@ -81,18 +81,10 @@ public abstract class AbstractWireBlock extends Block {
                 power = wireBlock.getPowerOf(world, dstPos, dstState, exploredPositions, cache);
             }
         } else if (dstBlock instanceof BusAdapterBlock busAdapterBlock) {
-            exploredPositions.add(dstPos);
-            if (!cache.has(dstPos)) {
-                var map = busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, cache);
-                cache.set(dstPos, map);
-            }
+            busAdapterBlock.getPowerOf(world, dstPos, dstState, exploredPositions, cache);
             power = cache.get(dstPos, getWireColor());
         } else if (dstBlock instanceof JunctionBlock jBlock) {
-            exploredPositions.add(dstPos);
-            if (!cache.has(dstPos)) {
-                var map = jBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, cache);
-                cache.set(dstPos, map);
-            }
+            jBlock.getPowerOf(world, dstPos, dstState, exploredPositions, cache);
             power = cache.get(dstPos, getWireColor());
         }
 
@@ -153,7 +145,9 @@ public abstract class AbstractWireBlock extends Block {
         if (cache.has(pos)) {
             return cache.get(pos);
         } else {
-            return getReceivedPower(world, pos, state, explored, cache);
+            int power = getReceivedPower(world, pos, state, explored, cache);
+            cache.set(pos, power);
+            return power;
         }
     }
 

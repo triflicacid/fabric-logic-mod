@@ -71,12 +71,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
                 }
             }
         } else if (dstBlock instanceof BusAdapterBlock busAdapterBlock) {
-            exploredPositions.add(dstPos);
-
-            if (!cache.has(dstPos)) {
-                var map = busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, cache);
-                cache.set(dstPos, map);
-            }
+            busAdapterBlock.getPowerOf(world, dstPos, dstState, exploredPositions, cache);
             power = cache.get(dstPos, getWireColor());
         } else if (dstBlock instanceof JunctionBlock jBlock) {
             jBlock.getPowerOf(world, dstPos, dstState, exploredPositions, cache);
@@ -170,7 +165,6 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
         if (world.isClient)
             return null;
 
-//        world.scheduleBlockTick(pos, this, 1);
         return state.cycle(getDirectionState(side));
     }
 

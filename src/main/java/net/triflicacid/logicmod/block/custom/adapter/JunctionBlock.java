@@ -80,14 +80,7 @@ public class JunctionBlock extends Block implements Analysable {
             int power2 = wireBlock.getPowerOf(world, dstPos, dstState, exploredPositions, cache);
             power.put(wireBlock.getWireColor(), power2);
         } else if (dstBlock instanceof BusAdapterBlock busAdapterBlock) {
-            exploredPositions.add(dstPos);
-
-            if (cache.has(dstPos)) {
-                power = cache.getMap(dstPos);
-            } else {
-                power = busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, cache);
-                cache.set(dstPos, power);
-            }
+            power = busAdapterBlock.getPowerOf(world, dstPos, dstState, exploredPositions, cache);
         } else if (dstBlock instanceof JunctionBlock junctionBlock) {
 //            exploredPositions.add(dstPos);
 //            power = junctionBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, cache);
