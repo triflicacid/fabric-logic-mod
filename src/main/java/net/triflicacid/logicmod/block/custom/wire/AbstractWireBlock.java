@@ -18,7 +18,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.block.custom.adapter.BusAdapterBlock;
 import net.triflicacid.logicmod.block.custom.adapter.JunctionBlock;
-import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
+import net.triflicacid.logicmod.util.UpdateCache;
 import net.triflicacid.logicmod.util.WireColor;
 
 import java.util.*;
@@ -35,7 +35,6 @@ public abstract class AbstractWireBlock extends Block {
 
     public AbstractWireBlock(BlockSoundGroup sound, WireColor color) {
         super(FabricBlockSettings.of(Material.WOOL).sounds(sound).breakInstantly());
-        this.setDefaultState(this.stateManager.getDefaultState());
         this.color = color;
     }
 
@@ -45,16 +44,16 @@ public abstract class AbstractWireBlock extends Block {
 
     /** Get received power */
     public final int getReceivedPower(World world, BlockState state, BlockPos pos) {
-        return getReceivedPower(world, pos, state, new HashSet<>(), new HashSet<>());
+        return getReceivedPower(world, pos, state, new HashSet<>(), new UpdateCache());
     }
 
-    /** Get received power. Don't recalculate receiving power for knownBlocks -- their POWER property is updated */
-    public final int getReceivedPower(World world, BlockPos pos, BlockState state, Set<BlockPos> knownBlocks) {
-        return getReceivedPower(world, pos, state, new HashSet<>(), knownBlocks);
+    /** Get received power. Populate blocks in 'explored' */
+    public final int getReceivedPower(World world, BlockPos pos, BlockState state, UpdateCache cache) {
+        return getReceivedPower(world, pos, state, new HashSet<>(), cache);
     }
 
     /** Explore to get received power, but do not loop back */
-    public final int getReceivedPower(World world, BlockPos pos, BlockState state, Set<BlockPos> exploredPositions, Set<BlockPos> knownBlocks) {
+    public final int getReceivedPower(World world, BlockPos pos, BlockState state, Set<BlockPos> exploredPositions, UpdateCache cache) {
         exploredPositions.add(pos);
         int power = 0;
 
@@ -64,7 +63,7 @@ public abstract class AbstractWireBlock extends Block {
                 continue;
 
             BlockState dstState = world.getBlockState(dstPos);
-            int power2 = getPowerOfNeighbor(world, pos, state, dstPos, dstState, dstState.getBlock(), direction, exploredPositions, knownBlocks);
+            int power2 = getPowerOfNeighbor(world, pos, state, dstPos, dstState, dstState.getBlock(), direction, exploredPositions, cache);
             if (power2 > power) {
                 power = power2;
             }
@@ -74,36 +73,38 @@ public abstract class AbstractWireBlock extends Block {
     }
 
     /** Helper for getReceivedPower -- get power of neighbor block. srcState is the state of this */
-    protected int getPowerOfNeighbor(World world, BlockPos srcPos, BlockState srcState, BlockPos dstPos, BlockState dstState, Block dstBlock, Direction direction, Set<BlockPos> exploredPositions, Set<BlockPos> knownBlocks) {
+    protected int getPowerOfNeighbor(World world, BlockPos srcPos, BlockState srcState, BlockPos dstPos, BlockState dstState, Block dstBlock, Direction direction, Set<BlockPos> exploredPositions, UpdateCache cache) {
         int power = 0;
 
         if (dstBlock instanceof AbstractWireBlock wireBlock) {
             if (wireBlock.getWireColor() == getWireColor()) {
-                exploredPositions.add(dstPos);
-                power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : wireBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+                power = wireBlock.getPowerOf(world, dstPos, dstState, exploredPositions, cache);
             }
         } else if (dstBlock instanceof BusAdapterBlock busAdapterBlock) {
             exploredPositions.add(dstPos);
-            Map<WireColor, Integer> powerMap = knownBlocks.contains(dstPos) ? ((BusBlockEntity) world.getBlockEntity(dstPos)).getPowerMap() : busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
-            if (powerMap.containsKey(getWireColor()))
-                power = powerMap.get(getWireColor());
+            if (!cache.has(dstPos)) {
+                var map = busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, cache);
+                cache.set(dstPos, map);
+            }
+            power = cache.get(dstPos, getWireColor());
         } else if (dstBlock instanceof JunctionBlock jBlock) {
             exploredPositions.add(dstPos);
-            Map<WireColor, Integer> map = jBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
-            if (map.containsKey(getWireColor())) {
-                power = map.get(getWireColor());
+            if (!cache.has(dstPos)) {
+                var map = jBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, cache);
+                cache.set(dstPos, map);
             }
+            power = cache.get(dstPos, getWireColor());
         }
 
         return power;
     }
 
     public static void update(World world, BlockPos origin) {
-        update(world, origin, new HashSet<>());
+        update(world, origin, new HashSet<>(), new UpdateCache());
     }
 
     /** Update oneself and all connected AbstractWireBlocks */
-    public static void update(World world, BlockPos origin, Set<BlockPos> explored) {
+    public static void update(World world, BlockPos origin, Set<BlockPos> explored, UpdateCache cache) {
         Deque<Pair<BlockPos,BlockPos>> positions = new ArrayDeque<>(); // (prev, pos)
         positions.add(new Pair<>(null, origin));
 
@@ -118,8 +119,9 @@ public abstract class AbstractWireBlock extends Block {
             Block block = state.getBlock();
             if (block instanceof AbstractWireBlock wireBlock) {
                 int power = state.get(POWER);
-                int receiving = wireBlock.getReceivedPower(world, pos, state, explored);
+                int receiving = wireBlock.getReceivedPower(world, pos, state, cache);
                 explored.add(pos);
+                cache.set(pos, receiving);
 
                 if (power != receiving) {
                     state = state.with(POWER, receiving);
@@ -130,10 +132,10 @@ public abstract class AbstractWireBlock extends Block {
                     }
                 }
             } else if (block instanceof BusBlock) {
-                BusBlock.update(world, pos, explored);
+                BusBlock.update(world, pos, explored, cache);
                 explored.add(pos);
             } else if (block instanceof JunctionBlock) {
-                JunctionBlock.update(world, pos, state, explored);
+                JunctionBlock.update(world, pos, state, explored, cache);
                 explored.add(pos);
             } else {
                 // Update neighbors -- if adapter, may update a redstone component
@@ -141,6 +143,17 @@ public abstract class AbstractWireBlock extends Block {
 //                BlockState prevState = world.getBlockState(prev);
 //                block.neighborUpdate(state, world, pos, prevState.getBlock(), prev, true);
             }
+        }
+    }
+
+    /** Get power of said block. Set position as explored & add to cache. */
+    public int getPowerOf(World world, BlockPos pos, BlockState state, Set<BlockPos> explored, UpdateCache cache) {
+        explored.add(pos);
+
+        if (cache.has(pos)) {
+            return cache.get(pos);
+        } else {
+            return getReceivedPower(world, pos, state, explored, cache);
         }
     }
 

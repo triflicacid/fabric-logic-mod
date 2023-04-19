@@ -13,17 +13,16 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.block.custom.wire.AbstractWireBlock;
-import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.interfaces.Analysable;
 import net.triflicacid.logicmod.interfaces.Wrenchable;
 import net.triflicacid.logicmod.util.DirectionState;
+import net.triflicacid.logicmod.util.UpdateCache;
 import net.triflicacid.logicmod.util.WireColor;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import static net.triflicacid.logicmod.util.Util.*;
@@ -53,30 +52,35 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
     }
 
     @Override
-    protected int getPowerOfNeighbor(World world, BlockPos srcPos, BlockState srcState, BlockPos dstPos, BlockState dstState, Block dstBlock, Direction direction, Set<BlockPos> exploredPositions, Set<BlockPos> knownBlocks) {
+    protected int getPowerOfNeighbor(World world, BlockPos srcPos, BlockState srcState, BlockPos dstPos, BlockState dstState, Block dstBlock, Direction direction, Set<BlockPos> exploredPositions, UpdateCache cache) {
         int power = 0;
 
         if (dstBlock instanceof AbstractWireBlock wireBlock) {
             if (wireBlock.getWireColor() == getWireColor()) {
-                exploredPositions.add(dstPos);
-                power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : wireBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+                power = wireBlock.getPowerOf(world, dstPos, dstState, exploredPositions, cache);
             } else if (wireBlock instanceof WireAdapterBlock adapterBlock) {
                 if (this.isInput(srcState, direction) && adapterBlock.isOutput(dstState, direction.getOpposite())) {
                     exploredPositions.add(dstPos);
-                    power = knownBlocks.contains(dstPos) ? dstState.get(POWER) : dstState.getStrongRedstonePower(world, dstPos, direction);
+
+                    if (cache.has(dstPos)) {
+                        power = cache.get(dstPos);
+                    } else {
+                        power = dstState.getStrongRedstonePower(world, dstPos, direction);
+                        cache.set(dstPos, power);
+                    }
                 }
             }
         } else if (dstBlock instanceof BusAdapterBlock busAdapterBlock) {
             exploredPositions.add(dstPos);
-            Map<WireColor, Integer> powerMap = knownBlocks.contains(dstPos) ? ((BusBlockEntity) world.getBlockEntity(dstPos)).getPowerMap() : busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
-            if (powerMap.containsKey(getWireColor()))
-                power = powerMap.get(getWireColor());
-        } else if (dstBlock instanceof JunctionBlock jBlock) {
-            exploredPositions.add(dstPos);
-            Map<WireColor, Integer> map = jBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
-            if (map.containsKey(getWireColor())) {
-                power = map.get(getWireColor());
+
+            if (!cache.has(dstPos)) {
+                var map = busAdapterBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, cache);
+                cache.set(dstPos, map);
             }
+            power = cache.get(dstPos, getWireColor());
+        } else if (dstBlock instanceof JunctionBlock jBlock) {
+            jBlock.getPowerOf(world, dstPos, dstState, exploredPositions, cache);
+            power = cache.get(dstPos, getWireColor());
         } else if (isInput(srcState, direction)) {
             exploredPositions.add(dstPos);
             power = getPower(world, srcPos, srcState, direction);

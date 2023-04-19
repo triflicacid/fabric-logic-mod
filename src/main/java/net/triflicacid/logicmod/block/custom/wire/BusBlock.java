@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.triflicacid.logicmod.block.custom.adapter.JunctionBlock;
 import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
 import net.triflicacid.logicmod.interfaces.Analysable;
+import net.triflicacid.logicmod.util.UpdateCache;
 import net.triflicacid.logicmod.util.WireColor;
 
 import java.util.*;
@@ -40,16 +41,16 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
 
     /** Get received power */
     public final Map<WireColor, Integer> getReceivedPower(World world, BlockState state, BlockPos pos) {
-        return getReceivedPower(world, pos, state, new HashSet<>(), new HashSet<>());
+        return getReceivedPower(world, pos, state, new HashSet<>(), new UpdateCache());
     }
 
     /** Get received power. Don't recalculate receiving power for knownBlocks -- their POWER property is updated */
-    public final Map<WireColor, Integer> getReceivedPower(World world, BlockPos pos, BlockState state, Set<BlockPos> knownBlocks) {
-        return getReceivedPower(world, pos, state, new HashSet<>(), knownBlocks);
+    public final Map<WireColor, Integer> getReceivedPower(World world, BlockPos pos, BlockState state, UpdateCache cache) {
+        return getReceivedPower(world, pos, state, new HashSet<>(), cache);
     }
 
     /** Explore to get received power, but do not loop back */
-    public final Map<WireColor, Integer> getReceivedPower(World world, BlockPos pos, BlockState state, Set<BlockPos> exploredPositions, Set<BlockPos> knownBlocks) {
+    public final Map<WireColor, Integer> getReceivedPower(World world, BlockPos pos, BlockState state, Set<BlockPos> exploredPositions, UpdateCache cache) {
         exploredPositions.add(pos);
         Map<WireColor, Integer> power = new HashMap<>();
 
@@ -59,29 +60,28 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
                 continue;
 
             BlockState dstState = world.getBlockState(dstPos);
-            Map<WireColor, Integer> power2 = getPowerOfNeighbor(world, pos, state, dstPos, dstState, dstState.getBlock(), direction, exploredPositions, knownBlocks);
+            Map<WireColor, Integer> power2 = getPowerOfNeighbor(world, pos, state, dstPos, dstState, dstState.getBlock(), direction, exploredPositions, cache);
             mergePowerMaps(power, power2);
         }
 
         return power;
     }
 
-    protected Map<WireColor, Integer> getPowerOfNeighbor(World world, BlockPos srcPos, BlockState srcState, BlockPos dstPos, BlockState dstState, Block dstBlock, Direction direction, Set<BlockPos> exploredPositions, Set<BlockPos> knownBlocks) {
+    protected Map<WireColor, Integer> getPowerOfNeighbor(World world, BlockPos srcPos, BlockState srcState, BlockPos dstPos, BlockState dstState, Block dstBlock, Direction direction, Set<BlockPos> explored, UpdateCache cache) {
         Map<WireColor, Integer> power = null;
 
         if (dstBlock instanceof BusBlock dstBusBlock) {
-            exploredPositions.add(dstPos);
-            power = knownBlocks.contains(dstPos) ? ((BusBlockEntity) world.getBlockEntity(dstPos)).getPowerMap() : dstBusBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+            power = dstBusBlock.getPowerOf(world, dstPos, dstState, explored, cache);
         }
 
         return power == null ? new HashMap<>() : power;
     }
 
     public static void update(World world, BlockPos origin) {
-        update(world, origin, new HashSet<>());
+        update(world, origin, new HashSet<>(), new UpdateCache());
     }
 
-    public static void update(World world, BlockPos origin, Set<BlockPos> explored) {
+    public static void update(World world, BlockPos origin, Set<BlockPos> explored, UpdateCache cache) {
         Deque<BlockPos> positions = new ArrayDeque<>();
 
         positions.add(origin);
@@ -97,7 +97,7 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
 
             if (block instanceof BusBlock busBlock) {
                 BusBlockEntity entity = (BusBlockEntity) world.getBlockEntity(pos);
-                Map<WireColor, Integer> receiving = busBlock.getReceivedPower(world, pos, state, explored);
+                Map<WireColor, Integer> receiving = busBlock.getReceivedPower(world, pos, state, cache);
                 explored.add(pos);
 
                 if (!entity.arePowerMapsEqual(receiving)) {
@@ -111,13 +111,24 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
                     }
                 }
             } else if (block instanceof AbstractWireBlock) {
-                AbstractWireBlock.update(world, pos, explored);
+                AbstractWireBlock.update(world, pos, explored, cache);
                 explored.add(pos);
             } else if (block instanceof JunctionBlock) {
-                JunctionBlock.update(world, pos, state, explored);
+                JunctionBlock.update(world, pos, state, explored, cache);
                 explored.add(pos);
             }
         }
+    }
+
+    /** Get power of said block. Set position as explored & add to cache. */
+    public Map<WireColor,Integer> getPowerOf(World world, BlockPos pos, BlockState state, Set<BlockPos> explored, UpdateCache cache) {
+        explored.add(pos);
+
+        if (!cache.has(pos)) {
+            cache.set(pos, getReceivedPower(world, pos, state, explored, cache));
+        }
+
+        return cache.getMap(pos);
     }
 
     @Override

@@ -8,7 +8,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.block.custom.wire.AbstractWireBlock;
 import net.triflicacid.logicmod.block.custom.wire.BusBlock;
-import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
+import net.triflicacid.logicmod.util.UpdateCache;
 import net.triflicacid.logicmod.util.WireColor;
 
 import java.util.HashMap;
@@ -26,19 +26,16 @@ public class BusAdapterBlock extends BusBlock {
     }
 
     @Override
-    protected Map<WireColor, Integer> getPowerOfNeighbor(World world, BlockPos srcPos, BlockState srcState, BlockPos dstPos, BlockState dstState, Block dstBlock, Direction direction, Set<BlockPos> exploredPositions, Set<BlockPos> knownBlocks) {
+    protected Map<WireColor, Integer> getPowerOfNeighbor(World world, BlockPos srcPos, BlockState srcState, BlockPos dstPos, BlockState dstState, Block dstBlock, Direction direction, Set<BlockPos> explored, UpdateCache cache) {
         Map<WireColor, Integer> power = new HashMap<>();
 
         if (dstBlock instanceof BusBlock dstBusBlock) {
-            exploredPositions.add(dstPos);
-            power = knownBlocks.contains(dstPos) ? ((BusBlockEntity) world.getBlockEntity(dstPos)).getPowerMap() : dstBusBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+            power = dstBusBlock.getPowerOf(world, dstPos, dstState, explored, cache);
         } else if (dstBlock instanceof AbstractWireBlock dstWireBlock) {
-            exploredPositions.add(dstPos);
-            int value = knownBlocks.contains(dstPos) ? dstState.get(AbstractWireBlock.POWER) : dstWireBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
-            power.put(dstWireBlock.getWireColor(), value);
+            int power2 = dstWireBlock.getPowerOf(world, dstPos, dstState, explored, cache);
+            power.put(dstWireBlock.getWireColor(), power2);
         } else if (dstBlock instanceof JunctionBlock jBlock) {
-            exploredPositions.add(dstPos);
-            power = jBlock.getReceivedPower(world, dstPos, dstState, exploredPositions, knownBlocks);
+            power = jBlock.getPowerOf(world, dstPos, dstState, explored, cache);
         }
 
         return power;
