@@ -54,7 +54,7 @@ public class AdvancedWrenchItem extends Item {
             Block block = state.getBlock();
             BlockState newState = null;
 
-            if (block instanceof AdvancedWrenchable wrenchableBlock) { // Custom bahaviour?
+            if (block instanceof AdvancedWrenchable wrenchableBlock) { // Custom behaviour?
                 newState = wrenchableBlock.applyAdvancedWrench(world, pos, state, context.getSide(), context.getPlayer(), context.getHorizontalPlayerFacing());
             } else if (block instanceof NoteBlock) { // Special behaviour for the note block -- allow note to be cycled backwards
                 int newNote = wrapInt(state.get(NoteBlock.NOTE) + (Screen.hasShiftDown() ? -1 : 1), 0, 24);

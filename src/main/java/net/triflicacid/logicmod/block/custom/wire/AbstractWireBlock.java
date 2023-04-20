@@ -63,9 +63,9 @@ public abstract class AbstractWireBlock extends Block {
                 continue;
 
             BlockState dstState = world.getBlockState(dstPos);
-            int power2 = getPowerOfNeighbor(world, pos, state, dstPos, dstState, dstState.getBlock(), direction, exploredPositions, cache);
-            if (power2 > power) {
-                power = power2;
+            int powerOfNeighbor = getPowerOfNeighbor(world, pos, state, dstPos, dstState, dstState.getBlock(), direction, exploredPositions, cache);
+            if (powerOfNeighbor > power) {
+                power = powerOfNeighbor;
             }
         }
 

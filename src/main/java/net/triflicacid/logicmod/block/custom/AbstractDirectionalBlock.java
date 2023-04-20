@@ -3,13 +3,13 @@ package net.triflicacid.logicmod.block.custom;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
  * Methods such as onPlaced and neighborUpdate are implemented to call the abstract `update` method appropriate
  */
 public abstract class AbstractDirectionalBlock extends Block {
-    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     public AbstractDirectionalBlock(Settings settings) {
         super(settings);

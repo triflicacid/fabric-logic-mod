@@ -60,7 +60,7 @@ public class ModBlocks {
         return Registry.register(Registries.BLOCK, new Identifier(LogicMod.MOD_ID, name), block);
     }
 
-    /** Register a block with an associated item, which will e placed in the provided ItemGroup */
+    /** Register a block with an associated item, which will be placed in the provided ItemGroup */
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
         return Registry.register(Registries.BLOCK, new Identifier(LogicMod.MOD_ID, name), block);

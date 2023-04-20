@@ -63,7 +63,7 @@ public class AnalyserItem extends Item {
                 // Otherwise, attempt static method (mainly for non-mod blocks)
                 Text[] message = Analyse.analyseBlock(world, pos, state, block);
                 if (message == null) {
-//                player.sendMessage(commentToText("No further information"));
+//                    player.sendMessage(commentToText("No further information"));
                     return ActionResult.FAIL;
                 } else {
                     for (Text line : message)

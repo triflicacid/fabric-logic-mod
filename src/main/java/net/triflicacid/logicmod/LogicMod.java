@@ -26,13 +26,15 @@ import org.slf4j.LoggerFactory;
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 public class LogicMod implements ModInitializer {
 	public static final String MOD_ID = "logic-mod";
 	public static final Logger LOGGER = LoggerFactory.getLogger("logic-mod");
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Initialising mod (MOD_ID=" + MOD_ID + ")");
+		LOGGER.info("Initialising mod (MOD_ID={})", MOD_ID);
+
 		ModItemGroup.registerItemGroups();
 		ModBlockEntity.registerBlockEntities();
 		ModItems.registerItems();
