@@ -29,4 +29,3 @@ Every bullet is ranked 0-10 for desirability/likeliness.
 
 ## Textures
 - [**2**] Redo wire textures to be smaller than a block (like small pipes floating in the air), and add direction booleans for modelling.
-- [**4**] Indicator on `logic-mod:output` doesn't line up with other blocks.
