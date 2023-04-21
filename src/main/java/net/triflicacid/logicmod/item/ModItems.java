@@ -8,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.block.custom.*;
@@ -60,7 +59,7 @@ public class ModItems {
     public static final Item BUS_ADAPTER = registerAliased(ModBlocks.BUS_ADAPTER, BusAdapterBlock.NAME);
 
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, new Identifier(LogicMod.MOD_ID, name), item);
+        return Registry.register(Registries.ITEM, LogicMod.identify(name), item);
     }
 
     private static Item addToItemGroup(Item item, ItemGroup group) {

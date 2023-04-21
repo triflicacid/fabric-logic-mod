@@ -1,0 +1,7 @@
+{
+    "parent": "logic-mod:block/generic",
+    "textures": {
+        "north": "logic-mod:block/white_side",
+        "south": "#face"
+    }
+}
