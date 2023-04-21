@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "logic-mod",
-	"version": "${version}",
+	"version": "1.0.0",
 	"name": "Logic Mod",
 	"description": "Add basic logical components to Minecraft.",
 	"authors": [
