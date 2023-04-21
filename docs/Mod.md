@@ -4,11 +4,14 @@
 
 ## Logic Gates
 
-Logic gates accept inputs and outputs are signal only if a predicate is met.
+Logic gates accept inputs and outputs a signal only if a predicate is met.
 - Inputs : different gates accept a different number of inputs
     - One input: opposite of indicator.
     - Two inputs: left/right of indicator.
     - Three inputs: both of the above.
+
+  An input is a redstone signal. If another logic gate block is adjacent to an input and is not facing it, the input's state will be the same as the adjacent gate's input from the same direction
+    - This means XOR gates may be stacked to create an n-bit inverter.
 
   Some two-input gates can be extended to three inputs. This will occur is there is a (potential) redstone-emitting block behind it.
 
@@ -20,7 +23,7 @@ The advanced wrench toggles each get between its NOT variant
     - Outputs if both inputs are on
 
   | A | B | `A & B` |
-      |---|---|---------|
+  |---|---|---------|
   | 0 | 0 | 0       |
   | 0 | 1 | 0       |
   | 1 | 0 | 0       |
@@ -30,7 +33,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
   |   | T |   |
-    |---|---|---|
+  |---|---|---|
   |   | S |   |
   | T | R | T |
 
@@ -43,7 +46,7 @@ The advanced wrench toggles each get between its NOT variant
     - Outputs if either input is off (not-and)
 
   | A | B | `¬(A & B)` |
-    |---|---|------------|
+  |---|---|------------|
   | 0 | 0 | 1          |
   | 0 | 1 | 1          |
   | 1 | 0 | 1          |
@@ -58,7 +61,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
   |   | T |   |
-    |---|---|---|
+  |---|---|---|
   |   | S |   |
   |   | R |   |
 
@@ -71,7 +74,7 @@ The advanced wrench toggles each get between its NOT variant
     - Inverts the input
 
   | A | `¬ A` |
-    |---|-------|
+  |---|-------|
   | 0 | 1     |
   | 1 | 0     |
 
@@ -82,7 +85,7 @@ The advanced wrench toggles each get between its NOT variant
     - Outputs if either inputs are on
 
   | A | B | `A \| B` |
-    |---|---|----------|
+  |---|---|----------|
   | 0 | 0 | 0        |
   | 0 | 1 | 1        |
   | 1 | 0 | 1        |
@@ -92,7 +95,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
   |   | T |   |
-    |---|---|---|
+  |---|---|---|
   |   | S |   |
   | R | R | R |
 
@@ -105,7 +108,7 @@ The advanced wrench toggles each get between its NOT variant
     - Outputs if both inputs are off (not-or)
 
   | A | B | `¬(A \| B)` |
-    |---|---|-------------|
+  |---|---|-------------|
   | 0 | 0 | 1           |
   | 0 | 1 | 0           |
   | 1 | 0 | 0           |
@@ -118,7 +121,7 @@ The advanced wrench toggles each get between its NOT variant
     - Outputs if either inputs are on, but not both
 
   | A | B | `(A \| B) & ¬(A & B)` |
-    |---|---|-----------------------|
+  |---|---|-----------------------|
   | 0 | 0 | 0                     |
   | 0 | 1 | 1                     |
   | 1 | 0 | 1                     |
@@ -128,7 +131,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
   |   | T |   |
-    |---|---|---|
+  |---|---|---|
   |   | S |   |
   | R | T | R |
 
@@ -141,7 +144,7 @@ The advanced wrench toggles each get between its NOT variant
     - Output if both inputs are equal (not-xor)
 
   | A | B | `¬(A & B) \| (A & B)` |
-    |---|---|-----------------------|
+  |---|---|-----------------------|
   | 0 | 0 | 1                     |
   | 0 | 1 | 0                     |
   | 1 | 0 | 0                     |
@@ -168,14 +171,14 @@ The advanced wrench toggles each get between its NOT variant
     - Either returns its left/right input depending on whether it is receiving power from behind
 
   | In | Out   |
-    |----|-------|
+  |----|-------|
   | 0  | Right |
   | 1  | Left  |
 
     - Crafting recipe:
 
       |   | T |   |
-          |---|---|---|
+      |---|---|---|
       | T | S | T |
       |   | R |   |
 
@@ -189,7 +192,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
       |   | T |   |
-          |---|---|---|
+      |---|---|---|
       | R | S | R |
       |   | R |   |
 
@@ -206,7 +209,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
   |   | R |   |
-    |---|---|---|
+  |---|---|---|
   |   | S |   |
   |   | T |   |
 
@@ -233,7 +236,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
       |   | P |   |
-          |---|---|---|
+      |---|---|---|
       | R | S | R |
       |   | R |   |
 
@@ -247,7 +250,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
       |   | R |   |
-          |---|---|---|
+      |---|---|---|
       |   | S |   |
       |   | R |   |
 
@@ -261,7 +264,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
       |   | R |   |
-          |---|---|---|
+      |---|---|---|
       | R | S | R |
       |   | B |   |
 
@@ -278,7 +281,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
       |   | T |   |
-          |---|---|---|
+      |---|---|---|
       | R | I | R |
       |   | R |   |
 
@@ -296,7 +299,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
   |   |   | I |
-    |---|---|---|
+  |---|---|---|
   | G | R | I |
   | I | I | I |
 
@@ -311,7 +314,7 @@ The advanced wrench toggles each get between its NOT variant
     - Crafting recipe:
 
   | # |   | # |
-    |---|---|---|
+  |---|---|---|
   |   | # |   |
   |   | # |   |
 
@@ -332,7 +335,7 @@ Wires are blocks which carry redstone signals. Key features:
 - Wire crafting recipe (crafts 8 wires):
 
   | C | C | C |
-    |---|---|---|
+  |---|---|---|
   | C | D | C |
   | C | C | C |
 
@@ -349,7 +352,7 @@ Adapters are wires with extra, optional functionality.
 - Adapter crafting recipe:
 
   |   | W |   |
-    |---|---|---|
+  |---|---|---|
   | W | S | W |
   |   | W |   |
 
@@ -372,7 +375,7 @@ The junction component is similar to a wire
     - Allows colored wires to cross over one another e.g.
 
   |   | B |   |
-    |---|---|---|
+  |---|---|---|
   | G | J | G |
   |   | B |   |
 
@@ -397,4 +400,3 @@ The bus adapter is different to the other adapters
 - It doesn't have any side modes: it cannot accept nor output a redstone signal
 - Instead, it allows colored wires to transfer their signal into the bus, or outputs the signal from the bus into the colored wire
 - Bus adapters are crafted like normal adapters, but using buses
-

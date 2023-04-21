@@ -23,8 +23,6 @@ Every bullet is ranked 0-10 for desirability/likeliness.
 - [**6**] Not sure of a name, but pulls up a signal to 15 or pushes down a signal to 0 if the signal exceeds or is less than a given signal strength e.g. 7
 
 ## Modifications
-- [**8**] Logic gates with two inputs that have a logic gate to their left uses the left block's left input (input propagation).
-  - Inspiration: array of XOR gates used to inverse a line of wires
 - [**2**] Make WireAdapterBlock non-dependent on AbstractWireBlock -- remove POWER property, replace with a boolean ACTIVE. This would reduce the number of blockstates and decrease loading time.
 
 ## Textures
