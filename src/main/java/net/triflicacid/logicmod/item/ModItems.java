@@ -17,6 +17,10 @@ import net.triflicacid.logicmod.block.custom.wire.*;
 import net.triflicacid.logicmod.item.custom.AdvancedWrenchItem;
 import net.triflicacid.logicmod.item.custom.AnalyserItem;
 import net.triflicacid.logicmod.item.custom.WrenchItem;
+import net.triflicacid.logicmod.util.WireColor;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ModItems {
     public static final Item WRENCH = addToItemGroup(registerItem(WrenchItem.NAME, new WrenchItem()), ModItemGroup.LOGIC);
@@ -43,18 +47,19 @@ public class ModItems {
     public static final Item MEMORY_CELL = registerAliased(ModBlocks.MEMORY_CELL, MemoryCellBlock.NAME);
 
     /** Wires and adapters */
-    public static final Item BLUE_WIRE = registerAliased(ModBlocks.BLUE_WIRE, BlueWireBlock.NAME);
-    public static final Item BLUE_WIRE_ADAPTER = registerAliased(ModBlocks.BLUE_WIRE_ADAPTER, BlueWireAdapterBlock.NAME);
-    public static final Item GREEN_WIRE = registerAliased(ModBlocks.GREEN_WIRE, GreenWireBlock.NAME);
-    public static final Item GREEN_WIRE_ADAPTER = registerAliased(ModBlocks.GREEN_WIRE_ADAPTER, GreenWireAdapterBlock.NAME);
-    public static final Item ORANGE_WIRE = registerAliased(ModBlocks.ORANGE_WIRE, OrangeWireBlock.NAME);
-    public static final Item ORANGE_WIRE_ADAPTER = registerAliased(ModBlocks.ORANGE_WIRE_ADAPTER, OrangeWireAdapterBlock.NAME);
-    public static final Item PURPLE_WIRE = registerAliased(ModBlocks.PURPLE_WIRE, PurpleWireBlock.NAME);
-    public static final Item PURPLE_WIRE_ADAPTER = registerAliased(ModBlocks.PURPLE_WIRE_ADAPTER, PurpleWireAdapterBlock.NAME);
-    public static final Item RED_WIRE = registerAliased(ModBlocks.RED_WIRE, RedWireBlock.NAME);
-    public static final Item RED_WIRE_ADAPTER = registerAliased(ModBlocks.RED_WIRE_ADAPTER, RedWireAdapterBlock.NAME);
-    public static final Item YELLOW_WIRE = registerAliased(ModBlocks.YELLOW_WIRE, YellowWireBlock.NAME);
-    public static final Item YELLOW_WIRE_ADAPTER = registerAliased(ModBlocks.YELLOW_WIRE_ADAPTER, YellowWireAdapterBlock.NAME);
+    public static final Map<WireColor, Item> WIRES = new HashMap<>();
+    public static final Map<WireColor, Item> ADAPTERS = new HashMap<>();
+
+    static {
+        for (WireColor color : WireColor.values()) {
+            Item wire = registerAliased(ModBlocks.WIRES.get(color), WireBlock.getName(color));
+            WIRES.put(color, wire);
+
+            Item adapter = registerAliased(ModBlocks.ADAPTERS.get(color), WireAdapterBlock.getName(color));
+            ADAPTERS.put(color, adapter);
+        }
+    }
+
     public static final Item BUS = registerAliased(ModBlocks.BUS, BusBlock.NAME);
     public static final Item BUS_ADAPTER = registerAliased(ModBlocks.BUS_ADAPTER, BusAdapterBlock.NAME);
 

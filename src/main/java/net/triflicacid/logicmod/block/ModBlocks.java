@@ -11,10 +11,17 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.custom.*;
-import net.triflicacid.logicmod.block.custom.adapter.*;
+import net.triflicacid.logicmod.block.custom.adapter.BusAdapterBlock;
+import net.triflicacid.logicmod.block.custom.adapter.JunctionBlock;
+import net.triflicacid.logicmod.block.custom.adapter.WireAdapterBlock;
 import net.triflicacid.logicmod.block.custom.logicgate.*;
-import net.triflicacid.logicmod.block.custom.wire.*;
+import net.triflicacid.logicmod.block.custom.wire.BusBlock;
+import net.triflicacid.logicmod.block.custom.wire.WireBlock;
 import net.triflicacid.logicmod.item.ModItemGroup;
+import net.triflicacid.logicmod.util.WireColor;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ModBlocks {
     public static final LogicGateBlock AND_GATE = (LogicGateBlock) registerBlock(AndGateBlock.NAME, new AndGateBlock());
@@ -36,18 +43,20 @@ public class ModBlocks {
     public static final Block RANDOM = registerBlock(RandomBlock.NAME, new RandomBlock());
 
     /** Wires and adapters */
-    public static final Block BLUE_WIRE = registerBlock(BlueWireBlock.NAME, new BlueWireBlock());
-    public static final Block BLUE_WIRE_ADAPTER = registerBlock(BlueWireAdapterBlock.NAME, new BlueWireAdapterBlock());
-    public static final Block GREEN_WIRE = registerBlock(GreenWireBlock.NAME, new GreenWireBlock());
-    public static final Block GREEN_WIRE_ADAPTER = registerBlock(GreenWireAdapterBlock.NAME, new GreenWireAdapterBlock());
-    public static final Block ORANGE_WIRE = registerBlock(OrangeWireBlock.NAME, new OrangeWireBlock());
-    public static final Block ORANGE_WIRE_ADAPTER = registerBlock(OrangeWireAdapterBlock.NAME, new OrangeWireAdapterBlock());
-    public static final Block PURPLE_WIRE = registerBlock(PurpleWireBlock.NAME, new PurpleWireBlock());
-    public static final Block PURPLE_WIRE_ADAPTER = registerBlock(PurpleWireAdapterBlock.NAME, new PurpleWireAdapterBlock());
-    public static final Block RED_WIRE = registerBlock(RedWireBlock.NAME, new RedWireBlock());
-    public static final Block RED_WIRE_ADAPTER = registerBlock(RedWireAdapterBlock.NAME, new RedWireAdapterBlock());
-    public static final Block YELLOW_WIRE = registerBlock(YellowWireBlock.NAME, new YellowWireBlock());
-    public static final Block YELLOW_WIRE_ADAPTER = registerBlock(YellowWireAdapterBlock.NAME, new YellowWireAdapterBlock());
+    public static final Map<WireColor, WireBlock> WIRES = new HashMap<>();
+    public static final Map<WireColor, WireAdapterBlock> ADAPTERS = new HashMap<>();
+
+    static {
+        for (WireColor color : WireColor.values()) {
+            WireBlock wire = WireBlock.instantiate(color);
+            registerBlock(WireBlock.getName(color), wire);
+            WIRES.put(color, wire);
+
+            WireAdapterBlock adapter = WireAdapterBlock.instantiate(color);
+            registerBlock(WireAdapterBlock.getName(color), adapter);
+            ADAPTERS.put(color, adapter);
+        }
+    }
 
     public static final Block JUNCTION = registerBlock(JunctionBlock.NAME, new JunctionBlock(), ModItemGroup.LOGIC);
     public static final Block BUS = registerBlock(BusBlock.NAME, new BusBlock(BlockSoundGroup.WOOL));

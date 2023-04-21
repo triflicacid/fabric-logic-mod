@@ -28,10 +28,10 @@ import java.util.Set;
 import static net.triflicacid.logicmod.util.Util.*;
 
 /**
- * Extends upon basic wire functionality. Each face can be one of three states, where it can act as acceptinga redstone
+ * Extends upon basic wire functionality. Each face can be one of three states, where it can act as accepting redstone
  * input into the wire, or emitting a redstone signal. Acts as a medium to interface redstone with wires.
  */
-public abstract class WireAdapterBlock extends AbstractWireBlock implements Wrenchable, AdvancedWrenchable, Analysable {
+public class WireAdapterBlock extends AbstractWireBlock implements Wrenchable, AdvancedWrenchable, Analysable {
     public static final EnumProperty<DirectionState> DOWN = EnumProperty.of("down", DirectionState.class);
     public static final EnumProperty<DirectionState> UP = EnumProperty.of("up", DirectionState.class);
     public static final EnumProperty<DirectionState> NORTH = EnumProperty.of("north", DirectionState.class);
@@ -40,7 +40,7 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
     public static final EnumProperty<DirectionState> EAST = EnumProperty.of("east", DirectionState.class);
 
 
-    public WireAdapterBlock(WireColor color) {
+    private WireAdapterBlock(WireColor color) {
         super(BlockSoundGroup.STONE, color);
     }
 
@@ -239,7 +239,12 @@ public abstract class WireAdapterBlock extends AbstractWireBlock implements Wren
     }
 
     /** get the name of an adapter of said color */
-    protected static String getName(WireColor color) {
+    public static String getName(WireColor color) {
         return color + "_wire_adapter";
+    }
+
+    /** Return class instance for a wire adapter of said color */
+    public static WireAdapterBlock instantiate(WireColor color) {
+        return new WireAdapterBlock(color) {};
     }
 }
