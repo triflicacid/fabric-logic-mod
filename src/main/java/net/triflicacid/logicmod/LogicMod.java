@@ -6,7 +6,6 @@ import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.blockentity.ModBlockEntity;
 import net.triflicacid.logicmod.item.ModItemGroup;
 import net.triflicacid.logicmod.item.ModItems;
-import net.triflicacid.logicmod.screen.ModScreenHandlers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,6 +44,5 @@ public class LogicMod implements ModInitializer {
 		ModBlockEntity.registerBlockEntities();
 		ModItems.registerItems();
 		ModBlocks.registerBlocks();
-		ModScreenHandlers.register();
 	}
 }
