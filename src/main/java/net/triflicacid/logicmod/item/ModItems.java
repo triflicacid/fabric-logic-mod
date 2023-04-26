@@ -9,14 +9,10 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.triflicacid.logicmod.LogicMod;
-import net.triflicacid.logicmod.block.ModBlocks;
-import net.triflicacid.logicmod.block.custom.*;
-import net.triflicacid.logicmod.block.custom.adapter.*;
-import net.triflicacid.logicmod.block.custom.logicgate.*;
-import net.triflicacid.logicmod.block.custom.wire.*;
-import net.triflicacid.logicmod.item.custom.AdvancedWrenchItem;
-import net.triflicacid.logicmod.item.custom.AnalyserItem;
-import net.triflicacid.logicmod.item.custom.WrenchItem;
+import net.triflicacid.logicmod.block.*;
+import net.triflicacid.logicmod.block.adapter.*;
+import net.triflicacid.logicmod.block.logicgate.*;
+import net.triflicacid.logicmod.block.wire.*;
 import net.triflicacid.logicmod.util.WireColor;
 
 import java.util.HashMap;

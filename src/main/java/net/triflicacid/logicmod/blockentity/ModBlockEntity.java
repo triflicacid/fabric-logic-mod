@@ -9,14 +9,10 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Util;
 import net.triflicacid.logicmod.LogicMod;
 import net.triflicacid.logicmod.block.ModBlocks;
-import net.triflicacid.logicmod.block.custom.ClockBlock;
-import net.triflicacid.logicmod.block.custom.ProgrammableBlock;
-import net.triflicacid.logicmod.block.custom.PulseBlock;
-import net.triflicacid.logicmod.block.custom.wire.BusBlock;
-import net.triflicacid.logicmod.blockentity.custom.BusBlockEntity;
-import net.triflicacid.logicmod.blockentity.custom.ClockBlockEntity;
-import net.triflicacid.logicmod.blockentity.custom.ProgrammableBlockEntity;
-import net.triflicacid.logicmod.blockentity.custom.PulseBlockEntity;
+import net.triflicacid.logicmod.block.ClockBlock;
+import net.triflicacid.logicmod.block.ProgrammableBlock;
+import net.triflicacid.logicmod.block.PulseBlock;
+import net.triflicacid.logicmod.block.wire.BusBlock;
 
 public class ModBlockEntity {
     public static BlockEntityType<ClockBlockEntity> CLOCK = registerBlockEntity(ClockBlock.NAME, BlockEntityType.Builder.create(ClockBlockEntity::new, ModBlocks.CLOCK));
