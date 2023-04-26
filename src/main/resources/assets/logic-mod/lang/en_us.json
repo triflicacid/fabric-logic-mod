@@ -84,5 +84,8 @@
   "item.logic-mod.bus": "Bus",
   "block.logic-mod.bus": "Bus",
   "block.logic-mod.bus_adapter": "Bus Adapter",
-  "item.logic-mod.bus_adapter": "Bus Adapter"
+  "item.logic-mod.bus_adapter": "Bus Adapter",
+
+  "block.logic-mod.programmable": "Programmable Block",
+  "item.logic-mod.programmable": "Programmable Block"
 }

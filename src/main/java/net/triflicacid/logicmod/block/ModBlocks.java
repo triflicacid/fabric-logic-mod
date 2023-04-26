@@ -59,6 +59,7 @@ public class ModBlocks {
     }
 
     public static final Block JUNCTION = registerBlock(JunctionBlock.NAME, new JunctionBlock(), ModItemGroup.LOGIC);
+    public static final Block PROGRAMMABLE = registerBlock(ProgrammableBlock.NAME, new ProgrammableBlock());
     public static final Block BUS = registerBlock(BusBlock.NAME, new BusBlock(BlockSoundGroup.WOOL));
     public static final Block BUS_ADAPTER = registerBlock(BusAdapterBlock.NAME, new BusAdapterBlock());
 
