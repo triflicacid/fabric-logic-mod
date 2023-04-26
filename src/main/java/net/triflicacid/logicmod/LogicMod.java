@@ -1,7 +1,6 @@
 package net.triflicacid.logicmod;
 
 import net.fabricmc.api.ModInitializer;
-
 import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.blockentity.ModBlockEntity;
