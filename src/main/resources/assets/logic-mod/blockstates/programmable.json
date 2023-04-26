@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "logic-mod:block/programmable"
+    }
+  }
+}
