@@ -17,8 +17,8 @@ import static net.triflicacid.logicmod.util.Util.spawnRedstoneParticles;
 /**
  * The concrete implementation of AbstractWireBlock
  */
-public abstract class WireBlock extends AbstractWireBlock implements Analysable {
-    public WireBlock(WireColor color) {
+public class WireBlock extends AbstractWireBlock implements Analysable {
+    protected WireBlock(WireColor color) {
         super(BlockSoundGroup.WOOL, color);
     }
 
@@ -46,5 +46,10 @@ public abstract class WireBlock extends AbstractWireBlock implements Analysable 
             player.sendMessage(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
             player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
         }
+    }
+
+    /** Return class instance for a wire of said color */
+    public static WireBlock instantiate(WireColor color) {
+        return new WireBlock(color) {};
     }
 }

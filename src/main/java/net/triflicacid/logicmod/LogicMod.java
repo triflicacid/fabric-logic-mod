@@ -2,6 +2,7 @@ package net.triflicacid.logicmod;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.util.Identifier;
 import net.triflicacid.logicmod.block.ModBlocks;
 import net.triflicacid.logicmod.blockentity.ModBlockEntity;
 import net.triflicacid.logicmod.item.ModItemGroup;
@@ -30,6 +31,11 @@ import org.slf4j.LoggerFactory;
 public class LogicMod implements ModInitializer {
 	public static final String MOD_ID = "logic-mod";
 	public static final Logger LOGGER = LoggerFactory.getLogger("logic-mod");
+
+	/** Get identifier for thing in this mod's namespace */
+	public static Identifier identify(String thing) {
+		return new Identifier(MOD_ID, thing);
+	}
 
 	@Override
 	public void onInitialize() {

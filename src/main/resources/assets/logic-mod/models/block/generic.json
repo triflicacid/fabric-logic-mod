@@ -1,0 +1,12 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "particle": "logic-mod:block/white_side",
+        "down": "logic-mod:block/white_side",
+        "up": "#top",
+        "north": "#north",
+        "east": "logic-mod:block/white_side",
+        "south": "#south",
+        "west": "logic-mod:block/white_side"
+    }
+}

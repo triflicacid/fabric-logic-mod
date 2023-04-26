@@ -19,9 +19,7 @@ public class AndGateBlock extends LogicGateBlock {
     }
 
     @Override
-    public String getType() {
-        return "and";
-    }
+    public String getType() { return "and"; }
 
     @Override
     public boolean isNotVariant() {

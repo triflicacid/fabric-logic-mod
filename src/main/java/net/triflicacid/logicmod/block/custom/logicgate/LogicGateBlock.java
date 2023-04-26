@@ -14,7 +14,6 @@ import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.interfaces.Analysable;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import static net.triflicacid.logicmod.util.Util.specialToText;
@@ -82,10 +81,9 @@ public abstract class LogicGateBlock extends AbstractBooleanBlock implements Adv
 
         boolean[] receiving = new boolean[Math.max(directions.size(), minInputs)];
 
-        Iterator<Direction> it = directions.iterator();
         int i = 0;
-        while (it.hasNext()) {
-            receiving[i++] = getPower(world, pos, state, it.next()) > 0;
+        for (Direction direction : directions) {
+            receiving[i++] = isReceivingFrom(world, pos, state, direction);
         }
 
         while (i < minInputs) {
@@ -93,6 +91,18 @@ public abstract class LogicGateBlock extends AbstractBooleanBlock implements Adv
         }
 
         return receiving;
+    }
+
+    /** Get input from a direction */
+    public boolean isReceivingFrom(World world, BlockPos pos, BlockState state, Direction direction) {
+        BlockPos dstPos = pos.offset(direction);
+        BlockState dstState = world.getBlockState(dstPos);
+
+        if (dstState.getBlock() instanceof LogicGateBlock && direction != state.get(FACING)) {
+            return isReceivingFrom(world, dstPos, dstState, direction);
+        } else {
+            return dstState.getStrongRedstonePower(world, dstPos, direction) > 0;
+        }
     }
 
     public void update(World world, BlockState state, BlockPos pos, Direction from) {

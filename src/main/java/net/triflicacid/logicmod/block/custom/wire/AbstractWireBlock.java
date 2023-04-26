@@ -21,7 +21,10 @@ import net.triflicacid.logicmod.block.custom.adapter.JunctionBlock;
 import net.triflicacid.logicmod.util.UpdateCache;
 import net.triflicacid.logicmod.util.WireColor;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Functionality for a block which stores an internal signal strength.

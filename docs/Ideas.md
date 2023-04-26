@@ -2,7 +2,7 @@
 
 Below are listed various ideas for this mod. They may or may not be implemented.
 
-Every bullet is ranked 0-10 for importance/desirability/likeliness.
+Every bullet is ranked 0-10 for desirability/likeliness.
 
 ## New Content
 - [**10**] Indicator. This would be like a redstone lamp, but 0-tick nd strongly powered only. It's black when off, red when on or similar.
@@ -23,8 +23,7 @@ Every bullet is ranked 0-10 for importance/desirability/likeliness.
 - [**6**] Not sure of a name, but pulls up a signal to 15 or pushes down a signal to 0 if the signal exceeds or is less than a given signal strength e.g. 7
 
 ## Modifications
-- [**8**] Logic gates with two inputs that have a logic gate to their left uses the left block's left input (input propagation).
-  - Inspiration: array of XOR gates used to inverse a line of wires
-- [**4**] Update textures to ensure black indicator lines up (see input/output block)
-- [**4**] Make WireAdapterBlock non-dependent on AbstractWireBlock -- remove POWER property, replace with a boolean ACTIVE. This would reduce the number of blockstates and decrease loading time.
+- [**2**] Make WireAdapterBlock non-dependent on AbstractWireBlock -- remove POWER property, replace with a boolean ACTIVE. This would reduce the number of blockstates and decrease loading time.
+
+## Textures
 - [**2**] Redo wire textures to be smaller than a block (like small pipes floating in the air), and add direction booleans for modelling.

@@ -48,10 +48,6 @@
       "model": "logic-mod:block/input/10",
       "y": 90
     },
-    "facing=east,active=true,power=10": {
-      "model": "logic-mod:block/input/10",
-      "y": 90
-    },
     "facing=east,active=true,power=11": {
       "model": "logic-mod:block/input/11",
       "y": 90
@@ -105,9 +101,6 @@
     },
     "facing=north,active=true,power=9": {
       "model": "logic-mod:block/input/9"
-    },
-    "facing=north,active=true,power=10": {
-      "model": "logic-mod:block/input/10"
     },
     "facing=north,active=true,power=10": {
       "model": "logic-mod:block/input/10"
@@ -170,10 +163,6 @@
     },
     "facing=south,active=true,power=9": {
       "model": "logic-mod:block/input/9",
-      "y": 180
-    },
-    "facing=south,active=true,power=10": {
-      "model": "logic-mod:block/input/10",
       "y": 180
     },
     "facing=south,active=true,power=10": {
@@ -243,10 +232,6 @@
     },
     "facing=west,active=true,power=9": {
       "model": "logic-mod:block/input/9",
-      "y": 270
-    },
-    "facing=west,active=true,power=10": {
-      "model": "logic-mod:block/input/10",
       "y": 270
     },
     "facing=west,active=true,power=10": {
