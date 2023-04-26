@@ -45,6 +45,7 @@ public class ModItems {
     public static final Item CONDITIONAL = registerAliased(ModBlocks.CONDITIONAL, ConditionalBlock.NAME);
     public static final Item EQUALITY = registerAliased(ModBlocks.EQUALITY, EqualityBlock.NAME);
     public static final Item MEMORY_CELL = registerAliased(ModBlocks.MEMORY_CELL, MemoryCellBlock.NAME);
+    public static final Item PROGRAMMABLE = registerAliased(ModBlocks.PROGRAMMABLE, ProgrammableBlock.NAME);
 
     /** Wires and adapters */
     public static final Map<WireColor, Item> WIRES = new HashMap<>();

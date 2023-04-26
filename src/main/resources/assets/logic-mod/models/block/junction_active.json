@@ -1,6 +1,7 @@
 {
-  "parent": "block/cube_all",
+  "parent": "logic-mod:block/generic_south",
   "textures": {
-    "all": "logic-mod:block/junction_active"
+    "top": "logic-mod:block/junction_active",
+    "face": "logic-mod:block/white_side"
   }
 }
