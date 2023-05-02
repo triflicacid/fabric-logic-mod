@@ -1,6 +1,3 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "logic-mod:block/circuit"
-  }
+  "parent": "logic-mod:block/programmable"
 }

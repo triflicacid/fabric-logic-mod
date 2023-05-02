@@ -1,6 +1,3 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "logic-mod:item/purple_wire_adapter"
-  }
+  "parent": "logic-mod:block/wire/purple/adapter"
 }
