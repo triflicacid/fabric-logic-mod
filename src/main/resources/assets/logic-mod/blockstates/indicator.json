@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "logic-mod:block/indicator_off"
+    },
+    "active=true": {
+      "model": "logic-mod:block/indicator_on"
+    }
+  }
+}

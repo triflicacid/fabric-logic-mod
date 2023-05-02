@@ -29,6 +29,8 @@
   "block.logic-mod.input": "Input",
   "item.logic-mod.output": "Output",
   "block.logic-mod.output": "Output",
+  "item.logic-mod.indicator": "Indicator",
+  "block.logic-mod.indicator": "Indicator",
 
   "item.logic-mod.conditional": "Conditional Gate",
   "block.logic-mod.conditional": "Conditional Gate",
