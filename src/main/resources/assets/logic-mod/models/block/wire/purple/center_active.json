@@ -1,0 +1,6 @@
+{
+  "parent": "logic-mod:block/wire/center",
+  "textures": {
+    "texture": "logic-mod:block/wire/purple/wire_active"
+  }
+}

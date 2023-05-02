@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import net.triflicacid.logicmod.block.custom.wire.AbstractWireBlock;
 import net.triflicacid.logicmod.block.custom.wire.BusBlock;
 import net.triflicacid.logicmod.interfaces.Analysable;
+import net.triflicacid.logicmod.interfaces.WireConnectable;
 import net.triflicacid.logicmod.util.UpdateCache;
 import net.triflicacid.logicmod.util.WireColor;
 import org.jetbrains.annotations.Nullable;
@@ -34,7 +35,7 @@ import static net.triflicacid.logicmod.util.Util.*;
  * A block which allows different colored wires signal's to propagate through it without interfering.
  * Used to allow wire crossings.
  */
-public class JunctionBlock extends Block implements Analysable {
+public class JunctionBlock extends Block implements Analysable, WireConnectable {
     public static final String NAME = "junction";
 
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
@@ -179,6 +180,11 @@ public class JunctionBlock extends Block implements Analysable {
         if (count == 0) {
             player.sendMessage(commentToText("No power"));
         }
+    }
+
+    @Override
+    public boolean shouldWireConnect(WireColor color) {
+        return true;
     }
 
     @Override
