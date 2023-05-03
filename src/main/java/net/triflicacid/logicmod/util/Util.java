@@ -22,75 +22,6 @@ import java.util.stream.Collectors;
  * Class containing general utility functions
  */
 public class Util {
-    public static boolean logicalBuffer(boolean[] inputs) {
-        if (inputs.length != 1)
-            throw new IllegalArgumentException("Expected array of size 1, got " + inputs.length);
-        return inputs[0];
-    }
-
-    public static boolean logicalNot(boolean[] inputs) {
-        if (inputs.length != 1)
-            throw new IllegalArgumentException("Expected array of size 1, got " + inputs.length);
-        return !inputs[0];
-    }
-
-    public static boolean logicalAnd(boolean[] inputs) {
-        for (boolean input : inputs)
-            if (!input)
-                return false;
-
-        return true;
-    }
-
-    public static boolean logicalNand(boolean[] inputs) {
-        for (boolean input : inputs)
-            if (!input)
-                return true;
-
-        return false;
-    }
-
-    public static boolean logicalOr(boolean[] inputs) {
-        for (boolean input : inputs)
-            if (input)
-                return true;
-
-        return false;
-    }
-
-    public static boolean logicalNor(boolean[] inputs) {
-        for (boolean input : inputs)
-            if (input)
-                return false;
-
-        return true;
-    }
-
-    public static boolean logicalXor(boolean[] inputs) {
-        int truthy = 0;
-        for (boolean input : inputs) {
-            if (input) {
-                if (truthy > 0)
-                    return false;
-
-                truthy++;
-            }
-        }
-
-        return truthy == 1;
-    }
-
-    public static boolean logicalXnor(boolean[] inputs) {
-        int truthy = 0;
-        for (boolean input : inputs) {
-            if (input) {
-                truthy++;
-            }
-        }
-
-        return truthy != 1;
-    }
-
     /** Return if every int value in an array is equal */
     public static boolean allEqual(int[] values) {
         for (int i = 1; i < values.length; i++)
@@ -196,7 +127,7 @@ public class Util {
         }
     }
 
-    /** Get noteblock pitch from note */
+    /** Get note block pitch from note */
     public static float getNotePitch(int note) {
         return (float)Math.pow(2.0, (double)(note - 12) / 12.0);
     }
@@ -204,7 +135,7 @@ public class Util {
     private static final String[] noteSymbols = { "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#" };
     private static final String[] noteHexCodes = { "77D700", "95C000", "B2A500", "CC8600", "E26500", "F34100", "FC1E00", "FE000F", "F70033", "E8005A", "CF0083", "AE00A9", "8600CC", "5B00E7", "2D00F9", "020AFE", "0037F6", "0068E0", "009ABC", "00C68D", "00E958", "00FC21", "1FFC00", "59E800", "94C100" };
 
-    /** Wrap a property: if less than min, set max and vica versa */
+    /** Wrap a property: if less than min, set max and vice versa */
     public static int wrapInt(int value, int min, int max) {
         if (value < min) return max;
         if (value > max) return min;

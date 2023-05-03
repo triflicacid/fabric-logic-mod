@@ -10,13 +10,12 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.triflicacid.logicmod.LogicMod;
-import net.triflicacid.logicmod.block.custom.*;
-import net.triflicacid.logicmod.block.custom.adapter.BusAdapterBlock;
-import net.triflicacid.logicmod.block.custom.adapter.JunctionBlock;
-import net.triflicacid.logicmod.block.custom.adapter.WireAdapterBlock;
-import net.triflicacid.logicmod.block.custom.logicgate.*;
-import net.triflicacid.logicmod.block.custom.wire.BusBlock;
-import net.triflicacid.logicmod.block.custom.wire.WireBlock;
+import net.triflicacid.logicmod.block.adapter.BusAdapterBlock;
+import net.triflicacid.logicmod.block.adapter.JunctionBlock;
+import net.triflicacid.logicmod.block.adapter.WireAdapterBlock;
+import net.triflicacid.logicmod.block.logicgate.*;
+import net.triflicacid.logicmod.block.wire.BusBlock;
+import net.triflicacid.logicmod.block.wire.WireBlock;
 import net.triflicacid.logicmod.item.ModItemGroup;
 import net.triflicacid.logicmod.util.WireColor;
 
@@ -70,7 +69,7 @@ public class ModBlocks {
         return Registry.register(Registries.BLOCK, LogicMod.identify(name), block);
     }
 
-    /** Register a block with an associated item, which will e placed in the provided ItemGroup */
+    /** Register a block with an associated item, which will be placed in the provided ItemGroup */
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
         return Registry.register(Registries.BLOCK, LogicMod.identify(name), block);
