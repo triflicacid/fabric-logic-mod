@@ -201,6 +201,19 @@ The advanced wrench toggles each get between its NOT variant
         - `S` is a stone block
         - `T` is a redstone torch
 
+- Indicator
+  - Emits light and glows red when receiving a **strong** redstone signal with no delay.
+  - Crafting recipe:
+
+  |   | G |   |
+  |---|---|---|
+  | G | T | G |
+  |   | G |   |
+
+  where
+    - `G` is a glass block
+    - `R` is a redstone torch
+
 - Input
     - Emits a constant signal 0-15
     - Signal defaults to 0

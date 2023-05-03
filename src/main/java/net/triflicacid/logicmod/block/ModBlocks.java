@@ -34,6 +34,7 @@ public class ModBlocks {
 
     public static final Block INPUT = registerBlock(InputBlock.NAME, new InputBlock());
     public static final Block OUTPUT = registerBlock(OutputBlock.NAME, new OutputBlock());
+    public static final Block INDICATOR = registerBlock(IndicatorBlock.NAME, new IndicatorBlock());
     public static final Block PULSE = registerBlock(PulseBlock.NAME, new PulseBlock());
     public static final Block CLOCK = registerBlock(ClockBlock.NAME, new ClockBlock());
     public static final Block CONDITIONAL = registerBlock(ConditionalBlock.NAME, new ConditionalBlock());

@@ -1,6 +1,6 @@
 # Logic Mod
 
-Logic Mod adds basic logic utilities to Minecraft.
+Logic Mod is a mod which adds basic logic utilities to Minecraft.
 
 This documents acts as a brief summary of this repository. For more information, see `docs/`.
 

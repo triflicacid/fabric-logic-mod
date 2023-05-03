@@ -1,7 +1,9 @@
 package net.triflicacid.logicmod.block.adapter;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Material;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
@@ -41,7 +43,7 @@ public class WireAdapterBlock extends AbstractWireBlock implements Wrenchable, A
 
 
     private WireAdapterBlock(WireColor color) {
-        super(BlockSoundGroup.STONE, color);
+        super(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.STONE).breakInstantly(), color);
     }
 
     /** Get power being received in a given direction */

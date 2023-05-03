@@ -35,6 +35,7 @@ public class ModItems {
 
     public static final Item INPUT = registerAliased(ModBlocks.INPUT, InputBlock.NAME);
     public static final Item OUTPUT = registerAliased(ModBlocks.OUTPUT, OutputBlock.NAME);
+    public static final Item INDICATOR = registerAliased(ModBlocks.INDICATOR, IndicatorBlock.NAME);
     public static final Item PULSE = registerAliased(ModBlocks.PULSE, PulseBlock.NAME);
     public static final Item CLOCK = registerAliased(ModBlocks.CLOCK, ClockBlock.NAME);
     public static final Item RANDOM = registerAliased(ModBlocks.RANDOM, RandomBlock.NAME);

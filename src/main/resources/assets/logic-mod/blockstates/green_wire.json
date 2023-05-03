@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "logic-mod:block/wire/green/wire"
+        "model": "logic-mod:block/wire/green/center"
       },
       "when": {
         "power": "0"
@@ -10,9 +10,139 @@
     },
     {
       "apply": {
-        "model": "logic-mod:block/wire/green/wire_active"
+        "model": "logic-mod:block/wire/green/center_active"
       },
       "when": {
+        "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side",
+        "uvlock": true
+      },
+      "when": {
+        "north": "true",
+        "power": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side_active",
+        "uvlock": true
+      },
+      "when": {
+        "north": "true",
+        "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "true",
+        "power": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side_active",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "true",
+        "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "south": "true",
+        "power": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side_active",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "south": "true",
+        "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "west": "true",
+        "power": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side_active",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "west": "true",
+        "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side",
+        "uvlock": true,
+        "x": 270
+      },
+      "when": {
+        "up": "true",
+        "power": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side_active",
+        "uvlock": true,
+        "x": 270
+      },
+      "when": {
+        "up": "true",
+        "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side",
+        "uvlock": true,
+        "x": 90
+      },
+      "when": {
+        "down": "true",
+        "power": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "logic-mod:block/wire/green/side_active",
+        "uvlock": true,
+        "x": 90
+      },
+      "when": {
+        "down": "true",
         "power": "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"
       }
     }

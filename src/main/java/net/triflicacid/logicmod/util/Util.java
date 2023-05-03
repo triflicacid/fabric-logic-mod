@@ -144,7 +144,11 @@ public class Util {
 
     /** Spawn redstone particles */
     public static void spawnRedstoneParticles(World world, BlockPos pos) {
-        double d = 0.5625;
+       spawnRedstoneParticles(world, pos, 0.5625);
+    }
+
+    /** Spawn redstone particles of a max distance d from block centre */
+    public static void spawnRedstoneParticles(World world, BlockPos pos, double d) {
         Random random = world.random;
 
         for(Direction direction : Direction.values()) {

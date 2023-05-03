@@ -1,13 +1,10 @@
 package net.triflicacid.logicmod.block.wire;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
@@ -18,6 +15,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.block.adapter.BusAdapterBlock;
 import net.triflicacid.logicmod.block.adapter.JunctionBlock;
+import net.triflicacid.logicmod.interfaces.WireConnectable;
 import net.triflicacid.logicmod.util.UpdateCache;
 import net.triflicacid.logicmod.util.WireColor;
 
@@ -32,12 +30,12 @@ import java.util.Set;
  *
  * Doesn't inherit from AbstractPowerBlock as update behaviour varies slightly.
  */
-public abstract class AbstractWireBlock extends Block {
+public abstract class AbstractWireBlock extends Block implements WireConnectable {
     public static final IntProperty POWER = Properties.POWER;
     protected final WireColor color;
 
-    public AbstractWireBlock(BlockSoundGroup sound, WireColor color) {
-        super(FabricBlockSettings.of(Material.WOOL).sounds(sound).breakInstantly());
+    public AbstractWireBlock(Settings settings, WireColor color) {
+        super(settings);
         this.color = color;
     }
 
@@ -155,14 +153,27 @@ public abstract class AbstractWireBlock extends Block {
     }
 
     @Override
+    public boolean shouldWireConnect(WireColor color) {
+        return color == getWireColor();
+    }
+
+    @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        if (!world.isClient)
+        if (!world.isClient) {
+            if (state.getBlock() instanceof WireBlock wireBlock) {
+                wireBlock.updateModel(world, state, pos);
+            }
             update(world, pos);
+        }
     }
 
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
         if (!world.isClient()) {
+            if (state.getBlock() instanceof WireBlock wireBlock) {
+                Direction from = Direction.fromVector(sourcePos.subtract(pos));
+                wireBlock.updateModel(world, state, pos, from);
+            }
             update(world, pos);
         }
     }
