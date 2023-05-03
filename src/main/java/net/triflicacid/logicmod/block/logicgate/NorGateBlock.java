@@ -15,7 +15,11 @@ public class NorGateBlock extends LogicGateBlock {
 
     @Override
     public boolean logicalFunction(boolean[] inputs) {
-        return Util.logicalNor(inputs);
+        for (boolean input : inputs)
+            if (input)
+                return false;
+
+        return true;
     }
 
     @Override

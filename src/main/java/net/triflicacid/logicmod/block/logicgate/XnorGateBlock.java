@@ -15,7 +15,14 @@ public class XnorGateBlock extends LogicGateBlock {
 
     @Override
     public boolean logicalFunction(boolean[] inputs) {
-        return Util.logicalXnor(inputs);
+        int truthy = 0;
+        for (boolean input : inputs) {
+            if (input) {
+                truthy++;
+            }
+        }
+
+        return truthy != 1;
     }
 
     @Override

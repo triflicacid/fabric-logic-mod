@@ -15,7 +15,17 @@ public class XorGateBlock extends LogicGateBlock {
 
     @Override
     public boolean logicalFunction(boolean[] inputs) {
-        return Util.logicalXor(inputs);
+        int truthy = 0;
+        for (boolean input : inputs) {
+            if (input) {
+                if (truthy > 0)
+                    return false;
+
+                truthy++;
+            }
+        }
+
+        return truthy == 1;
     }
 
     @Override

@@ -15,7 +15,11 @@ public class OrGateBlock extends LogicGateBlock {
 
     @Override
     public boolean logicalFunction(boolean[] inputs) {
-        return Util.logicalOr(inputs);
+        for (boolean input : inputs)
+            if (input)
+                return true;
+
+        return false;
     }
 
     @Override

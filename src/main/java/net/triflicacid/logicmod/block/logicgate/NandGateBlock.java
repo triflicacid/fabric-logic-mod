@@ -15,7 +15,11 @@ public class NandGateBlock extends LogicGateBlock {
 
     @Override
     public boolean logicalFunction(boolean[] inputs) {
-        return Util.logicalNand(inputs);
+        for (boolean input : inputs)
+            if (!input)
+                return true;
+
+        return false;
     }
 
     @Override

@@ -15,7 +15,11 @@ public class AndGateBlock extends LogicGateBlock {
 
     @Override
     public boolean logicalFunction(boolean[] inputs) {
-        return Util.logicalAnd(inputs);
+        for (boolean input : inputs)
+            if (!input)
+                return false;
+
+        return true;
     }
 
     @Override

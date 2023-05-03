@@ -17,6 +17,9 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static net.triflicacid.logicmod.util.Util.*;
 
 /**
@@ -201,10 +204,7 @@ public class MemoryCellBlock extends AbstractPowerBlock implements AdvancedWrenc
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (world.isClient)
-            return;
-
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
         int control = getControlPower(world, pos, state);
         String controlStr = switch (control) {
             case READ -> "read";
@@ -219,8 +219,10 @@ public class MemoryCellBlock extends AbstractPowerBlock implements AdvancedWrenc
             default -> "none";
         };
 
-        player.sendMessage(Text.literal("Memory: ").append(numberToText(state.get(POWER))));
-        player.sendMessage(Text.literal("Control Line: ").append(specialToText(controlStr)).append(" (").append(numberToText(control)).append(")"));
+        List<Text> messages = new ArrayList<>();
+        messages.add(Text.literal("Memory: ").append(numberToText(state.get(POWER))));
+        messages.add(Text.literal("Control Line: ").append(specialToText(controlStr)).append(" (").append(numberToText(control)).append(")"));
+        return messages;
     }
 
     @Override

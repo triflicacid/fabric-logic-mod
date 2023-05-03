@@ -15,7 +15,9 @@ public class BufferGateBlock extends LogicGateBlock {
 
     @Override
     public boolean logicalFunction(boolean[] inputs) {
-        return Util.logicalBuffer(inputs);
+        if (inputs.length != 1)
+            throw new IllegalArgumentException("Expected array of size 1, got " + inputs.length);
+        return inputs[0];
     }
 
     @Override
