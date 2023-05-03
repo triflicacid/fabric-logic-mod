@@ -4,7 +4,6 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -17,6 +16,9 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.blockentity.ProgrammableBlockEntity;
 import net.triflicacid.logicmod.interfaces.Analysable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
@@ -111,24 +113,26 @@ public class ProgrammableBlock extends Block implements Analysable, BlockEntityP
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (!world.isClient) {
-            BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof ProgrammableBlockEntity program) {
-                if (Screen.hasAltDown()) {
-                    for (String name : program.getSymbols()) {
-                        player.sendMessage(Text.literal("").append(specialToText(name)).append(" = ").append(booleanToText(program.getSymbol(name))));
-                    }
-                } else {
-                    player.sendMessage(Text.literal("Inputs: ").append(specialToText(program.inputsToString())));
-                    player.sendMessage(Text.literal("Outputs: ").append(specialToText(program.outputsToString())));
-                    player.sendMessage(Text.literal("Program: ").append(numberToText(program.readProgram().length())).append(" bytes"));
-                    player.sendMessage(Text.literal("Error: ").append(program.hasError()
-                            ? Text.literal(program.getError()).formatted(Formatting.RED)
-                            : commentToText("none")));
-                    player.sendMessage(commentToText("Press ALT to view variables"));
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        List<Text> messages = new ArrayList<>();
+
+        BlockEntity entity = world.getBlockEntity(pos);
+        if (entity instanceof ProgrammableBlockEntity program) {
+            if (Screen.hasAltDown()) {
+                for (String name : program.getSymbols()) {
+                    messages.add(Text.literal("").append(specialToText(name)).append(" = ").append(booleanToText(program.getSymbol(name))));
                 }
+            } else {
+                messages.add(Text.literal("Inputs: ").append(specialToText(program.inputsToString())));
+                messages.add(Text.literal("Outputs: ").append(specialToText(program.outputsToString())));
+                messages.add(Text.literal("Program: ").append(numberToText(program.readProgram().length())).append(" bytes"));
+                messages.add(Text.literal("Error: ").append(program.hasError()
+                        ? Text.literal(program.getError()).formatted(Formatting.RED)
+                        : commentToText("none")));
+                messages.add(commentToText("Press ALT to view variables"));
             }
         }
+
+        return messages;
     }
 }

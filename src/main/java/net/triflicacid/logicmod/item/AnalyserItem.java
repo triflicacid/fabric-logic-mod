@@ -16,7 +16,6 @@ import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.Analysable;
-import net.triflicacid.logicmod.util.Analyse;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -57,18 +56,13 @@ public class AnalyserItem extends Item {
             PlayerEntity player = context.getPlayer();
 
             player.sendMessage(Text.literal("Block: ").append(blockToText(block)));
-            if (block instanceof Analysable analysable) { // Overridden?
-                analysable.onAnalyse(world, pos, state, context.getSide(), player, context.getHorizontalPlayerFacing());
+
+            if (block instanceof Analysable analysable) {
+                List<Text> messages = analysable.onAnalyse(world, pos, state, context.getSide(), context.getHorizontalPlayerFacing());
+                for (Text line : messages)
+                    player.sendMessage(line);
             } else {
-                // Otherwise, attempt static method (mainly for non-mod blocks)
-                Text[] message = Analyse.analyseBlock(world, pos, state, block);
-                if (message == null) {
-//                    player.sendMessage(commentToText("No further information"));
-                    return ActionResult.FAIL;
-                } else {
-                    for (Text line : message)
-                        player.sendMessage(line);
-                }
+                return ActionResult.FAIL;
             }
         }
 

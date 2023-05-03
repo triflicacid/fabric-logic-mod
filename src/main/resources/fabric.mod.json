@@ -21,6 +21,29 @@
 			"net.triflicacid.logicmod.LogicModClient"
 		]
 	},
+    "mixins": [
+      "logic-mod.mixins.json"
+    ],
+    "custom": {
+      "loom:injected_interfaces": {
+        "net/minecraft/class_2269": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_5546": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_5556": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_5553": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_2286": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_3962": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_2309": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_3715": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_2401": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_2440": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_2453": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_2459": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_2457": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_2462": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_4850": ["net/triflicacid/logicmod/interfaces/Analysable"],
+        "net/minecraft/class_2428": ["net/triflicacid/logicmod/interfaces/Analysable"]
+      }
+    },
 	"depends": {
 		"fabricloader": ">=0.14.19",
 		"minecraft": "~1.19.4",

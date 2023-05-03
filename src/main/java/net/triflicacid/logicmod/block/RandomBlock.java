@@ -14,6 +14,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static net.triflicacid.logicmod.util.Util.*;
 
 /**
@@ -72,10 +75,10 @@ public class RandomBlock extends AbstractPowerBlock implements AdvancedWrenchabl
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (!world.isClient) {
-            player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
-            player.sendMessage(Text.literal("Binary: ").append(booleanToText(state.get(BINARY))));
-        }
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+            List<Text> messages = new ArrayList<>();
+            messages.add(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+            messages.add(Text.literal("Binary: ").append(booleanToText(state.get(BINARY))));
+            return messages;
     }
 }

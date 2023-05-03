@@ -2,7 +2,6 @@ package net.triflicacid.logicmod.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.Text;
@@ -11,6 +10,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.Analysable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.triflicacid.logicmod.util.Util.booleanToText;
 
@@ -56,9 +58,9 @@ public abstract class AbstractBooleanBlock extends AbstractDirectionalBlock impl
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (!world.isClient) {
-            player.sendMessage(Text.literal("State: ").append(booleanToText(state.get(ACTIVE), "on", "off")));
-        }
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        List<Text> messages = new ArrayList<>();
+        messages.add(Text.literal("State: ").append(booleanToText(state.get(ACTIVE), "on", "off")));
+        return messages;
     }
 }

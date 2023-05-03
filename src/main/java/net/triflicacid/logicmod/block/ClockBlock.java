@@ -21,6 +21,9 @@ import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.interfaces.Analysable;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static net.triflicacid.logicmod.util.Util.*;
 import static net.triflicacid.logicmod.util.Util.numberToText;
 
@@ -96,16 +99,17 @@ public class ClockBlock extends AbstractBooleanBlock implements AdvancedWrenchab
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (world.isClient)
-            return;
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        List<Text> messages = new ArrayList<>();
 
         BlockEntity entity = world.getBlockEntity(pos);
         if (entity instanceof ClockBlockEntity clockEntity) {
-            player.sendMessage(Text.literal("On Duration: ")
+            messages.add(Text.literal("On Duration: ")
                     .append(numberToText(clockEntity.getOnTickCount())));
-            player.sendMessage(Text.literal("Off Duration: ")
+            messages.add(Text.literal("Off Duration: ")
                     .append(numberToText(clockEntity.getOffTickCount())));
         }
+
+        return messages;
     }
 }

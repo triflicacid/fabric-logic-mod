@@ -1,0 +1,31 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.triflicacid.logicmod.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "analysable.AnalysableButtonMixin",
+    "analysable.AnalysableCauldronMixin",
+    "analysable.AnalysableLeveledCauldronMixin",
+    "analysable.AnalysableLavaCauldronMixin",
+    "analysable.AnalysableComparatorMixin",
+    "analysable.AnalysableComposterMixin",
+    "analysable.AnalysableDaylightDetectorMixin",
+    "analysable.AnalysableLecternMixin",
+    "analysable.AnalysableLeverBlock",
+    "analysable.AnalysablePressurePlateBlock",
+    "analysable.AnalysableRedstoneLampBlock",
+    "analysable.AnalysableRedstoneTorchBlock",
+    "analysable.AnalysableRedstoneWireBlock",
+    "analysable.AnalysableRepeaterBlock",
+    "analysable.AnalysableTargetBlock",
+    "analysable.AnalysableNoteBlock",
+    "ButtonAccessor",
+    "PressurePlateInvoker"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -16,6 +16,9 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static net.triflicacid.logicmod.util.Util.*;
 
 /**
@@ -59,11 +62,11 @@ public class InputBlock extends AbstractPowerBlock implements AdvancedWrenchable
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (!world.isClient) {
-            player.sendMessage(Text.literal("Active: ").append(booleanToText(state.get(ACTIVE))));
-            player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
-        }
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        List<Text> messages = new ArrayList<>();
+        messages.add(Text.literal("Active: ").append(booleanToText(state.get(ACTIVE))));
+        messages.add(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+        return messages;
     }
 
     @Override

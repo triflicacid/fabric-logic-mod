@@ -19,6 +19,9 @@ import net.triflicacid.logicmod.blockentity.PulseBlockEntity;
 import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static net.triflicacid.logicmod.util.Util.numberToText;
 import static net.triflicacid.logicmod.util.Util.specialToText;
 
@@ -65,12 +68,16 @@ public class PulseBlock extends AbstractBooleanBlock implements AdvancedWrenchab
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        List<Text> messages = new ArrayList<>();
+
         BlockEntity entity = world.getBlockEntity(pos);
         if (entity instanceof PulseBlockEntity entity2) {
             entity2.incrementDuration(Screen.hasShiftDown() ? -1 : 1);
-            player.sendMessage(Text.literal("Duration: ").append(numberToText(entity2.getDuration())));
+            messages.add(Text.literal("Duration: ").append(numberToText(entity2.getDuration())));
         }
+
+        return messages;
     }
 
     @Override

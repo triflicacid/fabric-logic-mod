@@ -1,7 +1,6 @@
 package net.triflicacid.logicmod.block.wire;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
@@ -10,6 +9,9 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.interfaces.Analysable;
 import net.triflicacid.logicmod.util.WireColor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.triflicacid.logicmod.util.Util.numberToText;
 import static net.triflicacid.logicmod.util.Util.spawnRedstoneParticles;
@@ -41,11 +43,11 @@ public class WireBlock extends AbstractWireBlock implements Analysable {
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (!world.isClient) {
-            player.sendMessage(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
-            player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
-        }
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        List<Text> messages = new ArrayList<>();
+        messages.add(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
+        messages.add(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+        return messages;
     }
 
     /** Return class instance for a wire of said color */

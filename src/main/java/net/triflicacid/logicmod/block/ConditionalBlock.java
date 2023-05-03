@@ -3,12 +3,14 @@ package net.triflicacid.logicmod.block;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
@@ -51,13 +53,15 @@ public class ConditionalBlock extends AbstractPowerBlock {
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (!world.isClient) {
-            boolean active = getPower(world, pos, state, state.get(FACING)) > 0;
-            player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
-            player.sendMessage(Text.literal("State: ").append(booleanToText(active, "on", "off")));
-            player.sendMessage(Text.literal("Power if ").append(truthyToText("on")).append(": ").append(numberToText(getOnPower(world, state, pos))));
-            player.sendMessage(Text.literal("Power if ").append(falsyToText("off")).append(": ").append(numberToText(getOffPower(world, state, pos))));
-        }
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        List<Text> messages = new ArrayList<>();
+
+        boolean active = getPower(world, pos, state, state.get(FACING)) > 0;
+        messages.add(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+        messages.add(Text.literal("State: ").append(booleanToText(active, "on", "off")));
+        messages.add(Text.literal("Power if ").append(truthyToText("on")).append(": ").append(numberToText(getOnPower(world, state, pos))));
+        messages.add(Text.literal("Power if ").append(falsyToText("off")).append(": ").append(numberToText(getOffPower(world, state, pos))));
+
+        return messages;
     }
 }

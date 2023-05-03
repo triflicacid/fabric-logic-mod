@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -23,10 +22,7 @@ import net.triflicacid.logicmod.util.UpdateCache;
 import net.triflicacid.logicmod.util.WireColor;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static net.triflicacid.logicmod.util.Util.*;
 
@@ -167,18 +163,22 @@ public class JunctionBlock extends Block implements Analysable {
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        List<Text> messages = new ArrayList<>();
+
         Map<WireColor, Integer> map = getReceivedPower(world, state, pos);
         int power, count = 0;
         for (WireColor color : WireColor.values()) {
             if (map.containsKey(color) && (power = map.get(color)) > 0) {
                 count++;
-                player.sendMessage(Text.literal("").append(Text.literal(capitalise(color.toString())).formatted(color.getFormatting())).append(" power: ").append(numberToText(power)));
+                messages.add(Text.literal("").append(Text.literal(capitalise(color.toString())).formatted(color.getFormatting())).append(" power: ").append(numberToText(power)));
             }
         }
         if (count == 0) {
-            player.sendMessage(commentToText("No power"));
+            messages.add(commentToText("No power"));
         }
+
+        return messages;
     }
 
     @Override

@@ -14,6 +14,7 @@ import net.triflicacid.logicmod.interfaces.AdvancedWrenchable;
 import net.triflicacid.logicmod.interfaces.Analysable;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static net.triflicacid.logicmod.util.Util.specialToText;
@@ -120,8 +121,8 @@ public abstract class LogicGateBlock extends AbstractBooleanBlock implements Adv
     /** Return the inverse logic gate block */
     public abstract LogicGateBlock getInverse();
 
-    @Override
     /** Toggle between inverse logic gate type */
+    @Override
     public BlockState applyAdvancedWrench(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
         if (!world.isClient) {
             LogicGateBlock inverse = this.getInverse();
@@ -136,10 +137,9 @@ public abstract class LogicGateBlock extends AbstractBooleanBlock implements Adv
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (!world.isClient) {
-            super.onAnalyse(world, pos, state, side, player, playerFacing);
-            player.sendMessage(Text.literal("Gate type: ").append(specialToText(getType())));
-        }
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        List<Text> messages = super.onAnalyse(world, pos, state, side, playerFacing);
+        messages.add(Text.literal("Gate type: ").append(specialToText(getType())));
+        return messages;
     }
 }

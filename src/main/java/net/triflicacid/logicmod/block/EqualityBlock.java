@@ -3,7 +3,6 @@ package net.triflicacid.logicmod.block;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
@@ -11,7 +10,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.triflicacid.logicmod.util.Util;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static net.triflicacid.logicmod.util.Util.booleanToText;
@@ -58,11 +59,13 @@ public class EqualityBlock extends AbstractPowerBlock {
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (!world.isClient) {
-            int[] inputs = getInputs(state, world, pos);
-            player.sendMessage(Text.literal("All Equal: ").append(booleanToText(Util.allEqual(inputs))));
-            player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
-        }
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        List<Text> messages = new ArrayList<>();
+
+        int[] inputs = getInputs(state, world, pos);
+        messages.add(Text.literal("All Equal: ").append(booleanToText(Util.allEqual(inputs))));
+        messages.add(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+
+        return messages;
     }
 }

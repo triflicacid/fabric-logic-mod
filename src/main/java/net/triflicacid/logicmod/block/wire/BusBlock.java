@@ -7,7 +7,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -168,15 +167,17 @@ public class BusBlock extends Block implements BlockEntityProvider, Analysable {
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (!world.isClient) {
-            BlockEntity entity = world.getBlockEntity(pos);
-            if (entity instanceof BusBlockEntity busEntity) {
-                for (WireColor color : BusBlockEntity.COLORS) {
-                    player.sendMessage(Text.literal("").append(Text.literal(capitalise(color.toString())).formatted(color.getFormatting())).append(Text.literal(" power: ")).append(numberToText(busEntity.getPower(color))));
-                }
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
+        List<Text> messages = new ArrayList<>();
+
+        BlockEntity entity = world.getBlockEntity(pos);
+        if (entity instanceof BusBlockEntity busEntity) {
+            for (WireColor color : BusBlockEntity.COLORS) {
+                messages.add(Text.literal("").append(Text.literal(capitalise(color.toString())).formatted(color.getFormatting())).append(Text.literal(" power: ")).append(numberToText(busEntity.getPower(color))));
             }
         }
+
+        return messages;
     }
 
     @Override

@@ -169,10 +169,7 @@ public class WireAdapterBlock extends AbstractWireBlock implements Wrenchable, A
     }
 
     @Override
-    public void onAnalyse(World world, BlockPos pos, BlockState state, Direction side, PlayerEntity player, Direction playerFacing) {
-        if (world.isClient)
-            return;
-
+    public List<Text> onAnalyse(World world, BlockPos pos, BlockState state, Direction side, Direction playerFacing) {
         List<Direction> inputs = new ArrayList<>();
         List<Direction> outputs = new ArrayList<>();
 
@@ -184,10 +181,12 @@ public class WireAdapterBlock extends AbstractWireBlock implements Wrenchable, A
             }
         }
 
-        player.sendMessage(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
-        player.sendMessage(Text.literal("Power: ").append(numberToText(state.get(POWER))));
-        player.sendMessage(Text.literal("Inputs: ").append(inputs.isEmpty() ? commentToText("none") :  specialToText(joinList(inputs, ", "))));
-        player.sendMessage(Text.literal("Outputs: ").append(outputs.isEmpty() ? commentToText("none") :  specialToText(joinList(outputs, ", "))));
+        List<Text> messages = new ArrayList<>();
+        messages.add(Text.literal("Color: ").append(Text.literal(color.toString()).formatted(color.getFormatting())));
+        messages.add(Text.literal("Power: ").append(numberToText(state.get(POWER))));
+        messages.add(Text.literal("Inputs: ").append(inputs.isEmpty() ? commentToText("none") :  specialToText(joinList(inputs, ", "))));
+        messages.add(Text.literal("Outputs: ").append(outputs.isEmpty() ? commentToText("none") :  specialToText(joinList(outputs, ", "))));
+        return messages;
     }
 
     @Override
