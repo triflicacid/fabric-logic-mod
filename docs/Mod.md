@@ -120,7 +120,7 @@ The advanced wrench toggles each get between its NOT variant
 - XOR gate
     - Outputs if either inputs are on, but not both
 
-  | A | B | `(A \| B) & ¬(A & B)` |
+  | A | B | `(A & ¬B) \| (¬A & B)` |
   |---|---|-----------------------|
   | 0 | 0 | 0                     |
   | 0 | 1 | 1                     |
@@ -143,7 +143,7 @@ The advanced wrench toggles each get between its NOT variant
 - XNOR gate
     - Output if both inputs are equal (not-xor)
 
-  | A | B | `¬(A & B) \| (A & B)` |
+  | A | B | `¬(A & B) \| (¬A & ¬B)` |
   |---|---|-----------------------|
   | 0 | 0 | 1                     |
   | 0 | 1 | 0                     |
